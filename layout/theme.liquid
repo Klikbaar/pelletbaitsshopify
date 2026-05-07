@@ -58,12 +58,16 @@
       {%- for link in linklists['main-menu'].links -%}
         <a href="{{ link.url }}">{{ link.title }}</a>
       {%- endfor -%}
-      {%- assign mob_has_pages = false -%}
+      {%- assign mob_has_over_ons = false -%}
+      {%- assign mob_has_contact = false -%}
       {%- for link in linklists['main-menu'].links -%}
-        {%- if link.title == 'Over ons' or link.title == 'Over Ons' -%}{%- assign mob_has_pages = true -%}{%- endif -%}
+        {%- if link.title == 'Over ons' or link.title == 'Over Ons' -%}{%- assign mob_has_over_ons = true -%}{%- endif -%}
+        {%- if link.title == 'Contact' or link.title == 'contact' -%}{%- assign mob_has_contact = true -%}{%- endif -%}
       {%- endfor -%}
-      {%- unless mob_has_pages -%}
+      {%- unless mob_has_over_ons -%}
         {%- if pages['over-ons'] -%}<a href="{{ pages['over-ons'].url }}">Over ons</a>{%- endif -%}
+      {%- endunless -%}
+      {%- unless mob_has_contact -%}
         {%- if pages['contact'] -%}<a href="{{ pages['contact'].url }}">Contact</a>{%- endif -%}
       {%- endunless -%}
     </nav>
