@@ -12,7 +12,11 @@
       <nav class="cat-list" aria-label="Categorieën">
         {%- for block in section.blocks -%}
           {%- if block.type == 'category' -%}
-            <a href="{{ block.settings.url }}"
+            {%- assign cat_href = block.settings.url -%}
+            {%- if cat_href == blank and block.settings.collection != blank -%}
+              {%- assign cat_href = collections[block.settings.collection].url -%}
+            {%- endif -%}
+            <a href="{{ cat_href | default: routes.collections_url }}"
                class="cat-item{% if forloop.first %} active{% endif %}"
                data-cat="cat-{{ forloop.index }}"
                data-anim="fade-up"
