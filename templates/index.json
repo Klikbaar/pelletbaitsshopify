@@ -47,13 +47,13 @@
     "categories": {
       "type": "categories",
       "blocks": {
-        "category_HV8t4E": {
+        "category_XKWBbE": {
           "type": "category",
           "settings": {
-            "title": "Method feeder",
+            "title": "Waggler",
             "url": "",
-            "collection": "methodfeeder",
-            "image": "shopify://shop_images/2022_Alpen_sfeerafbeelding_Orient.jpg"
+            "collection": "waggler",
+            "image": "shopify://shop_images/method-feeder-vissen.png"
           }
         },
         "category_4M8cE6": {
@@ -82,13 +82,23 @@
             "collection": "karper",
             "image": "shopify://shop_images/method-feeder-vissen.png"
           }
+        },
+        "category_HV8t4E": {
+          "type": "category",
+          "settings": {
+            "title": "Method feeder",
+            "url": "",
+            "collection": "methodfeeder",
+            "image": "shopify://shop_images/2022_Alpen_sfeerafbeelding_Orient.jpg"
+          }
         }
       },
       "block_order": [
-        "category_HV8t4E",
+        "category_XKWBbE",
         "category_4M8cE6",
         "category_ckJCUj",
-        "category_zp3VmQ"
+        "category_zp3VmQ",
+        "category_HV8t4E"
       ],
       "settings": {
         "eyebrow": "Assortiment",
