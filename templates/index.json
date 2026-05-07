@@ -47,6 +47,24 @@
     "categories": {
       "type": "categories",
       "blocks": {
+        "category_4WRtez": {
+          "type": "category",
+          "settings": {
+            "title": "Tools & Merchandise",
+            "url": "",
+            "collection": "tools-merchandise",
+            "image": "shopify://shop_images/2022_Alpen_sfeerafbeelding_Orient.jpg"
+          }
+        },
+        "category_4F3apK": {
+          "type": "category",
+          "settings": {
+            "title": "Koi",
+            "url": "",
+            "collection": "koi",
+            "image": "shopify://shop_images/method-feeder-vissen.png"
+          }
+        },
         "category_XKWBbE": {
           "type": "category",
           "settings": {
@@ -94,6 +112,8 @@
         }
       },
       "block_order": [
+        "category_4WRtez",
+        "category_4F3apK",
         "category_XKWBbE",
         "category_4M8cE6",
         "category_ckJCUj",
