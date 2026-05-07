@@ -13,6 +13,18 @@
         {%- for link in linklists[section.settings.menu].links -%}
           <a href="{{ link.url }}"{% if link.active %} aria-current="page"{% endif %}>{{ link.title }}</a>
         {%- endfor -%}
+        {%- assign pages_in_menu = false -%}
+        {%- for link in linklists[section.settings.menu].links -%}
+          {%- if link.title == 'Over ons' or link.title == 'Over Ons' -%}{%- assign pages_in_menu = true -%}{%- endif -%}
+        {%- endfor -%}
+        {%- unless pages_in_menu -%}
+          {%- if pages['over-ons'] -%}
+            <a href="{{ pages['over-ons'].url }}"{% if request.page_type == 'page' and page.handle == 'over-ons' %} aria-current="page"{% endif %}>Over ons</a>
+          {%- endif -%}
+          {%- if pages['contact'] -%}
+            <a href="{{ pages['contact'].url }}"{% if request.page_type == 'page' and page.handle == 'contact' %} aria-current="page"{% endif %}>Contact</a>
+          {%- endif -%}
+        {%- endunless -%}
       </nav>
 
       <div class="header-actions">

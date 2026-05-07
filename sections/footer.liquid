@@ -1,6 +1,7 @@
 <footer class="site-footer" role="contentinfo">
   <div class="container">
     <div class="footer-grid">
+
       <div>
         <div class="footer-logo-wrap">
           {%- if section.settings.logo != blank -%}
@@ -46,17 +47,17 @@
         <p class="footer-newsletter-body">{{ section.settings.newsletter_text }}</p>
         <form method="post" action="/contact" accept-charset="UTF-8">
           <input type="hidden" name="form_type" value="customer">
-          <input type="hidden" name="utf8" value="✓">
+          <input type="hidden" name="utf8" value="&#x2713;">
           <input type="hidden" name="contact[tags]" value="newsletter">
           <div class="newsletter-form">
             <label class="visually-hidden" for="newsletter-email">E-mailadres</label>
-            <input class="newsletter-input" id="newsletter-email" type="email" name="contact[email]"
-              placeholder="jouw@email.nl" autocomplete="email" required>
+            <input class="newsletter-input" id="newsletter-email" type="email" name="contact[email]" placeholder="jouw@email.nl" autocomplete="email" required>
             <button class="newsletter-submit" type="submit">OK</button>
           </div>
         </form>
         <p class="newsletter-note">Door je aan te melden ga je akkoord met onze <a href="#">privacyverklaring</a>.</p>
       </div>
+
     </div>
 
     <div class="footer-bottom">
@@ -83,19 +84,18 @@
       "type": "textarea",
       "id": "description",
       "label": "Omschrijving",
-      "default": "Dé specialist in vispellets. Officieel distributeur van Alltech Coppens — het meest uitgebreide assortiment vispellets voor elke vissoort."
+      "default": "De specialist in vispellets. Officieel distributeur van Alltech Coppens."
     },
     {
       "type": "text",
       "id": "cat_title",
-      "label": "Kolomtitel categorieën",
-      "default": "Categorieën"
+      "label": "Kolomtitel categorieen",
+      "default": "Categorieen"
     },
     {
       "type": "link_list",
       "id": "cat_menu",
-      "label": "Categorieën menu",
-      "default": "categories-menu"
+      "label": "Categorieen menu"
     },
     {
       "type": "text",
@@ -106,20 +106,18 @@
     {
       "type": "link_list",
       "id": "info_menu",
-      "label": "Informatie menu",
-      "default": "footer-menu"
+      "label": "Informatie menu"
     },
     {
       "type": "link_list",
       "id": "legal_menu",
-      "label": "Juridisch menu",
-      "default": "legal-menu"
+      "label": "Juridisch menu"
     },
     {
       "type": "text",
       "id": "newsletter_text",
       "label": "Nieuwsbrief tekst",
-      "default": "Blijf op de hoogte van alle ontwikkelingen en aanbiedingen bij Pellet Baits!"
+      "default": "Blijf op de hoogte van aanbiedingen bij Pellet Baits!"
     }
   ]
 }
