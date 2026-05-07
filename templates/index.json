@@ -47,6 +47,15 @@
     "categories": {
       "type": "categories",
       "blocks": {
+        "category_4M8cE6": {
+          "type": "category",
+          "settings": {
+            "title": "Meervalvissen",
+            "url": "",
+            "collection": "meerval",
+            "image": "shopify://shop_images/method-feeder-vissen.png"
+          }
+        },
         "category_ckJCUj": {
           "type": "category",
           "settings": {
@@ -67,6 +76,7 @@
         }
       },
       "block_order": [
+        "category_4M8cE6",
         "category_ckJCUj",
         "category_zp3VmQ"
       ],
@@ -100,7 +110,7 @@
         "event_location": "Evenementenhal Gorinchem",
         "event_stand": "Hal 3 · B14",
         "cta_label": "Neem contact op",
-        "cta_url": "/pages/contact"
+        "cta_url": ""
       }
     },
     "cta-banner": {
@@ -109,9 +119,9 @@
         "heading": "Vang Die Mega Karper!",
         "body": "Vang dié mega karper of meerval met de pellets van Pellet Baits. Heb je vragen? Wij geven je graag advies.",
         "primary_label": "Shop Nu",
-        "primary_url": "/collections/all",
+        "primary_url": "",
         "secondary_label": "Neem Contact Op",
-        "secondary_url": "/pages/contact"
+        "secondary_url": ""
       }
     }
   },
