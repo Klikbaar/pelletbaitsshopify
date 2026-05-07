@@ -27,12 +27,21 @@
     },
     "bestsellers": {
       "type": "bestsellers",
+      "blocks": {
+        "product_Qg4ezg": {
+          "type": "product",
+          "settings": {
+            "product": "black-halibut-premium-select-2-mm"
+          }
+        }
+      },
+      "block_order": [
+        "product_Qg4ezg"
+      ],
       "settings": {
         "eyebrow": "Onze hardlopers",
         "heading_prefix": "Best",
-        "heading_accent": "sellers",
-        "collection": "",
-        "products_count": 3
+        "heading_accent": "sellers"
       }
     },
     "categories": {
