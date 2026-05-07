@@ -1,0 +1,127 @@
+<section class="page-section section-pad">
+  <div class="container">
+
+    <div class="about-hero">
+      <div class="about-hero-text">
+        <p class="eyebrow">{{ section.settings.eyebrow | default: 'Ons verhaal' }}</p>
+        <h1 class="page-title">{{ section.settings.heading | default: 'Over Pellet Baits' }}</h1>
+        <p class="about-lead">{{ section.settings.intro }}</p>
+      </div>
+      {%- if section.settings.image != blank -%}
+        <div class="about-hero-img-wrap">
+          {{ section.settings.image | image_url: width: 800 | image_tag: class: 'about-hero-img', loading: 'lazy', alt: section.settings.heading }}
+        </div>
+      {%- endif -%}
+    </div>
+
+    {%- if section.settings.body != blank -%}
+      <div class="about-body rte">{{ section.settings.body }}</div>
+    {%- endif -%}
+
+    <div class="about-values">
+      {%- for block in section.blocks -%}
+        <div class="about-value-card" {{ block.shopify_attributes }}>
+          {%- if block.settings.icon != blank -%}
+            <div class="about-value-icon">{{ block.settings.icon }}</div>
+          {%- endif -%}
+          <h3 class="about-value-title">{{ block.settings.title }}</h3>
+          <p class="about-value-text">{{ block.settings.text }}</p>
+        </div>
+      {%- endfor -%}
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Over ons",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow tekst",
+      "default": "Ons verhaal"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Hoofdtitel",
+      "default": "Over Pellet Baits"
+    },
+    {
+      "type": "textarea",
+      "id": "intro",
+      "label": "Intro tekst",
+      "default": "Pellet Baits is dé specialist in vispellets voor de recreatieve en sportvisser. Als officieel distributeur van Alltech Coppens bieden wij het meest uitgebreide assortiment vispellets voor elke vissoort."
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Afbeelding"
+    },
+    {
+      "type": "richtext",
+      "id": "body",
+      "label": "Tekst (uitgebreid)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "value",
+      "name": "Kernwaarde",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Emoji of icoon",
+          "default": "🎣"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Titel",
+          "default": "Passie voor vissen"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Omschrijving",
+          "default": "Wij zijn zelf vissers en begrijpen wat jij nodig hebt op het water."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Over ons",
+      "blocks": [
+        {
+          "type": "value",
+          "settings": {
+            "icon": "🎣",
+            "title": "Passie voor vissen",
+            "text": "Wij zijn zelf vissers en begrijpen wat jij nodig hebt op het water."
+          }
+        },
+        {
+          "type": "value",
+          "settings": {
+            "icon": "🏆",
+            "title": "Topkwaliteit",
+            "text": "Officieel distributeur van Alltech Coppens — het beste merk in vispellets."
+          }
+        },
+        {
+          "type": "value",
+          "settings": {
+            "icon": "🚚",
+            "title": "Snelle levering",
+            "text": "Besteld voor 17:00 uur, de volgende werkdag in huis."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
