@@ -47,30 +47,12 @@
     "categories": {
       "type": "categories",
       "blocks": {
-        "category_4WRtez": {
+        "category_zp3VmQ": {
           "type": "category",
           "settings": {
-            "title": "Tools & Merchandise",
+            "title": "Karpervissen",
             "url": "",
-            "collection": "tools-merchandise",
-            "image": "shopify://shop_images/2022_Alpen_sfeerafbeelding_Orient.jpg"
-          }
-        },
-        "category_4F3apK": {
-          "type": "category",
-          "settings": {
-            "title": "Koi",
-            "url": "",
-            "collection": "koi",
-            "image": "shopify://shop_images/method-feeder-vissen.png"
-          }
-        },
-        "category_XKWBbE": {
-          "type": "category",
-          "settings": {
-            "title": "Waggler",
-            "url": "",
-            "collection": "waggler",
+            "collection": "karper",
             "image": "shopify://shop_images/method-feeder-vissen.png"
           }
         },
@@ -92,15 +74,6 @@
             "image": "shopify://shop_images/2022_Alpen_sfeerafbeelding_Orient.jpg"
           }
         },
-        "category_zp3VmQ": {
-          "type": "category",
-          "settings": {
-            "title": "Karpervissen",
-            "url": "",
-            "collection": "karper",
-            "image": "shopify://shop_images/method-feeder-vissen.png"
-          }
-        },
         "category_HV8t4E": {
           "type": "category",
           "settings": {
@@ -109,16 +82,43 @@
             "collection": "methodfeeder",
             "image": "shopify://shop_images/2022_Alpen_sfeerafbeelding_Orient.jpg"
           }
+        },
+        "category_XKWBbE": {
+          "type": "category",
+          "settings": {
+            "title": "Waggler",
+            "url": "",
+            "collection": "waggler",
+            "image": "shopify://shop_images/method-feeder-vissen.png"
+          }
+        },
+        "category_4F3apK": {
+          "type": "category",
+          "settings": {
+            "title": "Koi",
+            "url": "",
+            "collection": "koi",
+            "image": "shopify://shop_images/method-feeder-vissen.png"
+          }
+        },
+        "category_4WRtez": {
+          "type": "category",
+          "settings": {
+            "title": "Tools & Merchandise",
+            "url": "",
+            "collection": "tools-merchandise",
+            "image": "shopify://shop_images/2022_Alpen_sfeerafbeelding_Orient.jpg"
+          }
         }
       },
       "block_order": [
-        "category_4WRtez",
-        "category_4F3apK",
-        "category_XKWBbE",
+        "category_zp3VmQ",
         "category_4M8cE6",
         "category_ckJCUj",
-        "category_zp3VmQ",
-        "category_HV8t4E"
+        "category_HV8t4E",
+        "category_XKWBbE",
+        "category_4F3apK",
+        "category_4WRtez"
       ],
       "settings": {
         "eyebrow": "Assortiment",
