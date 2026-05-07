@@ -27,9 +27,19 @@
       <div>
         <p class="footer-col-title eyebrow">{{ section.settings.cat_title }}</p>
         <ul class="footer-links">
-          {%- for link in linklists[section.settings.cat_menu].links -%}
-            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
-          {%- endfor -%}
+          {%- if linklists[section.settings.cat_menu].links.size > 0 -%}
+            {%- for link in linklists[section.settings.cat_menu].links -%}
+              <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+            {%- endfor -%}
+          {%- else -%}
+            <li><a href="/collections/karpervissen">Karpervissen</a></li>
+            <li><a href="/collections/meervalvissen">Meervalvissen</a></li>
+            <li><a href="/collections/steurvissen">Steurvissen</a></li>
+            <li><a href="/collections/methodfeeder">Methodfeeder</a></li>
+            <li><a href="/collections/waggler">Waggler</a></li>
+            <li><a href="/collections/koi-vijver">Koi/Vijver</a></li>
+            <li><a href="/collections/tools-merchandise">Tools &amp; Merchandise</a></li>
+          {%- endif -%}
         </ul>
       </div>
 
@@ -39,6 +49,26 @@
           {%- for link in linklists[section.settings.info_menu].links -%}
             <li><a href="{{ link.url }}">{{ link.title }}</a></li>
           {%- endfor -%}
+          {%- assign info_has_over_ons = false -%}
+          {%- assign info_has_contact = false -%}
+          {%- for link in linklists[section.settings.info_menu].links -%}
+            {%- if link.title == 'Over ons' or link.title == 'Over Ons' -%}{%- assign info_has_over_ons = true -%}{%- endif -%}
+            {%- if link.title == 'Contact' or link.title == 'contact' -%}{%- assign info_has_contact = true -%}{%- endif -%}
+          {%- endfor -%}
+          {%- unless info_has_over_ons -%}
+            {%- if pages['over-ons'] -%}
+              <li><a href="{{ pages['over-ons'].url }}">Over ons</a></li>
+            {%- else -%}
+              <li><a href="/pages/over-ons">Over ons</a></li>
+            {%- endif -%}
+          {%- endunless -%}
+          {%- unless info_has_contact -%}
+            {%- if pages['contact'] -%}
+              <li><a href="{{ pages['contact'].url }}">Contact</a></li>
+            {%- else -%}
+              <li><a href="/pages/contact">Contact</a></li>
+            {%- endif -%}
+          {%- endunless -%}
         </ul>
       </div>
 
