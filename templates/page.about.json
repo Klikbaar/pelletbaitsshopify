@@ -2,33 +2,6 @@
   "sections": {
     "main": {
       "type": "main-about",
-      "blocks": {
-        "value_1": {
-          "type": "value",
-          "settings": {
-            "icon": "🎣",
-            "title": "Passie voor vissen",
-            "text": "Wij zijn zelf vissers en begrijpen wat jij nodig hebt op het water."
-          }
-        },
-        "value_2": {
-          "type": "value",
-          "settings": {
-            "icon": "🏆",
-            "title": "Topkwaliteit",
-            "text": "Officieel distributeur van Alltech Coppens — het beste merk in vispellets."
-          }
-        },
-        "value_3": {
-          "type": "value",
-          "settings": {
-            "icon": "🚚",
-            "title": "Snelle levering",
-            "text": "Besteld voor 17:00 uur, de volgende werkdag in huis."
-          }
-        }
-      },
-      "block_order": ["value_1", "value_2", "value_3"],
       "settings": {}
     }
   },
