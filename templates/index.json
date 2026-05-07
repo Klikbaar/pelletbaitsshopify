@@ -38,18 +38,18 @@
     "categories": {
       "type": "categories",
       "blocks": {
-        "category_Kn74W3": {
+        "category_zp3VmQ": {
           "type": "category",
           "settings": {
             "title": "Karpervissen",
-            "url": "shopify://collections/karper",
-            "collection": "",
+            "url": "",
+            "collection": "karper",
             "image": "shopify://shop_images/method-feeder-vissen.png"
           }
         }
       },
       "block_order": [
-        "category_Kn74W3"
+        "category_zp3VmQ"
       ],
       "settings": {
         "eyebrow": "Assortiment",
