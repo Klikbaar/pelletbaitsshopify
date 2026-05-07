@@ -44,7 +44,7 @@
       <div>
         <p class="footer-col-title eyebrow">Nieuwsbrief</p>
         <p class="footer-newsletter-body">{{ section.settings.newsletter_text }}</p>
-        {%- form 'customer', id: 'newsletter-form' -%}
+        {%- form 'customer' -%}
           <input type="hidden" name="contact[tags]" value="newsletter">
           <div class="newsletter-form">
             <label class="visually-hidden" for="newsletter-email">E-mailadres</label>
