@@ -1,0 +1,62 @@
+{%- if section.settings.enabled -%}
+<section class="beurs-section" aria-labelledby="beurs-heading">
+  <div class="container">
+    <div data-anim="fade-up">
+      <div class="beurs-label">
+        <span class="beurs-live-dot" aria-hidden="true"></span>
+        <p class="eyebrow">Wij zijn aanwezig</p>
+      </div>
+      <h2 class="beurs-headline display" id="beurs-heading">
+        Bezoek ons op de <span style="color:var(--accent)">Beurs</span>
+      </h2>
+    </div>
+    <div class="beurs-card" data-anim="fade-up" data-anim-delay="120">
+      <div class="beurs-card-main">
+        <p class="beurs-event-name">{{ section.settings.event_name }}</p>
+        <div class="beurs-meta">
+          <div class="beurs-meta-item">
+            <span class="beurs-meta-label">Datum</span>
+            <span class="beurs-meta-value">{{ section.settings.event_date }}</span>
+          </div>
+          <div class="beurs-meta-divider" aria-hidden="true"></div>
+          <div class="beurs-meta-item">
+            <span class="beurs-meta-label">Locatie</span>
+            <span class="beurs-meta-value">{{ section.settings.event_location }}</span>
+          </div>
+          <div class="beurs-meta-divider" aria-hidden="true"></div>
+          <div class="beurs-meta-item">
+            <span class="beurs-meta-label">Stand</span>
+            <span class="beurs-meta-value">{{ section.settings.event_stand }}</span>
+          </div>
+        </div>
+      </div>
+      <a href="{{ section.settings.cta_url | default: routes.root_url }}" class="beurs-cta">
+        {{ section.settings.cta_label | default: 'Neem contact op' }}
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Beurs / Evenement",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enabled",
+      "label": "Sectie weergeven",
+      "default": false,
+      "info": "Schakel in wanneer je op een beurs staat"
+    },
+    { "type": "text", "id": "event_name", "label": "Evenementnaam", "default": "Hengelsport Vakbeurs" },
+    { "type": "text", "id": "event_date", "label": "Datum", "default": "14 – 16 feb 2026" },
+    { "type": "text", "id": "event_location", "label": "Locatie", "default": "Evenementenhal Gorinchem" },
+    { "type": "text", "id": "event_stand", "label": "Standnummer", "default": "Hal 3 · B14" },
+    { "type": "text", "id": "cta_label", "label": "Knoptekst", "default": "Neem contact op" },
+    { "type": "url", "id": "cta_url", "label": "Knop URL" }
+  ],
+  "presets": [{ "name": "Beurs / Evenement" }]
+}
+{% endschema %}

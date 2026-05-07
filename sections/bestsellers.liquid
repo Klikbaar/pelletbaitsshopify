@@ -1,0 +1,74 @@
+<section class="best-sellers" id="bestsellers" aria-labelledby="bestsellers-heading">
+  <div class="container">
+    <div class="section-header-row" data-anim="fade-up">
+      <div>
+        <p class="eyebrow" style="margin-bottom:16px">{{ section.settings.eyebrow }}</p>
+        <h2 class="bs-headline display" id="bestsellers-heading">
+          {{ section.settings.heading_prefix }}<span style="color:var(--accent)">{{ section.settings.heading_accent }}</span>
+        </h2>
+      </div>
+      <div class="section-nav-controls">
+        {%- assign bs_collection = collections[section.settings.collection] -%}
+        <a href="{{ bs_collection.url | default: routes.collections_url }}" class="feat-cta">
+          Alle producten
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+
+    {%- if bs_collection != blank -%}
+      <div class="product-grid-3" role="list">
+        {%- for product in bs_collection.products limit: section.settings.products_count -%}
+          <div role="listitem" data-anim="fade-up" data-anim-delay="{{ forloop.index0 | times: 120 }}">
+            {% render 'product-card', product: product %}
+          </div>
+        {%- endfor -%}
+      </div>
+    {%- else -%}
+      <p style="color:var(--ink-3);text-align:center;padding:40px 0;">
+        Selecteer een collectie in de thema-editor.
+      </p>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Bestsellers",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Onze hardlopers"
+    },
+    {
+      "type": "text",
+      "id": "heading_prefix",
+      "label": "Koptekst prefix",
+      "default": "Best"
+    },
+    {
+      "type": "text",
+      "id": "heading_accent",
+      "label": "Koptekst accent",
+      "default": "sellers"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collectie"
+    },
+    {
+      "type": "range",
+      "id": "products_count",
+      "min": 2,
+      "max": 6,
+      "step": 1,
+      "label": "Aantal producten",
+      "default": 3
+    }
+  ],
+  "presets": [{ "name": "Bestsellers" }]
+}
+{% endschema %}

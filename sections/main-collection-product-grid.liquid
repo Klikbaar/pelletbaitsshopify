@@ -1,0 +1,110 @@
+<section class="collection-header">
+  <div class="container">
+    <nav class="collection-breadcrumb" aria-label="Broodkruimel">
+      <a href="{{ routes.root_url }}">Home</a>
+      <span aria-hidden="true">&rsaquo;</span>
+      <span>{{ collection.title }}</span>
+    </nav>
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap;">
+      <div>
+        <p class="eyebrow" style="margin-bottom:10px;">Categorie</p>
+        <h1 class="collection-title">{{ collection.title }}</h1>
+        {%- if collection.description != blank -%}
+          <p class="collection-desc">{{ collection.description }}</p>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="collection-body">
+  <div class="container">
+    {%- paginate collection.products by section.settings.products_per_page -%}
+
+      <div class="collection-grid-header">
+        <p class="collection-count">{{ collection.products_count }} producten</p>
+        {%- if section.settings.show_sort -%}
+          {%- assign sort_by = collection.sort_by | default: collection.default_sort_by -%}
+          <select class="collection-sort" id="sort-by" aria-label="Sorteren op">
+            {%- for option in collection.sort_options -%}
+              <option value="{{ option.value }}"{% if option.value == sort_by %} selected{% endif %}>
+                {{ option.name }}
+              </option>
+            {%- endfor -%}
+          </select>
+        {%- endif -%}
+      </div>
+
+      {%- if collection.products.size == 0 -%}
+        <p style="text-align:center;padding:80px 0;color:var(--ink-2);">
+          Geen producten gevonden in deze categorie.
+        </p>
+      {%- else -%}
+        <div class="product-grid-3" role="list">
+          {%- for product in collection.products -%}
+            <div role="listitem" data-anim="fade-up" data-anim-delay="{{ forloop.index0 | times: 60 }}">
+              {% render 'product-card', product: product %}
+            </div>
+          {%- endfor -%}
+        </div>
+
+        {%- if paginate.pages > 1 -%}
+          <nav class="pagination" aria-label="Paginering"
+            style="display:flex;justify-content:center;align-items:center;gap:6px;margin-top:48px;">
+            {%- if paginate.previous -%}
+              <a href="{{ paginate.previous.url }}" class="nav-arrow-btn" aria-label="Vorige pagina">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+              </a>
+            {%- endif -%}
+            {%- for part in paginate.parts -%}
+              {%- if part.is_link -%}
+                <a href="{{ part.url }}" class="nav-arrow-btn">{{ part.title }}</a>
+              {%- elsif part.title == paginate.current_page -%}
+                <span class="nav-arrow-btn filled" aria-current="page">{{ part.title }}</span>
+              {%- else -%}
+                <span style="padding:0 8px;color:var(--ink-3);">{{ part.title }}</span>
+              {%- endif -%}
+            {%- endfor -%}
+            {%- if paginate.next -%}
+              <a href="{{ paginate.next.url }}" class="nav-arrow-btn" aria-label="Volgende pagina">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </a>
+            {%- endif -%}
+          </nav>
+        {%- endif -%}
+      {%- endif -%}
+
+    {%- endpaginate -%}
+  </div>
+</section>
+
+<script>
+  document.getElementById('sort-by')?.addEventListener('change', function() {
+    var url = new URL(window.location.href);
+    url.searchParams.set('sort_by', this.value);
+    window.location.href = url.toString();
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Productoverzicht",
+  "settings": [
+    {
+      "type": "range",
+      "id": "products_per_page",
+      "min": 8,
+      "max": 48,
+      "step": 4,
+      "label": "Producten per pagina",
+      "default": 24
+    },
+    {
+      "type": "checkbox",
+      "id": "show_sort",
+      "label": "Toon sorteeropties",
+      "default": true
+    }
+  ]
+}
+{% endschema %}

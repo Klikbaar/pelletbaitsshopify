@@ -1,0 +1,39 @@
+<section class="cta-banner" aria-labelledby="cta-heading">
+  <div class="cta-banner-bg" aria-hidden="true"
+    style="background-image:url('{{ section.settings.image | image_url: width: 1920 | default: 'https://images.unsplash.com/photo-1607378515197-062e5aadb8cf?w=1920&q=80' }}')">
+  </div>
+  <div class="cta-banner-gradient" aria-hidden="true"></div>
+  <div class="container cta-banner-inner">
+    <h2 class="cta-banner-headline display" id="cta-heading" data-anim="fade-up">
+      {{ section.settings.heading }}
+    </h2>
+    <p class="cta-banner-body" data-anim="fade-up" data-anim-delay="120">
+      {{ section.settings.body }}
+    </p>
+    <div class="cta-banner-actions" data-anim="fade-up" data-anim-delay="240">
+      <a href="{{ section.settings.primary_url }}" class="btn-cta-primary">
+        {{ section.settings.primary_label }}
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="{{ section.settings.secondary_url }}" class="btn-cta-secondary">
+        {{ section.settings.secondary_label }}
+      </a>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "CTA Banner",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Achtergrondafbeelding" },
+    { "type": "text", "id": "heading", "label": "Koptekst", "default": "Vang Die Mega Karper!" },
+    { "type": "textarea", "id": "body", "label": "Bodytekst", "default": "Vang dié mega karper of meerval met de pellets van Pellet Baits. Heb je vragen? Wij geven je graag advies." },
+    { "type": "text", "id": "primary_label", "label": "Primaire knoptekst", "default": "Shop Nu" },
+    { "type": "url", "id": "primary_url", "label": "Primaire knop URL" },
+    { "type": "text", "id": "secondary_label", "label": "Secundaire knoptekst", "default": "Neem Contact Op" },
+    { "type": "url", "id": "secondary_url", "label": "Secundaire knop URL" }
+  ],
+  "presets": [{ "name": "CTA Banner" }]
+}
+{% endschema %}

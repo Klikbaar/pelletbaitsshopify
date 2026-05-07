@@ -1,0 +1,94 @@
+<section class="feature-section" aria-labelledby="feat-heading">
+  <div class="container">
+    <div class="feat-grid">
+      <div style="position:relative;" data-anim="slide-left">
+        <div class="feat-image-wrap">
+          {%- if section.settings.image != blank -%}
+            {{ section.settings.image | image_url: width: 800 | image_tag:
+              alt: section.settings.image_alt | default: 'Feature afbeelding',
+              loading: 'lazy'
+            }}
+          {%- else -%}
+            <img src="https://images.unsplash.com/photo-1506873589908-63bc22175dd7?w=800&q=80" alt="Visser met vangst" loading="lazy">
+          {%- endif -%}
+          <div class="feat-image-overlay" aria-hidden="true"></div>
+          {%- if section.settings.image_chip != blank -%}
+            <div class="feat-image-chip">{{ section.settings.image_chip }}</div>
+          {%- endif -%}
+        </div>
+        {%- if section.settings.stat_value != blank -%}
+          <div class="feat-stat">
+            <p class="feat-stat-value">{{ section.settings.stat_value }}</p>
+            <p class="feat-stat-desc">{{ section.settings.stat_desc }}</p>
+          </div>
+        {%- endif -%}
+      </div>
+
+      <div class="feat-content" data-anim="slide-right">
+        <p class="eyebrow" style="margin-bottom:20px">{{ section.settings.eyebrow }}</p>
+        <h2 class="feat-headline display" id="feat-heading">
+          {{ section.settings.heading }}<br>
+          <span class="accent">{{ section.settings.heading_accent }}</span>
+        </h2>
+        <p class="feat-body">{{ section.settings.body }}</p>
+
+        <div class="feat-points">
+          {%- for block in section.blocks -%}
+            <div class="feat-point" {{ block.shopify_attributes }}>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              <p class="feat-point-title">{{ block.settings.title }}</p>
+              <p class="feat-point-desc">{{ block.settings.description }}</p>
+            </div>
+          {%- endfor -%}
+        </div>
+
+        {%- if section.settings.cta_label != blank -%}
+          <a href="{{ section.settings.cta_url }}" class="feat-cta">
+            {{ section.settings.cta_label }}
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Feature sectie",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Afbeelding" },
+    { "type": "text", "id": "image_alt", "label": "Afbeelding alt tekst" },
+    { "type": "text", "id": "image_chip", "label": "Chip op afbeelding", "default": "Field Tested" },
+    { "type": "text", "id": "stat_value", "label": "Statistiek waarde", "default": "+47%" },
+    { "type": "text", "id": "stat_desc", "label": "Statistiek omschrijving", "default": "meer beten dankzij onze unieke formule" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Kwaliteit & Resultaat" },
+    { "type": "text", "id": "heading", "label": "Koptekst", "default": "Ontworpen voor" },
+    { "type": "text", "id": "heading_accent", "label": "Koptekst accent", "default": "Maximale Aantrekkingskracht" },
+    { "type": "textarea", "id": "body", "label": "Bodytekst", "default": "Pellet Baits biedt jou het meest uitgebreide assortiment vispellets van Alltech Coppens aan." },
+    { "type": "text", "id": "cta_label", "label": "Knoptekst", "default": "Lees de wetenschap" },
+    { "type": "url", "id": "cta_url", "label": "Knop URL" }
+  ],
+  "blocks": [
+    {
+      "type": "point",
+      "name": "Punt",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Titel" },
+        { "type": "text", "id": "description", "label": "Omschrijving" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Feature sectie",
+      "blocks": [
+        { "type": "point", "settings": { "title": "Natuurlijke aantrekkingskracht", "description": "Pellets hebben een grotere, meer natuurlijke aantrekkingskracht dan ander aas." } },
+        { "type": "point", "settings": { "title": "Minder verzuring", "description": "Zorgt voor minder verzuring op de visstek." } },
+        { "type": "point", "settings": { "title": "Dressuurwater", "description": "Vang nog mooie vissen, zelfs in zwaar beviste dressuurwateren." } },
+        { "type": "point", "settings": { "title": "Mix op maat", "description": "Klantgerichtheid staat hoog in het vaandel — we stellen ook mixen op maat samen." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

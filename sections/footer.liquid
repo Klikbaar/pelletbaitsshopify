@@ -1,0 +1,124 @@
+<footer class="site-footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo-wrap">
+          {%- if section.settings.logo != blank -%}
+            {{ section.settings.logo | image_url: width: 200 | image_tag: class: 'footer-logo-img', alt: shop.name }}
+          {%- else -%}
+            <span class="footer-logo-text">{{ shop.name | upcase }}</span>
+          {%- endif -%}
+        </div>
+        <p class="footer-desc">{{ section.settings.description }}</p>
+        <div class="footer-contact" style="margin-top:20px;display:flex;flex-direction:column;gap:8px;font-size:13px;color:var(--ink-3);">
+          {%- if settings.email != blank -%}
+            <a href="mailto:{{ settings.email }}" style="transition:color .14s ease;">{{ settings.email }}</a>
+          {%- endif -%}
+          {%- if settings.phone != blank -%}
+            <a href="tel:{{ settings.phone | remove: ' ' | remove: '-' }}" style="transition:color .14s ease;">{{ settings.phone }}</a>
+          {%- endif -%}
+          {%- if settings.address != blank -%}
+            <span>{{ settings.address }}</span>
+          {%- endif -%}
+        </div>
+      </div>
+
+      <div>
+        <p class="footer-col-title eyebrow">{{ section.settings.cat_title }}</p>
+        <ul class="footer-links">
+          {%- for link in linklists[section.settings.cat_menu].links -%}
+            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+          {%- endfor -%}
+        </ul>
+      </div>
+
+      <div>
+        <p class="footer-col-title eyebrow">{{ section.settings.info_title }}</p>
+        <ul class="footer-links">
+          {%- for link in linklists[section.settings.info_menu].links -%}
+            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+          {%- endfor -%}
+        </ul>
+      </div>
+
+      <div>
+        <p class="footer-col-title eyebrow">Nieuwsbrief</p>
+        <p class="footer-newsletter-body">{{ section.settings.newsletter_text }}</p>
+        {%- form 'customer', id: 'newsletter-form' -%}
+          <input type="hidden" name="contact[tags]" value="newsletter">
+          <div class="newsletter-form">
+            <label class="visually-hidden" for="newsletter-email">E-mailadres</label>
+            <input class="newsletter-input" id="newsletter-email" type="email" name="contact[email]"
+              placeholder="jouw@email.nl" autocomplete="email" required>
+            <button class="newsletter-submit" type="submit">OK</button>
+          </div>
+        {%- endform -%}
+        <p class="newsletter-note">Door je aan te melden ga je akkoord met onze <a href="#">privacyverklaring</a>.</p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. Alle rechten voorbehouden.</p>
+      <div class="footer-bottom-links">
+        {%- for link in linklists[section.settings.legal_menu].links -%}
+          <a href="{{ link.url }}">{{ link.title }}</a>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Omschrijving",
+      "default": "Dé specialist in vispellets. Officieel distributeur van Alltech Coppens — het meest uitgebreide assortiment vispellets voor elke vissoort."
+    },
+    {
+      "type": "text",
+      "id": "cat_title",
+      "label": "Kolomtitel categorieën",
+      "default": "Categorieën"
+    },
+    {
+      "type": "link_list",
+      "id": "cat_menu",
+      "label": "Categorieën menu",
+      "default": "categories-menu"
+    },
+    {
+      "type": "text",
+      "id": "info_title",
+      "label": "Kolomtitel informatie",
+      "default": "Informatie"
+    },
+    {
+      "type": "link_list",
+      "id": "info_menu",
+      "label": "Informatie menu",
+      "default": "footer-menu"
+    },
+    {
+      "type": "link_list",
+      "id": "legal_menu",
+      "label": "Juridisch menu",
+      "default": "legal-menu"
+    },
+    {
+      "type": "text",
+      "id": "newsletter_text",
+      "label": "Nieuwsbrief tekst",
+      "default": "Blijf op de hoogte van alle ontwikkelingen en aanbiedingen bij Pellet Baits!"
+    }
+  ]
+}
+{% endschema %}

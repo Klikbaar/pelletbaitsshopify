@@ -1,0 +1,147 @@
+<section class="hero" aria-label="Hero">
+  <div class="hero-bg" style="background-image:url('{{ section.settings.image | image_url: width: 1920 | default: 'https://images.unsplash.com/photo-1712251791130-a1918694810a?w=1920&q=90' }}')"></div>
+  <div class="hero-gradient" aria-hidden="true"></div>
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-grid">
+        <div>
+          <div class="hero-eyebrow-row" data-anim="fade-up">
+            <span class="hero-eyebrow-line" aria-hidden="true"></span>
+            <p class="eyebrow" style="color:#fff">{{ section.settings.eyebrow }}</p>
+          </div>
+          <h1 class="hero-headline display" data-anim="fade-up" data-anim-delay="120">
+            {{ section.settings.heading }}
+          </h1>
+          <p class="hero-subhead" data-anim="fade-up" data-anim-delay="240">
+            {{ section.settings.subheading }}
+          </p>
+          <div class="hero-actions" data-anim="fade-up" data-anim-delay="360">
+            <a href="{{ section.settings.cta_url }}" class="btn-hero-primary">
+              {{ section.settings.cta_label }}
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="{{ section.settings.secondary_url }}" class="btn-hero-secondary">
+              {{ section.settings.secondary_label }}
+            </a>
+          </div>
+        </div>
+
+        {%- if section.settings.featured_product != blank -%}
+          {%- assign hero_product = all_products[section.settings.featured_product] -%}
+          <div data-anim="fade-in" data-anim-delay="480" aria-hidden="true">
+            <div class="hero-card hero-card--float">
+              <div class="hero-card-image">
+                {%- if hero_product.featured_image != blank -%}
+                  {{ hero_product.featured_image | image_url: width: 400 | image_tag:
+                    alt: hero_product.title, loading: 'lazy'
+                  }}
+                {%- endif -%}
+                <span class="hero-card-badge-new">Bestseller</span>
+                <span class="hero-card-price">{{ hero_product.price | money }}</span>
+              </div>
+              <div class="hero-card-body">
+                <div>
+                  <p class="hero-card-type">{{ hero_product.type }}</p>
+                  <p class="hero-card-name">{{ hero_product.title }}</p>
+                  <p class="hero-card-desc">{{ hero_product.variants.first.title }}</p>
+                </div>
+                <a href="{{ hero_product.url }}" class="hero-card-add" aria-label="Bekijk product">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        {%- endif -%}
+      </div>
+
+      <div class="hero-footer" data-anim="fade-in" data-anim-delay="600">
+        <div class="hero-tags" aria-hidden="true">
+          {%- if section.settings.tag_1 != blank -%}<span>{{ section.settings.tag_1 }}</span>{%- endif -%}
+          {%- if section.settings.tag_2 != blank -%}<span>{{ section.settings.tag_2 }}</span>{%- endif -%}
+          {%- if section.settings.tag_3 != blank -%}<span>{{ section.settings.tag_3 }}</span>{%- endif -%}
+        </div>
+        <a href="#bestsellers" class="hero-scroll" aria-label="Scroll naar producten">
+          <span class="hero-scroll-line" aria-hidden="true"></span>
+          <span>Scroll</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Achtergrondafbeelding"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow tekst",
+      "default": "Officieel Alltech Coppens Distributeur"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Koptekst",
+      "default": "Dé Specialist In Vispellets."
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subtekst",
+      "default": "Officieel Alltech Coppens distributeur — pellets voor iedere vis en vistechniek."
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "Primaire knoptekst",
+      "default": "Shop Baits"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "Primaire knop URL"
+    },
+    {
+      "type": "text",
+      "id": "secondary_label",
+      "label": "Secundaire knoptekst",
+      "default": "Bekijk Categorieën"
+    },
+    {
+      "type": "url",
+      "id": "secondary_url",
+      "label": "Secundaire knop URL"
+    },
+    {
+      "type": "product",
+      "id": "featured_product",
+      "label": "Uitgelicht product (floating kaartje)"
+    },
+    {
+      "type": "text",
+      "id": "tag_1",
+      "label": "Tag 1",
+      "default": "Pellet Baits"
+    },
+    {
+      "type": "text",
+      "id": "tag_2",
+      "label": "Tag 2",
+      "default": "Hook Baits"
+    },
+    {
+      "type": "text",
+      "id": "tag_3",
+      "label": "Tag 3",
+      "default": "Liquid Attractants"
+    }
+  ],
+  "presets": [{ "name": "Hero" }]
+}
+{% endschema %}

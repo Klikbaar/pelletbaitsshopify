@@ -1,0 +1,70 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Pelletbaits",
+    "theme_version": "1.0.0",
+    "theme_author": "Pelletbaits",
+    "theme_documentation_url": "",
+    "theme_support_url": ""
+  },
+  {
+    "name": "Logo",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo (lichte versie)"
+      },
+      {
+        "type": "image_picker",
+        "id": "logo_dark",
+        "label": "Logo (donkere versie, voor light mode)"
+      }
+    ]
+  },
+  {
+    "name": "Contact",
+    "settings": [
+      {
+        "type": "text",
+        "id": "email",
+        "label": "E-mailadres",
+        "default": "timo@pelletbaits.nl"
+      },
+      {
+        "type": "text",
+        "id": "phone",
+        "label": "Telefoonnummer",
+        "default": "06-10487142"
+      },
+      {
+        "type": "text",
+        "id": "address",
+        "label": "Adres",
+        "default": "De Droogmakerij 22D, Heiloo"
+      },
+      {
+        "type": "text",
+        "id": "whatsapp_number",
+        "label": "WhatsApp nummer",
+        "info": "Zonder + of streepjes, bijv. 31610487142",
+        "default": "31610487142"
+      }
+    ]
+  },
+  {
+    "name": "Sociale media",
+    "settings": [
+      {
+        "type": "url",
+        "id": "instagram_url",
+        "label": "Instagram URL"
+      },
+      {
+        "type": "url",
+        "id": "facebook_url",
+        "label": "Facebook URL"
+      }
+    ]
+  }
+]
