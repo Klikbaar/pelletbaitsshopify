@@ -47,6 +47,15 @@
     "categories": {
       "type": "categories",
       "blocks": {
+        "category_ckJCUj": {
+          "type": "category",
+          "settings": {
+            "title": "Steurvissen",
+            "url": "",
+            "collection": "steur",
+            "image": "shopify://shop_images/2022_Alpen_sfeerafbeelding_Orient.jpg"
+          }
+        },
         "category_zp3VmQ": {
           "type": "category",
           "settings": {
@@ -58,6 +67,7 @@
         }
       },
       "block_order": [
+        "category_ckJCUj",
         "category_zp3VmQ"
       ],
       "settings": {
