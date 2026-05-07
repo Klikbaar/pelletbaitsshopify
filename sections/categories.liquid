@@ -39,12 +39,14 @@
           {%- for block in section.blocks -%}
             {%- if block.type == 'category' -%}
               {%- if block.settings.image != blank -%}
-                {{ block.settings.image | image_url: width: 700 | image_tag:
-                  class: forloop.first | map: 'active' | join: ' ',
-                  data-cat: 'cat-' | append: forloop.index,
-                  alt: block.settings.title,
-                  loading: 'lazy'
-                }}
+                {%- assign cat_class = '' -%}
+                {%- if forloop.first -%}{%- assign cat_class = 'active' -%}{%- endif -%}
+                <img src="{{ block.settings.image | image_url: width: 700 }}"
+                     class="{{ cat_class }}"
+                     data-cat="cat-{{ forloop.index }}"
+                     alt="{{ block.settings.title | escape }}"
+                     loading="lazy"
+                     width="700">
               {%- endif -%}
             {%- endif -%}
           {%- endfor -%}
