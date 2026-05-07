@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero": {
@@ -7,7 +16,10 @@
         "heading": "Dé Specialist In Vispellets.",
         "subheading": "Officieel Alltech Coppens distributeur — pellets voor iedere vis en vistechniek.",
         "cta_label": "Shop Baits",
+        "cta_url": "",
         "secondary_label": "Bekijk Categorieën",
+        "secondary_url": "",
+        "featured_product": "",
         "tag_1": "Pellet Baits",
         "tag_2": "Hook Baits",
         "tag_3": "Liquid Attractants"
@@ -19,46 +31,46 @@
         "eyebrow": "Onze hardlopers",
         "heading_prefix": "Best",
         "heading_accent": "sellers",
+        "collection": "",
         "products_count": 3
       }
     },
     "categories": {
       "type": "categories",
+      "blocks": {
+        "category_Kn74W3": {
+          "type": "category",
+          "settings": {
+            "title": "Karpervissen",
+            "url": "shopify://collections/karper",
+            "collection": "",
+            "image": "shopify://shop_images/method-feeder-vissen.png"
+          }
+        }
+      },
+      "block_order": [
+        "category_Kn74W3"
+      ],
       "settings": {
         "eyebrow": "Assortiment",
         "heading": "Shop per",
         "heading_accent": "vismethodes"
-      },
-      "blocks": {
-        "cat-1": { "type": "category", "settings": { "title": "Karpervissen" } },
-        "cat-2": { "type": "category", "settings": { "title": "Meervalvissen" } },
-        "cat-3": { "type": "category", "settings": { "title": "Steurvissen" } },
-        "cat-4": { "type": "category", "settings": { "title": "Methodfeeder" } },
-        "cat-5": { "type": "category", "settings": { "title": "Waggler" } },
-        "cat-6": { "type": "category", "settings": { "title": "Koi/Vijver" } },
-        "cat-7": { "type": "category", "settings": { "title": "Tools & Merchandise" } }
-      },
-      "blocks_order": ["cat-1","cat-2","cat-3","cat-4","cat-5","cat-6","cat-7"]
+      }
     },
     "feature": {
       "type": "feature",
       "settings": {
-        "eyebrow": "Kwaliteit & Resultaat",
-        "heading": "Ontworpen voor",
-        "heading_accent": "Maximale Aantrekkingskracht",
+        "image_alt": "",
         "image_chip": "Field Tested",
         "stat_value": "+47%",
         "stat_desc": "meer beten dankzij onze unieke formule",
+        "eyebrow": "Kwaliteit & Resultaat",
+        "heading": "Ontworpen voor",
+        "heading_accent": "Maximale Aantrekkingskracht",
         "body": "Pellet Baits biedt jou het meest uitgebreide assortiment vispellets van Alltech Coppens aan. Of je nu vist op karper, meerval of de kleinere witvissoorten als zeelt of brasem — voor iedere vis of vistechniek hebben wij dé geschikte pellets.",
-        "cta_label": "Lees de wetenschap"
-      },
-      "blocks": {
-        "p1": { "type": "point", "settings": { "title": "Natuurlijke aantrekkingskracht", "description": "Pellets hebben een grotere, meer natuurlijke aantrekkingskracht dan ander aas." } },
-        "p2": { "type": "point", "settings": { "title": "Minder verzuring", "description": "Zorgt voor minder verzuring op de visstek." } },
-        "p3": { "type": "point", "settings": { "title": "Dressuurwater", "description": "Vang nog mooie vissen, zelfs in zwaar beviste dressuurwateren." } },
-        "p4": { "type": "point", "settings": { "title": "Mix op maat", "description": "Klantgerichtheid staat hoog in het vaandel — we stellen ook mixen op maat samen." } }
-      },
-      "blocks_order": ["p1","p2","p3","p4"]
+        "cta_label": "Lees de wetenschap",
+        "cta_url": ""
+      }
     },
     "beurs": {
       "type": "beurs",
@@ -68,7 +80,8 @@
         "event_date": "14 – 16 feb 2026",
         "event_location": "Evenementenhal Gorinchem",
         "event_stand": "Hal 3 · B14",
-        "cta_label": "Neem contact op"
+        "cta_label": "Neem contact op",
+        "cta_url": ""
       }
     },
     "cta-banner": {
@@ -77,9 +90,18 @@
         "heading": "Vang Die Mega Karper!",
         "body": "Vang dié mega karper of meerval met de pellets van Pellet Baits. Heb je vragen? Wij geven je graag advies.",
         "primary_label": "Shop Nu",
-        "secondary_label": "Neem Contact Op"
+        "primary_url": "",
+        "secondary_label": "Neem Contact Op",
+        "secondary_url": ""
       }
     }
   },
-  "order": ["hero","bestsellers","categories","feature","beurs","cta-banner"]
+  "order": [
+    "hero",
+    "bestsellers",
+    "categories",
+    "feature",
+    "beurs",
+    "cta-banner"
+  ]
 }
