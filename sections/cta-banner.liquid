@@ -1,7 +1,10 @@
 <section class="cta-banner" aria-labelledby="cta-heading">
-  <div class="cta-banner-bg" aria-hidden="true"
-    style="background-image:url('{{ section.settings.image | image_url: width: 1920 | default: 'https://images.unsplash.com/photo-1607378515197-062e5aadb8cf?w=1920&q=80' }}')">
-  </div>
+  {%- if section.settings.image != blank -%}
+    {%- assign cta_bg = section.settings.image | image_url: width: 1920 -%}
+  {%- else -%}
+    {%- assign cta_bg = 'https://images.unsplash.com/photo-1607378515197-062e5aadb8cf?w=1920&q=80' -%}
+  {%- endif -%}
+  <div class="cta-banner-bg" aria-hidden="true" style="background-image:url('{{ cta_bg }}')"></div>
   <div class="cta-banner-gradient" aria-hidden="true"></div>
   <div class="container cta-banner-inner">
     <h2 class="cta-banner-headline display" id="cta-heading" data-anim="fade-up">

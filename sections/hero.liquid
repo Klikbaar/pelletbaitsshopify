@@ -1,5 +1,10 @@
 <section class="hero" aria-label="Hero">
-  <div class="hero-bg" style="background-image:url('{{ section.settings.image | image_url: width: 1920 | default: 'https://images.unsplash.com/photo-1712251791130-a1918694810a?w=1920&q=90' }}')"></div>
+  {%- if section.settings.image != blank -%}
+    {%- assign hero_bg = section.settings.image | image_url: width: 1920 -%}
+  {%- else -%}
+    {%- assign hero_bg = 'https://images.unsplash.com/photo-1712251791130-a1918694810a?w=1920&q=90' -%}
+  {%- endif -%}
+  <div class="hero-bg" style="background-image:url('{{ hero_bg }}')"></div>
   <div class="hero-gradient" aria-hidden="true"></div>
   <div class="container">
     <div class="hero-inner">
@@ -32,9 +37,8 @@
             <div class="hero-card hero-card--float">
               <div class="hero-card-image">
                 {%- if hero_product.featured_image != blank -%}
-                  {{ hero_product.featured_image | image_url: width: 400 | image_tag:
-                    alt: hero_product.title, loading: 'lazy'
-                  }}
+                  {%- assign hero_card_alt = hero_product.title | escape -%}
+                  <img src="{{ hero_product.featured_image | image_url: width: 400 }}" alt="{{ hero_card_alt }}" loading="lazy" width="400">
                 {%- endif -%}
                 <span class="hero-card-badge-new">Bestseller</span>
                 <span class="hero-card-price">{{ hero_product.price | money }}</span>
