@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "algemene-voorwaarden": {
+      "type": "main-algemene-voorwaarden",
+      "settings": {}
+    }
+  },
+  "order": ["algemene-voorwaarden"]
+}
