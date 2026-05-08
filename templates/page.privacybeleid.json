@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "privacybeleid": {
+      "type": "main-privacybeleid",
+      "settings": {}
+    }
+  },
+  "order": ["privacybeleid"]
+}
