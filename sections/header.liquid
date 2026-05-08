@@ -17,6 +17,11 @@
         {%- else -%}
           <a href="/pages/over-ons">Over ons</a>
         {%- endif -%}
+        {%- if pages['klantenservice'] -%}
+          <a href="{{ pages['klantenservice'].url }}"{% if request.page_type == 'page' and page.handle == 'klantenservice' %} aria-current="page"{% endif %}>Klantenservice</a>
+        {%- else -%}
+          <a href="/pages/klantenservice">Klantenservice</a>
+        {%- endif -%}
         {%- if pages['contact'] -%}
           <a href="{{ pages['contact'].url }}"{% if request.page_type == 'page' and page.handle == 'contact' %} aria-current="page"{% endif %}>Contact</a>
         {%- else -%}

@@ -1,0 +1,605 @@
+<style>
+  /* ---- Klantenservice Section ---- */
+  .ks-hero {
+    padding: 80px 0 60px;
+    border-bottom: 1px solid var(--line);
+  }
+  .ks-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin-bottom: 20px;
+  }
+  .ks-breadcrumb a:hover { color: var(--ink); }
+  .ks-eyebrow-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .ks-eyebrow-line {
+    width: 32px;
+    height: 1px;
+    background: var(--accent);
+  }
+  .ks-contact-pills {
+    display: flex;
+    gap: 12px;
+    margin-top: 32px;
+    flex-wrap: wrap;
+  }
+  .ks-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 20px;
+    border-radius: 999px;
+    border: 1px solid var(--line-2);
+    font-size: 13px;
+    color: var(--ink);
+    transition: border-color var(--dur-fast) ease, background var(--dur-fast) ease;
+  }
+  .ks-pill:hover { border-color: var(--accent); background: rgba(99,207,5,.05); }
+
+  /* Quick icon cards */
+  .ks-quick-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
+  }
+  .ks-quick-card {
+    padding: 28px 20px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: var(--bg-2);
+    text-align: center;
+    transition: border-color .3s, transform .3s;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+  .ks-quick-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+  .ks-quick-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    border: 1px solid var(--line-2);
+    margin-bottom: 14px;
+    transition: border-color .3s, background .3s;
+  }
+  .ks-quick-card:hover .ks-quick-icon {
+    border-color: var(--accent);
+    background: rgba(99,207,5,.08);
+  }
+
+  /* Main layout */
+  .ks-grid {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+  .ks-sidebar {
+    position: sticky;
+    top: 90px;
+  }
+  .ks-sidebar-nav { display: grid; gap: 6px; }
+  .ks-sidebar-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    color: var(--ink-2);
+    border: 1px solid transparent;
+    transition: all .2s;
+  }
+  .ks-sidebar-link:hover {
+    border-color: var(--accent);
+    color: var(--ink);
+    background: rgba(99,207,5,.05);
+  }
+
+  /* Sidebar contact card */
+  .ks-contact-card {
+    margin-top: 40px;
+    padding: 24px;
+    border: 1px solid rgba(99,207,5,.22);
+    border-left: 3px solid var(--accent);
+    border-radius: 14px;
+    background: var(--bg-2);
+  }
+  .ks-contact-card-btn {
+    display: block;
+    text-align: center;
+    padding: 12px;
+    border-radius: 999px;
+    background: var(--accent);
+    color: #0a0f0e;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    transition: background var(--dur-fast) ease;
+  }
+  .ks-contact-card-btn:hover { background: var(--accent-2); color: #fff; }
+
+  /* Accordion */
+  .ks-block {
+    border-top: 1px solid var(--line-2);
+    cursor: pointer;
+  }
+  .ks-block-hdr {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 28px 0;
+    gap: 24px;
+  }
+  .ks-block-icon {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    border: 1px solid var(--line-2);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background .3s, border-color .3s, transform .3s;
+  }
+  .ks-block.open .ks-block-icon {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #0a0f0e;
+    transform: rotate(180deg);
+  }
+  .ks-block-body {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height .4s ease, padding .4s;
+  }
+  .ks-block.open .ks-block-body { max-height: 700px; padding-bottom: 32px; }
+
+  /* Info callout box */
+  .ks-callout {
+    padding: 16px 20px;
+    border-radius: 10px;
+    background: var(--bg-3);
+    border: 1px solid var(--line-2);
+    font-size: 14px;
+    color: var(--ink-2);
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    max-width: 580px;
+    margin-bottom: 16px;
+  }
+  .ks-callout svg { flex-shrink: 0; margin-top: 2px; }
+
+  /* Retour address card */
+  .ks-retour-card {
+    padding: 24px;
+    border: 1px solid var(--line-2);
+    border-radius: 14px;
+    background: var(--bg-2);
+    max-width: 380px;
+    position: relative;
+    overflow: hidden;
+  }
+  .ks-retour-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--accent);
+  }
+
+  /* Stat tiles */
+  .ks-tiles-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    max-width: 560px;
+  }
+  .ks-tile {
+    padding: 18px;
+    border: 1px solid var(--line-2);
+    border-radius: 10px;
+    background: var(--bg-3);
+  }
+  .ks-tile-icon {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  /* Payment badges */
+  .ks-badges { display: flex; flex-wrap: wrap; gap: 10px; max-width: 560px; }
+  .ks-badge {
+    padding: 10px 16px;
+    border: 1px solid var(--line-2);
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    transition: border-color .2s;
+  }
+  .ks-badge:hover { border-color: var(--accent); }
+
+  /* Size pills */
+  .ks-sizes { display: flex; flex-wrap: wrap; gap: 10px; max-width: 560px; }
+  .ks-size {
+    padding: 12px 18px;
+    border: 1px solid var(--line-2);
+    border-radius: 8px;
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 700;
+  }
+  .ks-size--emmer {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  /* Responsive */
+  @media(max-width:980px) { .ks-quick-grid { grid-template-columns: 1fr 1fr 1fr; } }
+  @media(max-width:860px) {
+    .ks-grid { grid-template-columns: 1fr; }
+    .ks-sidebar { position: static; }
+  }
+  @media(max-width:600px) { .ks-quick-grid { grid-template-columns: 1fr 1fr; } }
+  @media(max-width:400px) { .ks-quick-grid { grid-template-columns: 1fr; } }
+</style>
+
+<!-- HERO -->
+<header class="ks-hero">
+  <div class="container">
+    <div class="ks-breadcrumb">
+      <a href="{{ routes.root_url }}">Home</a>
+      <span>·</span>
+      <span style="color:var(--ink)">Klantenservice</span>
+    </div>
+    <div class="ks-eyebrow-row">
+      <span class="ks-eyebrow-line"></span>
+      <span class="eyebrow">Support</span>
+    </div>
+    <h1 class="display" style="font-size:clamp(56px,9vw,140px);margin:0;padding-bottom:.1em">
+      Klanten<span style="color:var(--accent)">service</span>
+    </h1>
+    <p style="margin-top:24px;max-width:560px;font-size:16px;line-height:1.65;color:var(--ink-2);font-weight:300">
+      Alles over bestellen, betalen, verzenden en retourneren. Kom je er niet uit? Stuur ons een bericht.
+    </p>
+    <div class="ks-contact-pills">
+      {%- if settings.email != blank -%}
+        <a href="mailto:{{ settings.email }}" class="ks-pill">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+          {{ settings.email }}
+        </a>
+      {%- endif -%}
+      {%- if settings.phone != blank -%}
+        <a href="tel:{{ settings.phone | remove: ' ' | remove: '-' }}" class="ks-pill">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 4h4l2 5-3 2a12 12 0 0 0 5 5l2-3 5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>
+          Bel direct
+        </a>
+      {%- endif -%}
+    </div>
+  </div>
+</header>
+
+<!-- QUICK ICON CARDS -->
+<section style="padding:60px 0;border-bottom:1px solid var(--line)">
+  <div class="container">
+    <div class="ks-quick-grid">
+
+      <a href="#bestellen" class="ks-quick-card">
+        <div class="ks-quick-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="M9 12h6M9 16h4"/></svg>
+        </div>
+        <div class="display" style="font-size:18px">Bestellen</div>
+        <div style="font-size:12px;color:var(--ink-3);margin-top:6px">Order plaatsen</div>
+      </a>
+
+      <a href="#prijzen" class="ks-quick-card">
+        <div class="ks-quick-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M15 9.5a3 3 0 1 0 0 5M12 7v1M12 16v1"/></svg>
+        </div>
+        <div class="display" style="font-size:18px">Prijzen</div>
+        <div style="font-size:12px;color:var(--ink-3);margin-top:6px">Incl. BTW &middot; In euro</div>
+      </a>
+
+      <a href="#betaling" class="ks-quick-card">
+        <div class="ks-quick-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
+        </div>
+        <div class="display" style="font-size:18px">Betaling</div>
+        <div style="font-size:12px;color:var(--ink-3);margin-top:6px">iDEAL &middot; Klarna &middot; meer</div>
+      </a>
+
+      <a href="#verzenden" class="ks-quick-card">
+        <div class="ks-quick-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 7h11v10H3zM14 10h4l3 3v4h-7zM7 20a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM18 20a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/></svg>
+        </div>
+        <div class="display" style="font-size:18px">Verzenden</div>
+        <div style="font-size:12px;color:var(--ink-3);margin-top:6px">Binnen 2 werkdagen</div>
+      </a>
+
+      <a href="#retourneren" class="ks-quick-card">
+        <div class="ks-quick-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+        </div>
+        <div class="display" style="font-size:18px">Retour</div>
+        <div style="font-size:12px;color:var(--ink-3);margin-top:6px">14 dagen &middot; Gratis</div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ACCORDION + SIDEBAR -->
+<section style="padding:80px 0">
+  <div class="container">
+    <div class="ks-grid">
+
+      <!-- Sticky sidebar -->
+      <div class="ks-sidebar">
+        <div class="eyebrow" style="margin-bottom:20px;color:var(--accent)">Onderwerpen</div>
+        <div class="ks-sidebar-nav">
+          <a href="#bestellen" class="ks-sidebar-link">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/></svg>
+            Bestellen
+          </a>
+          <a href="#prijzen" class="ks-sidebar-link">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M15 9.5a3 3 0 1 0 0 5M12 7v1M12 16v1"/></svg>
+            Prijzen
+          </a>
+          <a href="#betaling" class="ks-sidebar-link">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
+            Betaling
+          </a>
+          <a href="#verzenden" class="ks-sidebar-link">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 7h11v10H3zM14 10h4l3 3v4h-7z"/></svg>
+            Verzenden
+          </a>
+          <a href="#retourneren" class="ks-sidebar-link">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+            Retourneren
+          </a>
+          <a href="#verpakking" class="ks-sidebar-link">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 7l9-4 9 4-9 4-9-4zM3 7v10l9 4 9-4V7"/></svg>
+            Verpakking
+          </a>
+        </div>
+
+        <!-- Contact card -->
+        <div class="ks-contact-card">
+          <div class="display" style="font-size:20px;margin-bottom:12px">Hulp nodig?</div>
+          <p style="font-size:13px;color:var(--ink-2);line-height:1.55;margin:0 0 16px">Kom je er niet uit? Thimo helpt je graag persoonlijk verder.</p>
+          <a href="{{ pages['contact'].url | default: '/pages/contact' }}" class="ks-contact-card-btn">Stuur een bericht</a>
+        </div>
+      </div>
+
+      <!-- Accordion content -->
+      <div>
+
+        <!-- BESTELLEN -->
+        <div id="bestellen" class="ks-block open">
+          <div class="ks-block-hdr">
+            <div>
+              <div class="eyebrow" style="margin-bottom:8px;color:var(--accent)">01</div>
+              <h2 class="display" style="font-size:clamp(32px,4vw,52px);margin:0">Bestellen</h2>
+            </div>
+            <div class="ks-block-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+            </div>
+          </div>
+          <div class="ks-block-body">
+            <p style="font-size:16px;line-height:1.7;color:var(--ink-2);max-width:640px;margin:0 0 16px">
+              Bestellingen kunnen worden opgegeven door gebruik te maken van ons <strong style="color:var(--ink)">online bestelsysteem</strong>. Zodra jouw bestelling is ontvangen wordt deze opgenomen in de orderadministratie en ontvang je een e-mail met daarop de bestelde producten, de prijzen per product en het totaalbedrag.
+            </p>
+            <div class="ks-callout">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>
+              <span>Bestellingen vanuit <strong style="color:var(--ink)">ondernemingen</strong> dienen het BTW-nummer op de bestelling te plaatsen.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- PRIJZEN -->
+        <div id="prijzen" class="ks-block">
+          <div class="ks-block-hdr">
+            <div>
+              <div class="eyebrow" style="margin-bottom:8px;color:var(--accent)">02</div>
+              <h2 class="display" style="font-size:clamp(32px,4vw,52px);margin:0">Prijzen</h2>
+            </div>
+            <div class="ks-block-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+            </div>
+          </div>
+          <div class="ks-block-body">
+            <p style="font-size:16px;line-height:1.7;color:var(--ink-2);max-width:640px;margin:0 0 16px">
+              De vermelde prijzen zijn <strong style="color:var(--ink)">incl. BTW</strong> en gelden voor onbepaalde tijd. Pellet Baits is niet aansprakelijk voor eventueel verkeerd vermelde informatie of onjuiste prijsinformatie. Eerder afgegeven prijzen zijn niet geldig.
+            </p>
+            <div class="ks-tiles-2">
+              <div class="ks-tile">
+                <div class="display" style="font-size:22px;color:var(--accent)">&euro; Euro</div>
+                <div style="font-size:12px;color:var(--ink-3);margin-top:6px;letter-spacing:.12em;text-transform:uppercase">Alle prijzen in euro</div>
+              </div>
+              <div class="ks-tile">
+                <div class="display" style="font-size:22px;color:var(--accent)">Incl. BTW</div>
+                <div style="font-size:12px;color:var(--ink-3);margin-top:6px;letter-spacing:.12em;text-transform:uppercase">Facturering in euro</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- BETALING -->
+        <div id="betaling" class="ks-block">
+          <div class="ks-block-hdr">
+            <div>
+              <div class="eyebrow" style="margin-bottom:8px;color:var(--accent)">03</div>
+              <h2 class="display" style="font-size:clamp(32px,4vw,52px);margin:0">Betaling</h2>
+            </div>
+            <div class="ks-block-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+            </div>
+          </div>
+          <div class="ks-block-body">
+            <p style="font-size:16px;line-height:1.7;color:var(--ink-2);max-width:640px;margin:0 0 20px">
+              Betaling geschiedt via onze betaalprovider <strong style="color:var(--ink)">Mollie</strong>. Mollie biedt de volgende betaalmogelijkheden:
+            </p>
+            <div class="ks-badges">
+              <span class="ks-badge">iDEAL</span>
+              <span class="ks-badge">PayPal</span>
+              <span class="ks-badge">Sofort Banking</span>
+              <span class="ks-badge">Bancontact</span>
+              <span class="ks-badge">Credit Card</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- VERZENDEN -->
+        <div id="verzenden" class="ks-block">
+          <div class="ks-block-hdr">
+            <div>
+              <div class="eyebrow" style="margin-bottom:8px;color:var(--accent)">04</div>
+              <h2 class="display" style="font-size:clamp(32px,4vw,52px);margin:0">Verzenden</h2>
+            </div>
+            <div class="ks-block-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+            </div>
+          </div>
+          <div class="ks-block-body">
+            <p style="font-size:16px;line-height:1.7;color:var(--ink-2);max-width:640px;margin:0 0 20px">
+              Nadat jouw betaling is ontvangen zal jouw bestelling binnen <strong style="color:var(--ink)">2 werkdagen</strong> worden verzonden. Zodra onze vervoerder jouw pakket(ten) heeft gescand, ontvang je een e-mail met de <strong style="color:var(--ink)">track &amp; trace-code</strong> waarmee je jouw bestelling kunt volgen.
+            </p>
+            <div class="ks-tiles-2" style="max-width:480px">
+              <div class="ks-tile ks-tile-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5"><path d="M3 7h11v10H3zM14 10h4l3 3v4h-7zM7 20a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM18 20a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/></svg>
+                <div>
+                  <div class="display" style="font-size:18px">2 dagen</div>
+                  <div style="font-size:11px;color:var(--ink-3);margin-top:2px">Na ontvangst betaling</div>
+                </div>
+              </div>
+              <div class="ks-tile ks-tile-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zM2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg>
+                <div>
+                  <div class="display" style="font-size:18px">Track</div>
+                  <div style="font-size:11px;color:var(--ink-3);margin-top:2px">Track &amp; trace per e-mail</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RETOURNEREN -->
+        <div id="retourneren" class="ks-block">
+          <div class="ks-block-hdr">
+            <div>
+              <div class="eyebrow" style="margin-bottom:8px;color:var(--accent)">05</div>
+              <h2 class="display" style="font-size:clamp(32px,4vw,52px);margin:0">Retourneren</h2>
+            </div>
+            <div class="ks-block-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+            </div>
+          </div>
+          <div class="ks-block-body">
+            <p style="font-size:16px;line-height:1.7;color:var(--ink-2);max-width:640px;margin:0 0 16px">
+              Wanneer het bestelde niet voldoet aan jouw verwachtingen, mag je de bestelling binnen <strong style="color:var(--ink)">14 dagen op kosten van Pellet Baits</strong> retourneren. De producten moeten in de <strong style="color:var(--ink)">originele staat</strong> zijn en de verpakking mag niet zijn geopend.
+            </p>
+            <div class="ks-callout">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>
+              <span>Er worden verzendkosten voor het nieuw te sturen pakket in rekening gebracht, afhankelijk van het gewicht.</span>
+            </div>
+            <div class="ks-retour-card">
+              <div class="eyebrow" style="margin-bottom:14px;color:var(--accent)">Retouradres</div>
+              <address style="font-style:normal;font-size:15px;line-height:1.8;color:var(--ink)">
+                <strong>Pellet Baits</strong><br>
+                {%- if settings.address != blank -%}
+                  {{ settings.address }}
+                {%- else -%}
+                  De Droogmakerij 22 D<br>
+                  1851 LX Heiloo
+                {%- endif -%}
+              </address>
+            </div>
+          </div>
+        </div>
+
+        <!-- VERPAKKING -->
+        <div id="verpakking" class="ks-block">
+          <div class="ks-block-hdr">
+            <div>
+              <div class="eyebrow" style="margin-bottom:8px;color:var(--accent)">06</div>
+              <h2 class="display" style="font-size:clamp(32px,4vw,52px);margin:0">Verpakking</h2>
+            </div>
+            <div class="ks-block-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+            </div>
+          </div>
+          <div class="ks-block-body">
+            <p style="font-size:16px;line-height:1.7;color:var(--ink-2);max-width:640px;margin:0 0 20px">
+              Het voer is verpakt in zakken of emmers. Beschikbare formaten:
+            </p>
+            <div class="ks-sizes">
+              <span class="ks-size">1 kg</span>
+              <span class="ks-size">5 kg</span>
+              <span class="ks-size">15 kg</span>
+              <span class="ks-size">20 kg</span>
+              <span class="ks-size">25 kg</span>
+              <span class="ks-size ks-size--emmer">700 ml</span>
+              <span class="ks-size ks-size--emmer">2,5 ltr</span>
+            </div>
+            <div style="margin-top:12px;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3)">
+              <span style="color:var(--ink-2)">——</span> zakken &nbsp;&middot;&nbsp; <span style="color:var(--accent)">——</span> emmers
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  function toggleBlock(el) {
+    var wasOpen = el.classList.contains('open');
+    document.querySelectorAll('.ks-block').forEach(function(b){ b.classList.remove('open'); });
+    if (!wasOpen) el.classList.add('open');
+  }
+
+  document.querySelectorAll('.ks-block').forEach(function(block){
+    block.querySelector('.ks-block-hdr').addEventListener('click', function(){
+      toggleBlock(block);
+    });
+  });
+
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      var target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        var block = target.classList.contains('ks-block') ? target : target.closest('.ks-block');
+        if (block) {
+          document.querySelectorAll('.ks-block').forEach(function(b){ b.classList.remove('open'); });
+          block.classList.add('open');
+        }
+        var y = target.getBoundingClientRect().top + window.scrollY - 110;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      }
+    });
+  });
+}());
+</script>
+
+{% schema %}
+{
+  "name": "Klantenservice",
+  "presets": [{ "name": "Klantenservice" }]
+}
+{% endschema %}

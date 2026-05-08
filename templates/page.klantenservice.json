@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "klantenservice": {
+      "type": "klantenservice",
+      "settings": {}
+    }
+  },
+  "order": ["klantenservice"]
+}
