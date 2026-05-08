@@ -144,7 +144,7 @@
     "beurs": {
       "type": "beurs",
       "settings": {
-        "enabled": false,
+        "enabled": true,
         "event_name": "Hengelsport Vakbeurs",
         "event_date": "14 – 16 feb 2026",
         "event_location": "Evenementenhal Gorinchem",
