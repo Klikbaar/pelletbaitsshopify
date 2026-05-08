@@ -25,50 +25,25 @@
       </div>
 
       <div>
-        <p class="footer-col-title eyebrow">{{ section.settings.cat_title }}</p>
+        <p class="footer-col-title eyebrow">Navigatie</p>
         <ul class="footer-links">
-          {%- if linklists[section.settings.cat_menu].links.size > 0 -%}
-            {%- for link in linklists[section.settings.cat_menu].links -%}
-              <li><a href="{{ link.url }}">{{ link.title }}</a></li>
-            {%- endfor -%}
+          <li><a href="{{ routes.root_url }}">Home</a></li>
+          <li><a href="/collections">Shop</a></li>
+          {%- if pages['over-ons'] -%}
+            <li><a href="{{ pages['over-ons'].url }}">Over ons</a></li>
           {%- else -%}
-            <li><a href="/collections/karpervissen">Karpervissen</a></li>
-            <li><a href="/collections/meervalvissen">Meervalvissen</a></li>
-            <li><a href="/collections/steurvissen">Steurvissen</a></li>
-            <li><a href="/collections/methodfeeder">Methodfeeder</a></li>
-            <li><a href="/collections/waggler">Waggler</a></li>
-            <li><a href="/collections/koi-vijver">Koi/Vijver</a></li>
-            <li><a href="/collections/tools-merchandise">Tools &amp; Merchandise</a></li>
+            <li><a href="/pages/over-ons">Over ons</a></li>
           {%- endif -%}
-        </ul>
-      </div>
-
-      <div>
-        <p class="footer-col-title eyebrow">{{ section.settings.info_title }}</p>
-        <ul class="footer-links">
-          {%- for link in linklists[section.settings.info_menu].links -%}
-            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
-          {%- endfor -%}
-          {%- assign info_has_over_ons = false -%}
-          {%- assign info_has_contact = false -%}
-          {%- for link in linklists[section.settings.info_menu].links -%}
-            {%- if link.title == 'Over ons' or link.title == 'Over Ons' -%}{%- assign info_has_over_ons = true -%}{%- endif -%}
-            {%- if link.title == 'Contact' or link.title == 'contact' -%}{%- assign info_has_contact = true -%}{%- endif -%}
-          {%- endfor -%}
-          {%- unless info_has_over_ons -%}
-            {%- if pages['over-ons'] -%}
-              <li><a href="{{ pages['over-ons'].url }}">Over ons</a></li>
-            {%- else -%}
-              <li><a href="/pages/over-ons">Over ons</a></li>
-            {%- endif -%}
-          {%- endunless -%}
-          {%- unless info_has_contact -%}
-            {%- if pages['contact'] -%}
-              <li><a href="{{ pages['contact'].url }}">Contact</a></li>
-            {%- else -%}
-              <li><a href="/pages/contact">Contact</a></li>
-            {%- endif -%}
-          {%- endunless -%}
+          {%- if pages['klantenservice'] -%}
+            <li><a href="{{ pages['klantenservice'].url }}">Klantenservice</a></li>
+          {%- else -%}
+            <li><a href="/pages/klantenservice">Klantenservice</a></li>
+          {%- endif -%}
+          {%- if pages['contact'] -%}
+            <li><a href="{{ pages['contact'].url }}">Contact</a></li>
+          {%- else -%}
+            <li><a href="/pages/contact">Contact</a></li>
+          {%- endif -%}
         </ul>
       </div>
 
@@ -115,28 +90,6 @@
       "id": "description",
       "label": "Omschrijving",
       "default": "De specialist in vispellets. Officieel distributeur van Alltech Coppens."
-    },
-    {
-      "type": "text",
-      "id": "cat_title",
-      "label": "Kolomtitel categorieen",
-      "default": "Categorieen"
-    },
-    {
-      "type": "link_list",
-      "id": "cat_menu",
-      "label": "Categorieen menu"
-    },
-    {
-      "type": "text",
-      "id": "info_title",
-      "label": "Kolomtitel informatie",
-      "default": "Informatie"
-    },
-    {
-      "type": "link_list",
-      "id": "info_menu",
-      "label": "Informatie menu"
     },
     {
       "type": "link_list",
