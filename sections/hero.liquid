@@ -21,11 +21,11 @@
             {{ section.settings.subheading }}
           </p>
           <div class="hero-actions" data-anim="fade-up" data-anim-delay="360">
-            <a href="{{ section.settings.cta_url }}" class="btn-hero-primary">
+            <a href="{{ section.settings.cta_url | default: '/collections' }}" class="btn-hero-primary">
               {{ section.settings.cta_label }}
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
-            <a href="{{ section.settings.secondary_url }}" class="btn-hero-secondary">
+            <a href="{{ section.settings.secondary_url | default: '/collections' }}" class="btn-hero-secondary">
               {{ section.settings.secondary_label }}
             </a>
           </div>

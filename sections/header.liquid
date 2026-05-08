@@ -11,7 +11,7 @@
 
       <nav class="header-nav" role="navigation" aria-label="Hoofdmenu">
         <a href="{{ routes.root_url }}"{% if request.page_type == 'index' %} aria-current="page"{% endif %}>Home</a>
-        <a href="/pages/shop-overview"{% if request.page_type == 'page' and page.handle == 'shop-overview' %} aria-current="page"{% endif %}>Shop</a>
+        <a href="/collections"{% if request.page_type == 'list-collections' or request.page_type == 'collection' %} aria-current="page"{% endif %}>Shop</a>
         {%- if pages['over-ons'] -%}
           <a href="{{ pages['over-ons'].url }}"{% if request.page_type == 'page' and page.handle == 'over-ons' %} aria-current="page"{% endif %}>Over ons</a>
         {%- else -%}
