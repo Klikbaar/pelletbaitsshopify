@@ -100,7 +100,7 @@
     transition: border-color .35s, transform .35s;
     display: block;
   }
-  .so-cat-card:hover { border-color: var(--line-2); transform: translateY(-4px); }
+  .so-cat-card:hover { border-color: var(--accent); transform: translateY(-4px); }
   .so-cat-bg {
     width: 100%;
     height: 100%;
@@ -205,7 +205,8 @@
     margin-top: 60px;
     padding: 40px;
     border-radius: var(--radius-lg);
-    border: 1px solid var(--line-2);
+    border: 1px solid rgba(99,207,5,.22);
+    border-left: 3px solid var(--accent);
     background: var(--bg-2);
     display: grid;
     grid-template-columns: 1fr auto;
@@ -286,7 +287,7 @@
         </h1>
       </div>
       <div style="display:flex;flex-direction:column;align-items:flex-end;gap:10px">
-        <div class="display" style="font-size:80px;color:rgba(255,255,255,.12);line-height:1">7</div>
+        <div class="display" style="font-size:80px;color:var(--accent);opacity:.22;line-height:1">7</div>
         <div style="font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.5)">Categorieën</div>
       </div>
     </div>
@@ -318,10 +319,10 @@
 
     <!-- VISSOORT — 3 grote cards -->
     <div class="so-section-header">
-      <div class="eyebrow">Vissen</div>
-      <span class="num">01 / 02</span>
+      <div class="eyebrow" style="color:var(--accent)">Vissen</div>
+      <span class="num" style="color:var(--accent)">01 / 02</span>
     </div>
-    <h2 class="display" style="font-size:clamp(36px,4.5vw,64px);margin:0 0 32px;color:var(--ink)">Kies je vissoort.</h2>
+    <h2 class="display" style="font-size:clamp(36px,4.5vw,64px);margin:0 0 32px;color:var(--ink)">Kies je <span style="color:var(--accent)">vissoort.</span></h2>
 
     <div class="so-grid-3" style="margin-bottom:16px">
 
@@ -392,10 +393,10 @@
     <!-- TECHNIEK — 4 kleinere cards -->
     <div class="so-divider-header">
       <div>
-        <div class="eyebrow" style="margin-bottom:14px">Technieken</div>
-        <h2 class="display" style="font-size:clamp(36px,4.5vw,64px);margin:0;color:var(--ink)">Kies je techniek.</h2>
+        <div class="eyebrow" style="margin-bottom:14px;color:var(--accent)">Technieken</div>
+        <h2 class="display" style="font-size:clamp(36px,4.5vw,64px);margin:0;color:var(--ink)">Kies je <span style="color:var(--accent)">techniek.</span></h2>
       </div>
-      <span class="num">02 / 02</span>
+      <span class="num" style="color:var(--accent)">02 / 02</span>
     </div>
 
     <div class="so-grid-4">
@@ -473,7 +474,7 @@
     <div class="so-mix-banner">
       <div>
         <div class="eyebrow" style="margin-bottom:14px;color:var(--accent)">Exclusief</div>
-        <h3 class="display" style="font-size:clamp(32px,4vw,60px);margin:0;color:var(--ink)">Mix op maat<br><span style="color:var(--ink-3)">naar jouw wens.</span></h3>
+        <h3 class="display" style="font-size:clamp(32px,4vw,60px);margin:0;color:var(--ink)">Mix op maat<br><span style="color:var(--accent)">naar jouw wens.</span></h3>
         <p style="margin-top:16px;max-width:600px;font-size:15px;line-height:1.6;color:var(--ink-2);font-weight:300">
           Zit jouw wens wat betreft mix niet in ons assortiment? Neem contact op en we stellen jouw mix samen &mdash; volledig naar jouw specificaties en viswater.
         </p>
