@@ -150,7 +150,7 @@
         "event_location": "Evenementenhal Gorinchem",
         "event_stand": "Hal 3 · B14",
         "cta_label": "Neem contact op",
-        "cta_url": ""
+        "cta_url": "shopify://pages/contact"
       }
     },
     "cta-banner": {
