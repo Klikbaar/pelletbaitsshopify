@@ -1,0 +1,541 @@
+<style>
+  /* ---- Shop Overview Section ---- */
+  .so-hero {
+    position: relative;
+    overflow: hidden;
+    min-height: 52vh;
+    background: #000;
+    display: flex;
+    align-items: flex-end;
+  }
+  .so-hero-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center 35%;
+    filter: saturate(.7) brightness(.55);
+    transform: scale(1.04);
+    transition: transform 8s ease;
+  }
+  .so-hero-grad {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg,rgba(10,15,14,.45) 0%,rgba(10,15,14,.15) 40%,rgba(10,15,14,.88) 100%);
+  }
+  .so-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.6);
+    margin-bottom: 18px;
+  }
+  .so-breadcrumb a:hover { color: #fff; }
+  .so-hero-content {
+    position: relative;
+    z-index: 2;
+    padding-top: 120px;
+    padding-bottom: 60px;
+    width: 100%;
+  }
+  .so-hero-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+  .so-hero-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 18px;
+  }
+  .so-hero-eyebrow-line {
+    width: 32px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  /* Promo banner */
+  .so-promo {
+    background: linear-gradient(135deg, #1d3326 0%, #152519 100%);
+    border: 1px solid rgba(99,207,5,.18);
+    border-radius: var(--radius-lg);
+    padding: 24px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-bottom: 48px;
+  }
+  .so-promo-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 22px;
+    border-radius: 999px;
+    background: var(--accent);
+    color: #0a0f0e;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    transition: background var(--dur-fast) ease;
+  }
+  .so-promo-btn:hover { background: var(--accent-2); color: #fff; }
+
+  /* Category cards */
+  .so-cat-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 16px;
+    border: 1px solid var(--line);
+    background: #000;
+    cursor: pointer;
+    transition: border-color .35s, transform .35s;
+    display: block;
+  }
+  .so-cat-card:hover { border-color: var(--line-2); transform: translateY(-4px); }
+  .so-cat-bg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: saturate(.8) brightness(.6);
+    transition: transform .7s ease, filter .7s ease;
+  }
+  .so-cat-card:hover .so-cat-bg { transform: scale(1.07); filter: saturate(.9) brightness(.7); }
+  .so-cat-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(10,15,14,0) 30%, rgba(10,15,14,.9) 100%);
+    pointer-events: none;
+  }
+  .so-cat-overlay--deep {
+    background: linear-gradient(180deg, transparent 20%, rgba(10,15,14,.95) 100%);
+  }
+  .so-cat-info {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 24px 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 12px;
+  }
+  .so-cat-tag {
+    position: absolute;
+    top: 16px; left: 16px;
+    font-size: 9px;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 5px 10px;
+    border-radius: 4px;
+    background: var(--accent);
+    color: #0a0f0e;
+  }
+  .so-cat-tag--ghost {
+    background: rgba(255,255,255,.12);
+    color: #fff;
+    border: 1px solid rgba(255,255,255,.2);
+  }
+  .so-cat-tag--gold {
+    background: var(--gold);
+    color: #0a0f0e;
+  }
+  .so-arrow-btn {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.9);
+    color: #0a0f0e;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: transform .3s, background .3s;
+  }
+  .so-arrow-btn--sm { width: 36px; height: 36px; }
+  .so-arrow-btn--accent { background: var(--accent); color: #0a0f0e; }
+  .so-cat-card:hover .so-arrow-btn { background: #fff; transform: scale(1.08); }
+  .so-cat-count {
+    font-size: 10px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.55);
+    margin-bottom: 6px;
+  }
+  .so-cat-count--sm {
+    font-size: 9px;
+    color: rgba(255,255,255,.5);
+    margin-bottom: 5px;
+  }
+  .so-cat-sub {
+    font-size: 13px;
+    color: rgba(255,255,255,.6);
+    margin-top: 6px;
+  }
+  .so-cat-sub--sm { font-size: 12px; color: rgba(255,255,255,.55); margin-top: 5px; }
+
+  /* Grids */
+  .so-grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+  .so-grid-4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; }
+
+  /* Section headers */
+  .so-section-header {
+    margin-bottom: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+  .so-divider-header {
+    margin: 60px 0 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+
+  /* Mix banner */
+  .so-mix-banner {
+    margin-top: 60px;
+    padding: 40px;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--line-2);
+    background: var(--bg-2);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 40px;
+    align-items: center;
+  }
+  .so-mix-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 24px;
+    padding: 14px 24px;
+    border-radius: 999px;
+    border: 1px solid var(--line-2);
+    font-size: 12px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--ink);
+    transition: border-color .3s, background .3s;
+  }
+  .so-mix-btn:hover { border-color: var(--accent); background: rgba(99,207,5,.06); }
+  .so-mix-icon-wrap {
+    width: 160px; height: 160px;
+    border-radius: 50%;
+    border: 1px solid var(--line-2);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  .so-mix-icon-dashed {
+    position: absolute;
+    inset: -1px;
+    border-radius: 50%;
+    border: 1px dashed rgba(255,255,255,.1);
+  }
+
+  /* Responsive */
+  @media(max-width:1100px) { .so-grid-3 { grid-template-columns: 1fr 1fr; } }
+  @media(max-width:1200px) { .so-grid-4 { grid-template-columns: 1fr 1fr; } }
+  @media(max-width:900px) {
+    .so-mix-banner { grid-template-columns: 1fr; }
+    .so-mix-icon { display: none; }
+  }
+  @media(max-width:700px) {
+    .so-grid-3 { grid-template-columns: 1fr; }
+    .so-grid-4 { grid-template-columns: 1fr 1fr; }
+  }
+  @media(max-width:480px) { .so-grid-4 { grid-template-columns: 1fr; } }
+</style>
+
+{%- assign karpervissen_url   = collections['karpervissen'].url   | default: '/collections/karpervissen' -%}
+{%- assign meervalvissen_url  = collections['meervalvissen'].url  | default: '/collections/meervalvissen' -%}
+{%- assign steurvissen_url    = collections['steurvissen'].url    | default: '/collections/steurvissen' -%}
+{%- assign methodfeeder_url   = collections['method-feeder'].url  | default: '/collections/method-feeder' -%}
+{%- assign waggler_url        = collections['waggler'].url        | default: '/collections/waggler' -%}
+{%- assign koivijver_url      = collections['koi-vijver'].url     | default: '/collections/koi-vijver' -%}
+{%- assign tools_url          = collections['tools-merchandise'].url | default: '/collections/tools-merchandise' -%}
+
+<!-- HERO STRIP -->
+<section class="so-hero">
+  <div class="so-hero-bg" style="background-image:url('{{ section.settings.hero_image | image_url: width: 2400 | default: 'https://images.unsplash.com/photo-1499242611767-cf8b9be02854?auto=format&fit=crop&w=2400&q=80' }}')"></div>
+  <div class="so-hero-grad"></div>
+  <div class="container so-hero-content">
+    <div class="so-breadcrumb">
+      <a href="{{ routes.root_url }}">Home</a>
+      <span>›</span>
+      <span style="color:#fff">Shop</span>
+    </div>
+    <div class="so-hero-row">
+      <div>
+        <div class="so-hero-eyebrow">
+          <span class="so-hero-eyebrow-line"></span>
+          <span class="eyebrow" style="color:#fff">Compleet Coppens-assortiment</span>
+        </div>
+        <h1 class="display" style="font-size:clamp(60px,10vw,160px);margin:0;color:#fff;padding-bottom:.1em;text-shadow:0 4px 30px rgba(0,0,0,.4)">
+          De Shop
+        </h1>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:10px">
+        <div class="display" style="font-size:80px;color:rgba(255,255,255,.12);line-height:1">7</div>
+        <div style="font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.5)">Categorieën</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MAIN SHOP CONTENT -->
+<section style="padding:60px 0 120px">
+  <div class="container">
+
+    <!-- PROMO BANNER -->
+    <div class="so-promo">
+      <div>
+        <div style="font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:6px">Aanbieding van de week</div>
+        <div class="display" style="font-size:clamp(20px,2.2vw,28px);color:#fff">
+          {%- if section.settings.promo_text != blank -%}
+            {{ section.settings.promo_text }}
+          {%- else -%}
+            15% korting op alle 15kg-zakken
+          {%- endif -%}
+        </div>
+        <div style="font-size:13px;color:rgba(255,255,255,.7);margin-top:4px">Geldig t/m zondag &mdash; Gratis verzending vanaf &euro;45</div>
+      </div>
+      <a href="{{ section.settings.promo_link | default: karpervissen_url }}" class="so-promo-btn">
+        Shop bulk
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+
+    <!-- VISSOORT — 3 grote cards -->
+    <div class="so-section-header">
+      <div class="eyebrow">Vissen</div>
+      <span class="num">01 / 02</span>
+    </div>
+    <h2 class="display" style="font-size:clamp(36px,4.5vw,64px);margin:0 0 32px;color:var(--ink)">Kies je vissoort.</h2>
+
+    <div class="so-grid-3" style="margin-bottom:16px">
+
+      <!-- KARPERVISSEN -->
+      <a href="{{ karpervissen_url }}" class="so-cat-card" style="aspect-ratio:3/4">
+        {%- if section.settings.karpervissen_image -%}
+          <img class="so-cat-bg" src="{{ section.settings.karpervissen_image | image_url: width: 1200 }}" alt="Karpervissen" loading="lazy">
+        {%- else -%}
+          <img class="so-cat-bg" src="https://images.unsplash.com/photo-1516979187457-637abb4f9353?auto=format&fit=crop&w=1200&q=80" alt="Karpervissen" loading="lazy">
+        {%- endif -%}
+        <div class="so-cat-overlay"></div>
+        <span class="so-cat-tag">Bestseller</span>
+        <div class="so-cat-info">
+          <div>
+            <div class="so-cat-count">24 producten</div>
+            <div class="display" style="font-size:clamp(36px,4vw,56px);color:#fff">Karpervissen</div>
+            <div class="so-cat-sub">Pellets &bull; Boilies &bull; Hookbaits &bull; Liquids</div>
+          </div>
+          <div class="so-arrow-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </div>
+        </div>
+      </a>
+
+      <!-- MEERVALVISSEN -->
+      <a href="{{ meervalvissen_url }}" class="so-cat-card" style="aspect-ratio:3/4">
+        {%- if section.settings.meervalvissen_image -%}
+          <img class="so-cat-bg" src="{{ section.settings.meervalvissen_image | image_url: width: 1200 }}" alt="Meervalvissen" loading="lazy">
+        {%- else -%}
+          <img class="so-cat-bg" src="https://images.unsplash.com/photo-1574781330855-d0db8cc6a79c?auto=format&fit=crop&w=1200&q=80" alt="Meervalvissen" loading="lazy">
+        {%- endif -%}
+        <div class="so-cat-overlay"></div>
+        <span class="so-cat-tag so-cat-tag--ghost">Nieuw</span>
+        <div class="so-cat-info">
+          <div>
+            <div class="so-cat-count">8 producten</div>
+            <div class="display" style="font-size:clamp(36px,4vw,56px);color:#fff">Meervalvissen</div>
+            <div class="so-cat-sub">Grootkorrel pellets &bull; Bloed &amp; lever</div>
+          </div>
+          <div class="so-arrow-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </div>
+        </div>
+      </a>
+
+      <!-- STEURVISSEN -->
+      <a href="{{ steurvissen_url }}" class="so-cat-card" style="aspect-ratio:3/4">
+        {%- if section.settings.steurvissen_image -%}
+          <img class="so-cat-bg" src="{{ section.settings.steurvissen_image | image_url: width: 1200 }}" alt="Steurvissen" loading="lazy">
+        {%- else -%}
+          <img class="so-cat-bg" src="https://images.unsplash.com/photo-1545486332-9e0999c535b2?auto=format&fit=crop&w=1200&q=80" alt="Steurvissen" loading="lazy">
+        {%- endif -%}
+        <div class="so-cat-overlay"></div>
+        <div class="so-cat-info">
+          <div>
+            <div class="so-cat-count">6 producten</div>
+            <div class="display" style="font-size:clamp(36px,4vw,56px);color:#fff">Steurvissen</div>
+            <div class="so-cat-sub">Speciaal samengesteld &bull; Alle maten</div>
+          </div>
+          <div class="so-arrow-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </div>
+        </div>
+      </a>
+
+    </div>
+
+    <!-- TECHNIEK — 4 kleinere cards -->
+    <div class="so-divider-header">
+      <div>
+        <div class="eyebrow" style="margin-bottom:14px">Technieken</div>
+        <h2 class="display" style="font-size:clamp(36px,4.5vw,64px);margin:0;color:var(--ink)">Kies je techniek.</h2>
+      </div>
+      <span class="num">02 / 02</span>
+    </div>
+
+    <div class="so-grid-4">
+
+      <!-- METHOD FEEDER -->
+      <a href="{{ methodfeeder_url }}" class="so-cat-card" style="aspect-ratio:1/1">
+        <img class="so-cat-bg" src="https://images.unsplash.com/photo-1485727749690-d091e8284ef3?auto=format&fit=crop&w=1000&q=80" alt="Method Feeder" loading="lazy">
+        <div class="so-cat-overlay so-cat-overlay--deep"></div>
+        <span class="so-cat-tag so-cat-tag--gold">Populair</span>
+        <div class="so-cat-info">
+          <div>
+            <div class="so-cat-count so-cat-count--sm">12 producten</div>
+            <div class="display" style="font-size:clamp(28px,3vw,38px);color:#fff">Method Feeder</div>
+            <div class="so-cat-sub so-cat-sub--sm">Fijne mixen &bull; 2&ndash;4mm</div>
+          </div>
+          <div class="so-arrow-btn so-arrow-btn--sm">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </div>
+        </div>
+      </a>
+
+      <!-- WAGGLER -->
+      <a href="{{ waggler_url }}" class="so-cat-card" style="aspect-ratio:1/1">
+        <img class="so-cat-bg" src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?auto=format&fit=crop&w=1000&q=80" alt="Waggler vissen" loading="lazy">
+        <div class="so-cat-overlay so-cat-overlay--deep"></div>
+        <div class="so-cat-info">
+          <div>
+            <div class="so-cat-count so-cat-count--sm">9 producten</div>
+            <div class="display" style="font-size:clamp(28px,3vw,38px);color:#fff">Waggler</div>
+            <div class="so-cat-sub so-cat-sub--sm">Pellet waggler &bull; Zinkend</div>
+          </div>
+          <div class="so-arrow-btn so-arrow-btn--sm">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </div>
+        </div>
+      </a>
+
+      <!-- KOI / VIJVER -->
+      <a href="{{ koivijver_url }}" class="so-cat-card" style="aspect-ratio:1/1">
+        <img class="so-cat-bg" src="https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&w=1000&q=80" alt="Koi en vijver" loading="lazy">
+        <div class="so-cat-overlay so-cat-overlay--deep"></div>
+        <div class="so-cat-info">
+          <div>
+            <div class="so-cat-count so-cat-count--sm">14 producten</div>
+            <div class="display" style="font-size:clamp(28px,3vw,38px);color:#fff">Koi &amp; Vijver</div>
+            <div class="so-cat-sub so-cat-sub--sm">Seizoensvoer &bull; Groei</div>
+          </div>
+          <div class="so-arrow-btn so-arrow-btn--sm">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </div>
+        </div>
+      </a>
+
+      <!-- TOOLS & MERCHANDISE -->
+      <a href="{{ tools_url }}" class="so-cat-card" style="aspect-ratio:1/1;background:var(--bg-3)">
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:.05">
+          <svg width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width=".6"><path d="M14 2l4 4-12 12-4-4 12-12z"/><path d="M3 21l2-6"/></svg>
+        </div>
+        <span class="so-cat-tag">Nieuw</span>
+        <div class="so-cat-info">
+          <div>
+            <div class="so-cat-count so-cat-count--sm">18 producten</div>
+            <div class="display" style="font-size:clamp(28px,3vw,38px);color:var(--ink)">Tools &amp;<br>Merchandise</div>
+            <div class="so-cat-sub so-cat-sub--sm">PVA &bull; Naalden &bull; Merch</div>
+          </div>
+          <div class="so-arrow-btn so-arrow-btn--sm so-arrow-btn--accent">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </div>
+        </div>
+      </a>
+
+    </div>
+
+    <!-- MIX OP MAAT BANNER -->
+    <div class="so-mix-banner">
+      <div>
+        <div class="eyebrow" style="margin-bottom:14px;color:var(--accent)">Exclusief</div>
+        <h3 class="display" style="font-size:clamp(32px,4vw,60px);margin:0;color:var(--ink)">Mix op maat<br><span style="color:var(--ink-3)">naar jouw wens.</span></h3>
+        <p style="margin-top:16px;max-width:600px;font-size:15px;line-height:1.6;color:var(--ink-2);font-weight:300">
+          Zit jouw wens wat betreft mix niet in ons assortiment? Neem contact op en we stellen jouw mix samen &mdash; volledig naar jouw specificaties en viswater.
+        </p>
+        <a href="{{ pages['contact'].url | default: '/pages/contact' }}" class="so-mix-btn">
+          Neem contact op
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+      <div class="so-mix-icon" style="text-align:center;flex-shrink:0">
+        <div class="so-mix-icon-wrap">
+          <div class="so-mix-icon-dashed"></div>
+          <svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.2">
+            <circle cx="8" cy="9" r="2.5"/><circle cx="15" cy="13" r="2.5"/><circle cx="10" cy="16" r="1.5"/>
+          </svg>
+        </div>
+        <div class="display" style="font-size:13px;margin-top:14px;color:var(--ink-3);letter-spacing:.14em">Pellets Op Maat</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Shop Overzicht",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero achtergrondafbeelding"
+    },
+    {
+      "type": "text",
+      "id": "promo_text",
+      "label": "Promotietekst",
+      "default": "15% korting op alle 15kg-zakken"
+    },
+    {
+      "type": "url",
+      "id": "promo_link",
+      "label": "Promo knop link"
+    },
+    {
+      "type": "image_picker",
+      "id": "karpervissen_image",
+      "label": "Afbeelding: Karpervissen"
+    },
+    {
+      "type": "image_picker",
+      "id": "meervalvissen_image",
+      "label": "Afbeelding: Meervalvissen"
+    },
+    {
+      "type": "image_picker",
+      "id": "steurvissen_image",
+      "label": "Afbeelding: Steurvissen"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Shop Overzicht"
+    }
+  ]
+}
+{% endschema %}

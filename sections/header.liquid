@@ -10,69 +10,18 @@
       </a>
 
       <nav class="header-nav" role="navigation" aria-label="Hoofdmenu">
-        {%- assign has_over_ons = false -%}
-        {%- assign has_contact = false -%}
-        {%- assign has_tools = false -%}
-        {%- for link in linklists[section.settings.menu].links -%}
-          {%- assign lt = link.title | downcase -%}
-          {%- if lt == 'over ons' -%}{%- assign has_over_ons = true -%}{%- endif -%}
-          {%- if lt == 'contact' -%}{%- assign has_contact = true -%}{%- endif -%}
-          {%- if lt == 'tools & merchandise' or lt == 'tools en merchandise' -%}{%- assign has_tools = true -%}{%- endif -%}
-        {%- endfor -%}
-
-        {# Contact — helemaal links #}
-        {%- if has_contact -%}
-          {%- for link in linklists[section.settings.menu].links -%}
-            {%- if link.title | downcase == 'contact' -%}
-              <a href="{{ link.url }}"{% if link.active %} aria-current="page"{% endif %}>{{ link.title }}</a>
-            {%- endif -%}
-          {%- endfor -%}
-        {%- elsif pages['contact'] -%}
-          <a href="{{ pages['contact'].url }}"{% if request.page_type == 'page' and page.handle == 'contact' %} aria-current="page"{% endif %}>Contact</a>
+        <a href="{{ routes.root_url }}"{% if request.page_type == 'index' %} aria-current="page"{% endif %}>Home</a>
+        <a href="/pages/shop-overview"{% if request.page_type == 'page' and page.handle == 'shop-overview' %} aria-current="page"{% endif %}>Shop</a>
+        {%- if pages['over-ons'] -%}
+          <a href="{{ pages['over-ons'].url }}"{% if request.page_type == 'page' and page.handle == 'over-ons' %} aria-current="page"{% endif %}>Over ons</a>
+        {%- else -%}
+          <a href="/pages/over-ons">Over ons</a>
         {%- endif -%}
-
-        {# Overige menulinks; Tools & Merchandise direct na KOI ingevoegd #}
-        {%- assign tools_placed = false -%}
-        {%- for link in linklists[section.settings.menu].links -%}
-          {%- assign lt = link.title | downcase -%}
-          {%- unless lt == 'contact' or lt == 'tools & merchandise' or lt == 'tools en merchandise' -%}
-            <a href="{{ link.url }}"{% if link.active %} aria-current="page"{% endif %}>{{ link.title }}</a>
-            {%- if lt == 'koi' -%}
-              {%- if has_tools -%}
-                {%- for tl in linklists[section.settings.menu].links -%}
-                  {%- assign tlt = tl.title | downcase -%}
-                  {%- if tlt == 'tools & merchandise' or tlt == 'tools en merchandise' -%}
-                    <a href="{{ tl.url }}"{% if tl.active %} aria-current="page"{% endif %}>{{ tl.title }}</a>
-                  {%- endif -%}
-                {%- endfor -%}
-              {%- elsif collections['tools-merchandise'] -%}
-                <a href="{{ collections['tools-merchandise'].url }}"{% if request.page_type == 'collection' and collection.handle == 'tools-merchandise' %} aria-current="page"{% endif %}>Tools &amp; Merchandise</a>
-              {%- endif -%}
-              {%- assign tools_placed = true -%}
-            {%- endif -%}
-          {%- endunless -%}
-        {%- endfor -%}
-
-        {# Fallback: Tools & Merchandise achteraan als KOI niet in menu staat #}
-        {%- unless tools_placed -%}
-          {%- if has_tools -%}
-            {%- for link in linklists[section.settings.menu].links -%}
-              {%- assign lt = link.title | downcase -%}
-              {%- if lt == 'tools & merchandise' or lt == 'tools en merchandise' -%}
-                <a href="{{ link.url }}"{% if link.active %} aria-current="page"{% endif %}>{{ link.title }}</a>
-              {%- endif -%}
-            {%- endfor -%}
-          {%- elsif collections['tools-merchandise'] -%}
-            <a href="{{ collections['tools-merchandise'].url }}"{% if request.page_type == 'collection' and collection.handle == 'tools-merchandise' %} aria-current="page"{% endif %}>Tools &amp; Merchandise</a>
-          {%- endif -%}
-        {%- endunless -%}
-
-        {# Over ons fallback #}
-        {%- unless has_over_ons -%}
-          {%- if pages['over-ons'] -%}
-            <a href="{{ pages['over-ons'].url }}"{% if request.page_type == 'page' and page.handle == 'over-ons' %} aria-current="page"{% endif %}>Over ons</a>
-          {%- endif -%}
-        {%- endunless -%}
+        {%- if pages['contact'] -%}
+          <a href="{{ pages['contact'].url }}"{% if request.page_type == 'page' and page.handle == 'contact' %} aria-current="page"{% endif %}>Contact</a>
+        {%- else -%}
+          <a href="/pages/contact">Contact</a>
+        {%- endif -%}
       </nav>
 
       <div class="header-actions">

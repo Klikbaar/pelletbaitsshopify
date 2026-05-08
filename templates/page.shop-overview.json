@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "shop-overview": {
+      "type": "shop-overview",
+      "settings": {}
+    }
+  },
+  "order": ["shop-overview"]
+}

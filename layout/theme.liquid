@@ -55,26 +55,18 @@
       <button class="cart-close-btn" id="mobile-nav-close" aria-label="Menu sluiten">&#x2715;</button>
     </div>
     <nav class="mobile-nav-links">
-      {%- for link in linklists['main-menu'].links -%}
-        <a href="{{ link.url }}">{{ link.title }}</a>
-      {%- endfor -%}
-      {%- assign mob_has_over_ons = false -%}
-      {%- assign mob_has_contact = false -%}
-      {%- assign mob_has_tools = false -%}
-      {%- for link in linklists['main-menu'].links -%}
-        {%- if link.title == 'Over ons' or link.title == 'Over Ons' -%}{%- assign mob_has_over_ons = true -%}{%- endif -%}
-        {%- if link.title == 'Contact' or link.title == 'contact' -%}{%- assign mob_has_contact = true -%}{%- endif -%}
-        {%- if link.title == 'Tools & Merchandise' or link.title == 'Tools en Merchandise' -%}{%- assign mob_has_tools = true -%}{%- endif -%}
-      {%- endfor -%}
-      {%- unless mob_has_tools -%}
-        {%- if collections['tools-merchandise'] -%}<a href="{{ collections['tools-merchandise'].url }}">Tools &amp; Merchandise</a>{%- endif -%}
-      {%- endunless -%}
-      {%- unless mob_has_over_ons -%}
-        {%- if pages['over-ons'] -%}<a href="{{ pages['over-ons'].url }}">Over ons</a>{%- endif -%}
-      {%- endunless -%}
-      {%- unless mob_has_contact -%}
-        {%- if pages['contact'] -%}<a href="{{ pages['contact'].url }}">Contact</a>{%- endif -%}
-      {%- endunless -%}
+      <a href="{{ routes.root_url }}"{% if request.page_type == 'index' %} aria-current="page"{% endif %}>Home</a>
+      <a href="/pages/shop-overview"{% if request.page_type == 'page' and page.handle == 'shop-overview' %} aria-current="page"{% endif %}>Shop</a>
+      {%- if pages['over-ons'] -%}
+        <a href="{{ pages['over-ons'].url }}"{% if request.page_type == 'page' and page.handle == 'over-ons' %} aria-current="page"{% endif %}>Over ons</a>
+      {%- else -%}
+        <a href="/pages/over-ons">Over ons</a>
+      {%- endif -%}
+      {%- if pages['contact'] -%}
+        <a href="{{ pages['contact'].url }}"{% if request.page_type == 'page' and page.handle == 'contact' %} aria-current="page"{% endif %}>Contact</a>
+      {%- else -%}
+        <a href="/pages/contact">Contact</a>
+      {%- endif -%}
     </nav>
   </div>
 
