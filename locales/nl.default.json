@@ -1,0 +1,50 @@
+{
+  "nav": {
+    "home": "Home",
+    "shop": "Shop",
+    "about": "Over ons",
+    "customer_service": "Klantenservice",
+    "contact": "Contact"
+  },
+  "header": {
+    "open_cart": "Winkelwagen openen",
+    "cart_label": "Cart",
+    "open_menu": "Menu openen",
+    "toggle_theme": "Schakel thema"
+  },
+  "categories": {
+    "carp": "Karpervissen",
+    "catfish": "Meervalvissen",
+    "sturgeon": "Steurvissen",
+    "methodfeeder": "Methodfeeder",
+    "waggler": "Waggler",
+    "koi": "Koi\/Vijver",
+    "tools": "Tools & Merchandise",
+    "clinics": "Clinics",
+    "business": "Zakelijk"
+  },
+  "products": {
+    "badge_bestseller": "Bestseller",
+    "badge_new": "Nieuw",
+    "badge_sale": "Sale",
+    "badge_soldout": "Uitverkocht",
+    "in_stock": "Op voorraad",
+    "view": "Bekijk"
+  },
+  "cart": {
+    "title": "Winkelwagen",
+    "close": "Winkelwagen sluiten",
+    "empty": "Je winkelwagen is leeg.",
+    "remove": "Verwijder",
+    "subtotal": "Subtotaal",
+    "checkout": "Afrekenen",
+    "error": "Fout bij laden."
+  },
+  "footer": {
+    "nav_title": "Navigatie",
+    "newsletter_title": "Nieuwsbrief",
+    "newsletter_submit": "OK",
+    "newsletter_note": "Door je aan te melden ga je akkoord met ons privacybeleid.",
+    "rights": "Alle rechten voorbehouden."
+  }
+}

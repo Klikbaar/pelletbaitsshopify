@@ -1,3 +1,11 @@
+<script>
+window.pbStrings = {
+  cartEmpty: {{ 'cart.empty' | t | json }},
+  cartRemove: {{ 'cart.remove' | t | json }},
+  cartError: {{ 'cart.error' | t | json }}
+};
+</script>
+
 <header class="site-header" role="banner">
   <div class="container">
     <div class="header-inner">
@@ -10,53 +18,60 @@
       </a>
 
       <nav class="header-nav" role="navigation" aria-label="Hoofdmenu">
-        <a href="{{ routes.root_url }}"{% if request.page_type == 'index' %} aria-current="page"{% endif %}>Home</a>
-        <a href="/collections"{% if request.page_type == 'list-collections' or request.page_type == 'collection' %} aria-current="page"{% endif %}>Shop</a>
+        <a href="{{ routes.root_url }}"{% if request.page_type == 'index' %} aria-current="page"{% endif %}>{{ 'nav.home' | t }}</a>
+        <a href="/collections"{% if request.page_type == 'list-collections' or request.page_type == 'collection' %} aria-current="page"{% endif %}>{{ 'nav.shop' | t }}</a>
         {%- if pages['over-ons'] -%}
-          <a href="{{ pages['over-ons'].url }}"{% if request.page_type == 'page' and page.handle == 'over-ons' %} aria-current="page"{% endif %}>Over ons</a>
+          <a href="{{ pages['over-ons'].url }}"{% if request.page_type == 'page' and page.handle == 'over-ons' %} aria-current="page"{% endif %}>{{ 'nav.about' | t }}</a>
         {%- else -%}
-          <a href="/pages/over-ons">Over ons</a>
+          <a href="/pages/over-ons">{{ 'nav.about' | t }}</a>
         {%- endif -%}
         {%- if pages['klantenservice'] -%}
-          <a href="{{ pages['klantenservice'].url }}"{% if request.page_type == 'page' and page.handle == 'klantenservice' %} aria-current="page"{% endif %}>Klantenservice</a>
+          <a href="{{ pages['klantenservice'].url }}"{% if request.page_type == 'page' and page.handle == 'klantenservice' %} aria-current="page"{% endif %}>{{ 'nav.customer_service' | t }}</a>
         {%- else -%}
-          <a href="/pages/klantenservice">Klantenservice</a>
+          <a href="/pages/klantenservice">{{ 'nav.customer_service' | t }}</a>
         {%- endif -%}
         {%- if pages['contact'] -%}
-          <a href="{{ pages['contact'].url }}"{% if request.page_type == 'page' and page.handle == 'contact' %} aria-current="page"{% endif %}>Contact</a>
+          <a href="{{ pages['contact'].url }}"{% if request.page_type == 'page' and page.handle == 'contact' %} aria-current="page"{% endif %}>{{ 'nav.contact' | t }}</a>
         {%- else -%}
-          <a href="/pages/contact">Contact</a>
+          <a href="/pages/contact">{{ 'nav.contact' | t }}</a>
         {%- endif -%}
       </nav>
 
       <div class="header-actions">
-        {%- if shop.published_locales.size > 1 -%}
-          <div class="header-lang-select" id="lang-select-wrap">
-            {%- form 'localization', id: 'header-locale-form' -%}
-              <button type="button" class="header-lang-btn" aria-expanded="false" aria-controls="lang-dropdown" id="lang-btn">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-                {{ request.locale.iso_code | upcase }}
-                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" class="lang-chevron" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
-              </button>
-              <ul id="lang-dropdown" class="lang-dropdown" hidden>
-                {%- for locale in shop.published_locales -%}
-                  <li>
-                    <button type="submit" name="locale_code" value="{{ locale.iso_code }}"{% if locale.iso_code == request.locale.iso_code %} aria-current="true"{% endif %}>
-                      {{ locale.endonym_name }}
-                    </button>
-                  </li>
-                {%- endfor -%}
-              </ul>
-            {%- endform -%}
-          </div>
-        {%- else -%}
-          <span class="header-lang-btn header-lang-static">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-            NL
-          </span>
-        {%- endif -%}
+        <div class="header-lang-select" id="lang-select-wrap">
+          {%- form 'localization', id: 'header-locale-form' -%}
+            {%- assign cur = request.locale.iso_code | downcase -%}
+            {%- if cur == 'nl' -%}{%- assign cur_flag = '🇳🇱' -%}
+            {%- elsif cur == 'en' -%}{%- assign cur_flag = '🇬🇧' -%}
+            {%- elsif cur == 'de' -%}{%- assign cur_flag = '🇩🇪' -%}
+            {%- else -%}{%- assign cur_flag = '🌐' -%}
+            {%- endif -%}
+            <button type="button" class="header-lang-btn" aria-expanded="false" aria-controls="lang-dropdown" id="lang-btn">
+              <span class="lang-flag" aria-hidden="true">{{ cur_flag }}</span>
+              <span class="lang-code">{{ request.locale.iso_code | upcase }}</span>
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" class="lang-chevron" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <ul id="lang-dropdown" class="lang-dropdown" hidden>
+              <li>
+                <button type="submit" name="locale_code" value="nl"{% if cur == 'nl' %} aria-current="true"{% endif %} class="lang-option">
+                  <span aria-hidden="true">🇳🇱</span> NL — Nederlands
+                </button>
+              </li>
+              <li>
+                <button type="submit" name="locale_code" value="en"{% if cur == 'en' %} aria-current="true"{% endif %} class="lang-option">
+                  <span aria-hidden="true">🇬🇧</span> EN — English
+                </button>
+              </li>
+              <li>
+                <button type="submit" name="locale_code" value="de"{% if cur == 'de' %} aria-current="true"{% endif %} class="lang-option">
+                  <span aria-hidden="true">🇩🇪</span> DE — Deutsch
+                </button>
+              </li>
+            </ul>
+          {%- endform -%}
+        </div>
 
-        <button class="theme-toggle-btn" id="theme-toggle" aria-label="Schakel thema">
+        <button class="theme-toggle-btn" id="theme-toggle" aria-label="{{ 'header.toggle_theme' | t }}">
           <span class="theme-icon theme-icon--moon" aria-hidden="true">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
           </span>
@@ -65,16 +80,16 @@
           </span>
         </button>
 
-        <button class="header-cart-btn" data-cart-open aria-label="Winkelwagen openen">
+        <button class="header-cart-btn" data-cart-open aria-label="{{ 'header.open_cart' | t }}">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
             <path d="M1 1h4l2.68 13.39a2 2 0 001.98 1.61h9.72a2 2 0 001.98-1.61L23 6H6"/>
           </svg>
-          Cart
+          {{ 'header.cart_label' | t }}
           <span class="cart-count" id="cart-count" style="display:none">0</span>
         </button>
 
-        <button class="mobile-menu-btn" id="mobile-nav-open" aria-label="Menu openen" aria-expanded="false" aria-controls="mobile-nav">
+        <button class="mobile-menu-btn" id="mobile-nav-open" aria-label="{{ 'header.open_menu' | t }}" aria-expanded="false" aria-controls="mobile-nav">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
             <line x1="3" y1="6" x2="21" y2="6"/>
             <line x1="3" y1="12" x2="21" y2="12"/>
@@ -84,21 +99,21 @@
       </div>
     </div>
 
-    <nav class="header-cats" aria-label="Productcategorieën">
+    <nav class="header-cats" aria-label="{{ 'nav.categories' | t | default: 'Categorieën' }}">
       {%- if section.settings.categories_menu != blank and linklists[section.settings.categories_menu].links.size > 0 -%}
         {%- for link in linklists[section.settings.categories_menu].links -%}
           <a href="{{ link.url }}" class="header-cat-link"{% if link.active %} aria-current="page"{% endif %}>{{ link.title }}</a>
         {%- endfor -%}
       {%- else -%}
-        <a href="/collections/karpervissen" class="header-cat-link">Karpervissen</a>
-        <a href="/collections/meervalvissen" class="header-cat-link">Meervalvissen</a>
-        <a href="/collections/steurvissen" class="header-cat-link">Steurvissen</a>
-        <a href="/collections/methodfeeder" class="header-cat-link">Methodfeeder</a>
-        <a href="/collections/waggler" class="header-cat-link">Waggler</a>
-        <a href="/collections/koi-vijver" class="header-cat-link">Koi/Vijver</a>
-        <a href="/collections/tools-merchandise" class="header-cat-link">Tools &amp; Merchandise</a>
-        <a href="/pages/clinics" class="header-cat-link">Clinics</a>
-        <a href="/pages/zakelijk" class="header-cat-link">Zakelijk</a>
+        <a href="/collections/karpervissen" class="header-cat-link">{{ 'categories.carp' | t }}</a>
+        <a href="/collections/meervalvissen" class="header-cat-link">{{ 'categories.catfish' | t }}</a>
+        <a href="/collections/steurvissen" class="header-cat-link">{{ 'categories.sturgeon' | t }}</a>
+        <a href="/collections/methodfeeder" class="header-cat-link">{{ 'categories.methodfeeder' | t }}</a>
+        <a href="/collections/waggler" class="header-cat-link">{{ 'categories.waggler' | t }}</a>
+        <a href="/collections/koi-vijver" class="header-cat-link">{{ 'categories.koi' | t }}</a>
+        <a href="/collections/tools-merchandise" class="header-cat-link">{{ 'categories.tools' | t }}</a>
+        <a href="/pages/clinics" class="header-cat-link">{{ 'categories.clinics' | t }}</a>
+        <a href="/pages/zakelijk" class="header-cat-link">{{ 'categories.business' | t }}</a>
       {%- endif -%}
     </nav>
   </div>

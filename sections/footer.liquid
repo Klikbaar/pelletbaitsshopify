@@ -25,30 +25,30 @@
       </div>
 
       <div>
-        <p class="footer-col-title eyebrow">Navigatie</p>
+        <p class="footer-col-title eyebrow">{{ 'footer.nav_title' | t }}</p>
         <ul class="footer-links">
-          <li><a href="{{ routes.root_url }}">Home</a></li>
-          <li><a href="/collections">Shop</a></li>
+          <li><a href="{{ routes.root_url }}">{{ 'nav.home' | t }}</a></li>
+          <li><a href="/collections">{{ 'nav.shop' | t }}</a></li>
           {%- if pages['over-ons'] -%}
-            <li><a href="{{ pages['over-ons'].url }}">Over ons</a></li>
+            <li><a href="{{ pages['over-ons'].url }}">{{ 'nav.about' | t }}</a></li>
           {%- else -%}
-            <li><a href="/pages/over-ons">Over ons</a></li>
+            <li><a href="/pages/over-ons">{{ 'nav.about' | t }}</a></li>
           {%- endif -%}
           {%- if pages['klantenservice'] -%}
-            <li><a href="{{ pages['klantenservice'].url }}">Klantenservice</a></li>
+            <li><a href="{{ pages['klantenservice'].url }}">{{ 'nav.customer_service' | t }}</a></li>
           {%- else -%}
-            <li><a href="/pages/klantenservice">Klantenservice</a></li>
+            <li><a href="/pages/klantenservice">{{ 'nav.customer_service' | t }}</a></li>
           {%- endif -%}
           {%- if pages['contact'] -%}
-            <li><a href="{{ pages['contact'].url }}">Contact</a></li>
+            <li><a href="{{ pages['contact'].url }}">{{ 'nav.contact' | t }}</a></li>
           {%- else -%}
-            <li><a href="/pages/contact">Contact</a></li>
+            <li><a href="/pages/contact">{{ 'nav.contact' | t }}</a></li>
           {%- endif -%}
         </ul>
       </div>
 
       <div>
-        <p class="footer-col-title eyebrow">Nieuwsbrief</p>
+        <p class="footer-col-title eyebrow">{{ 'footer.newsletter_title' | t }}</p>
         <p class="footer-newsletter-body">{{ section.settings.newsletter_text }}</p>
         <form method="post" action="/contact" accept-charset="UTF-8">
           <input type="hidden" name="form_type" value="customer">
@@ -57,16 +57,16 @@
           <div class="newsletter-form">
             <label class="visually-hidden" for="newsletter-email">E-mailadres</label>
             <input class="newsletter-input" id="newsletter-email" type="email" name="contact[email]" placeholder="jouw@email.nl" autocomplete="email" required>
-            <button class="newsletter-submit" type="submit">OK</button>
+            <button class="newsletter-submit" type="submit">{{ 'footer.newsletter_submit' | t }}</button>
           </div>
         </form>
-        <p class="newsletter-note">Door je aan te melden ga je akkoord met ons <a href="/pages/privacybeleid">privacybeleid</a>.</p>
+        <p class="newsletter-note">{{ 'footer.newsletter_note' | t }} <a href="/pages/privacybeleid">privacybeleid</a>.</p>
       </div>
 
     </div>
 
     <div class="footer-bottom">
-      <p>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. Alle rechten voorbehouden.</p>
+      <p>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. {{ 'footer.rights' | t }}</p>
       <div class="footer-bottom-links">
         {%- for link in linklists[section.settings.legal_menu].links -%}
           <a href="{{ link.url }}">{{ link.title }}</a>

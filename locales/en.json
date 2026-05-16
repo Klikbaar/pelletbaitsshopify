@@ -1,0 +1,50 @@
+{
+  "nav": {
+    "home": "Home",
+    "shop": "Shop",
+    "about": "About us",
+    "customer_service": "Customer service",
+    "contact": "Contact"
+  },
+  "header": {
+    "open_cart": "Open shopping cart",
+    "cart_label": "Cart",
+    "open_menu": "Open menu",
+    "toggle_theme": "Toggle theme"
+  },
+  "categories": {
+    "carp": "Carp fishing",
+    "catfish": "Catfish fishing",
+    "sturgeon": "Sturgeon fishing",
+    "methodfeeder": "Method feeder",
+    "waggler": "Waggler",
+    "koi": "Koi\/Pond",
+    "tools": "Tools & Merchandise",
+    "clinics": "Clinics",
+    "business": "Business"
+  },
+  "products": {
+    "badge_bestseller": "Bestseller",
+    "badge_new": "New",
+    "badge_sale": "Sale",
+    "badge_soldout": "Sold out",
+    "in_stock": "In stock",
+    "view": "View"
+  },
+  "cart": {
+    "title": "Shopping cart",
+    "close": "Close shopping cart",
+    "empty": "Your cart is empty.",
+    "remove": "Remove",
+    "subtotal": "Subtotal",
+    "checkout": "Checkout",
+    "error": "Error loading cart."
+  },
+  "footer": {
+    "nav_title": "Navigation",
+    "newsletter_title": "Newsletter",
+    "newsletter_submit": "OK",
+    "newsletter_note": "By signing up you agree to our privacy policy.",
+    "rights": "All rights reserved."
+  }
+}

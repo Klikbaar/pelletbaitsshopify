@@ -1,0 +1,50 @@
+{
+  "nav": {
+    "home": "Home",
+    "shop": "Shop",
+    "about": "Über uns",
+    "customer_service": "Kundenservice",
+    "contact": "Kontakt"
+  },
+  "header": {
+    "open_cart": "Warenkorb öffnen",
+    "cart_label": "Warenkorb",
+    "open_menu": "Menü öffnen",
+    "toggle_theme": "Thema wechseln"
+  },
+  "categories": {
+    "carp": "Karpfenangeln",
+    "catfish": "Welsfischen",
+    "sturgeon": "Störfischen",
+    "methodfeeder": "Method Feeder",
+    "waggler": "Waggler",
+    "koi": "Koi\/Teich",
+    "tools": "Tools & Merchandise",
+    "clinics": "Clinics",
+    "business": "Geschäftlich"
+  },
+  "products": {
+    "badge_bestseller": "Bestseller",
+    "badge_new": "Neu",
+    "badge_sale": "Sale",
+    "badge_soldout": "Ausverkauft",
+    "in_stock": "Auf Lager",
+    "view": "Ansehen"
+  },
+  "cart": {
+    "title": "Warenkorb",
+    "close": "Warenkorb schließen",
+    "empty": "Ihr Warenkorb ist leer.",
+    "remove": "Entfernen",
+    "subtotal": "Zwischensumme",
+    "checkout": "Zur Kasse",
+    "error": "Fehler beim Laden."
+  },
+  "footer": {
+    "nav_title": "Navigation",
+    "newsletter_title": "Newsletter",
+    "newsletter_submit": "OK",
+    "newsletter_note": "Mit Ihrer Anmeldung stimmen Sie unserer Datenschutzerklärung zu.",
+    "rights": "Alle Rechte vorbehalten."
+  }
+}

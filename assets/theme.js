@@ -105,7 +105,8 @@
         updateCartBadges(cart.item_count);
         updateSubtotal(cart.total_price);
         if (cart.item_count === 0) {
-          cartItemsEl.innerHTML = '<p class="cart-empty">Je winkelwagen is leeg.</p>';
+          var emptyMsg = (window.pbStrings && window.pbStrings.cartEmpty) || 'Je winkelwagen is leeg.';
+          cartItemsEl.innerHTML = '<p class="cart-empty">' + emptyMsg + '</p>';
           return;
         }
         cartItemsEl.innerHTML = cart.items.map(function (item) {
@@ -121,7 +122,7 @@
             '</div>' +
             '<div style="text-align:right">' +
               '<p class="cart-item-price">' + formatMoney(item.final_line_price) + '</p>' +
-              '<button class="cart-item-remove" data-key="' + item.key + '">Verwijder</button>' +
+              '<button class="cart-item-remove" data-key="' + item.key + '">' + ((window.pbStrings && window.pbStrings.cartRemove) || 'Verwijder') + '</button>' +
             '</div>' +
           '</div>';
         }).join('');
@@ -131,7 +132,8 @@
         });
       })
       .catch(function () {
-        if (cartItemsEl) cartItemsEl.innerHTML = '<p class="cart-empty">Fout bij laden.</p>';
+        var errMsg = (window.pbStrings && window.pbStrings.cartError) || 'Fout bij laden.';
+        if (cartItemsEl) cartItemsEl.innerHTML = '<p class="cart-empty">' + errMsg + '</p>';
       });
   }
 

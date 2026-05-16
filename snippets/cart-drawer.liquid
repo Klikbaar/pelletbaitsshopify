@@ -1,16 +1,16 @@
-<div class="cart-drawer" id="cart-drawer" role="dialog" aria-label="Winkelwagen" aria-hidden="true">
+<div class="cart-drawer" id="cart-drawer" role="dialog" aria-label="{{ 'cart.title' | t }}" aria-hidden="true">
   <div class="cart-drawer-header">
-    <p class="cart-drawer-title">Winkelwagen</p>
-    <button class="cart-close-btn" id="cart-drawer-close" aria-label="Winkelwagen sluiten">&#x2715;</button>
+    <p class="cart-drawer-title">{{ 'cart.title' | t }}</p>
+    <button class="cart-close-btn" id="cart-drawer-close" aria-label="{{ 'cart.close' | t }}">&#x2715;</button>
   </div>
   <div class="cart-items" id="cart-drawer-items">
-    <p class="cart-empty">Je winkelwagen is leeg.</p>
+    <p class="cart-empty">{{ 'cart.empty' | t }}</p>
   </div>
   <div class="cart-footer">
     <div class="cart-subtotal">
-      <span class="cart-subtotal-label">Subtotaal</span>
+      <span class="cart-subtotal-label">{{ 'cart.subtotal' | t }}</span>
       <span class="cart-subtotal-value" id="cart-subtotal-value">{{ 0 | money }}</span>
     </div>
-    <a href="/checkout" class="btn-checkout">Afrekenen</a>
+    <a href="/checkout" class="btn-checkout">{{ 'cart.checkout' | t }}</a>
   </div>
 </div>
