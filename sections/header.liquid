@@ -84,15 +84,23 @@
       </div>
     </div>
 
-    {%- if section.settings.categories_menu != blank and linklists[section.settings.categories_menu].links.size > 0 -%}
-      <nav class="header-cats" aria-label="Productcategorieën">
+    <nav class="header-cats" aria-label="Productcategorieën">
+      {%- if section.settings.categories_menu != blank and linklists[section.settings.categories_menu].links.size > 0 -%}
         {%- for link in linklists[section.settings.categories_menu].links -%}
-          <a href="{{ link.url }}" class="header-cat-link"{% if link.active %} aria-current="page"{% endif %}>
-            {{ link.title }}
-          </a>
+          <a href="{{ link.url }}" class="header-cat-link"{% if link.active %} aria-current="page"{% endif %}>{{ link.title }}</a>
         {%- endfor -%}
-      </nav>
-    {%- endif -%}
+      {%- else -%}
+        <a href="/collections/karpervissen" class="header-cat-link">Karpervissen</a>
+        <a href="/collections/meervalvissen" class="header-cat-link">Meervalvissen</a>
+        <a href="/collections/steurvissen" class="header-cat-link">Steurvissen</a>
+        <a href="/collections/methodfeeder" class="header-cat-link">Methodfeeder</a>
+        <a href="/collections/waggler" class="header-cat-link">Waggler</a>
+        <a href="/collections/koi-vijver" class="header-cat-link">Koi/Vijver</a>
+        <a href="/collections/tools-merchandise" class="header-cat-link">Tools &amp; Merchandise</a>
+        <a href="/pages/clinics" class="header-cat-link">Clinics</a>
+        <a href="/pages/zakelijk" class="header-cat-link">Zakelijk</a>
+      {%- endif -%}
+    </nav>
   </div>
 </header>
 
