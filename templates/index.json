@@ -131,13 +131,13 @@
       "settings": {
         "image_alt": "",
         "image_chip": "Field Tested",
-        "stat_value": "",
-        "stat_desc": "",
+        "stat_value": "+47%",
+        "stat_desc": "meer beten dankzij onze unieke formule",
         "eyebrow": "Kwaliteit & Resultaat",
         "heading": "Ontworpen voor",
         "heading_accent": "Maximale Aantrekkingskracht",
         "body": "Pellet Baits biedt jou het meest uitgebreide assortiment vispellets van Alltech Coppens aan. Of je nu vist op karper, meerval of de kleinere witvissoorten als zeelt of brasem — voor iedere vis of vistechniek hebben wij dé geschikte pellets.",
-        "cta_label": "",
+        "cta_label": "Lees de wetenschap",
         "cta_url": ""
       }
     },
@@ -145,9 +145,9 @@
       "type": "beurs",
       "settings": {
         "enabled": true,
-        "event_name": "Hengelsport Vakbeurs",
+        "event_name": "Test beurs",
         "event_date": "14 – 16 feb 2026",
-        "event_location": "Evenementenhal Gorinchem",
+        "event_location": "Heiloo",
         "event_stand": "Hal 3 · B14",
         "cta_label": "Neem contact op",
         "cta_url": "shopify://pages/contact"
@@ -161,7 +161,7 @@
         "primary_label": "Shop Nu",
         "primary_url": "/collections",
         "secondary_label": "Neem Contact Op",
-        "secondary_url": "/pages/contact"
+        "secondary_url": ""
       }
     }
   },
