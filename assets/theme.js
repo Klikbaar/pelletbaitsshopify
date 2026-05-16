@@ -237,9 +237,36 @@
     els.forEach(function (el) { observer.observe(el); });
   }
 
+  /* --- Language dropdown --- */
+  function initLangDropdown() {
+    var btn = document.getElementById('lang-btn');
+    var dropdown = document.getElementById('lang-dropdown');
+    if (!btn || !dropdown) return;
+
+    btn.addEventListener('click', function () {
+      var isOpen = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!isOpen));
+      dropdown.hidden = isOpen;
+    });
+
+    document.addEventListener('click', function (e) {
+      if (!e.target.closest('#lang-select-wrap')) {
+        btn.setAttribute('aria-expanded', 'false');
+        dropdown.hidden = true;
+      }
+    });
+  }
+
   /* --- Escape key --- */
   document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') { closeMobileNav(); closeCartDrawer(); }
+    if (e.key === 'Escape') {
+      closeMobileNav();
+      closeCartDrawer();
+      var langBtn = document.getElementById('lang-btn');
+      var langDrop = document.getElementById('lang-dropdown');
+      if (langBtn) langBtn.setAttribute('aria-expanded', 'false');
+      if (langDrop) langDrop.hidden = true;
+    }
   });
 
   /* --- Init --- */
@@ -249,6 +276,7 @@
     initTabs();
     initThemeToggle();
     initAnimations();
+    initLangDropdown();
     window.pbUpdateCart();
   });
 })();

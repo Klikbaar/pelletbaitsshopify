@@ -30,6 +30,32 @@
       </nav>
 
       <div class="header-actions">
+        {%- if shop.published_locales.size > 1 -%}
+          <div class="header-lang-select" id="lang-select-wrap">
+            {%- form 'localization', id: 'header-locale-form' -%}
+              <button type="button" class="header-lang-btn" aria-expanded="false" aria-controls="lang-dropdown" id="lang-btn">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                {{ request.locale.iso_code | upcase }}
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" class="lang-chevron" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+              </button>
+              <ul id="lang-dropdown" class="lang-dropdown" hidden>
+                {%- for locale in shop.published_locales -%}
+                  <li>
+                    <button type="submit" name="locale_code" value="{{ locale.iso_code }}"{% if locale.iso_code == request.locale.iso_code %} aria-current="true"{% endif %}>
+                      {{ locale.endonym_name }}
+                    </button>
+                  </li>
+                {%- endfor -%}
+              </ul>
+            {%- endform -%}
+          </div>
+        {%- else -%}
+          <span class="header-lang-btn header-lang-static">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            NL
+          </span>
+        {%- endif -%}
+
         <button class="theme-toggle-btn" id="theme-toggle" aria-label="Schakel thema">
           <span class="theme-icon theme-icon--moon" aria-hidden="true">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
@@ -57,6 +83,16 @@
         </button>
       </div>
     </div>
+
+    {%- if section.settings.categories_menu != blank and linklists[section.settings.categories_menu].links.size > 0 -%}
+      <nav class="header-cats" aria-label="Productcategorieën">
+        {%- for link in linklists[section.settings.categories_menu].links -%}
+          <a href="{{ link.url }}" class="header-cat-link"{% if link.active %} aria-current="page"{% endif %}>
+            {{ link.title }}
+          </a>
+        {%- endfor -%}
+      </nav>
+    {%- endif -%}
   </div>
 </header>
 
@@ -74,6 +110,11 @@
       "id": "menu",
       "label": "Menu",
       "default": "main-menu"
+    },
+    {
+      "type": "link_list",
+      "id": "categories_menu",
+      "label": "Categorieënbalk (onder header)"
     }
   ]
 }
