@@ -1,7 +1,4 @@
-/* ================================================
-   PELLETBAITS THEME — Dark Edition
-   Ported from Claude Design · Pelletbaits.html
-   ================================================ */
+
 
 :root {
   --bg:       #0a0f0e;
@@ -14,7 +11,7 @@
   --line-2:   rgba(255,255,255,.14);
   --accent:   #63cf05;
   --accent-2: #608846;
-  --gold:     #89B866;
+  --Lichtgroen:     #89B866;
   --moss:     #365733;
   --deep:     #0b1e22;
 
