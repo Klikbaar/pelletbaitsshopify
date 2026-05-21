@@ -1,26 +1,26 @@
 <section class="best-sellers" id="bestsellers" aria-labelledby="bestsellers-heading">
-  <div class="container">
+  <div class="pb-container">
     <div class="section-header-row" data-anim="fade-up">
       <div>
-        <p class="eyebrow" style="margin-bottom:16px">{{ section.settings.eyebrow }}</p>
-        <h2 class="bs-headline display" id="bestsellers-heading">
-          {{ section.settings.heading_prefix }}<span style="color:var(--accent)">{{ section.settings.heading_accent }}</span>
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="pb-eyebrow">{{ section.settings.eyebrow }}</p>
+        {%- endif -%}
+        <h2 class="pb-display bs-headline" id="bestsellers-heading" style="font-size:clamp(36px,4.5vw,56px);margin:8px 0 0">
+          {{ section.settings.heading_prefix }}<span style="color:var(--mid-green)">{{ section.settings.heading_accent }}</span>
         </h2>
       </div>
-      <div class="section-nav-controls">
-        <a href="{{ routes.collections_url }}" class="feat-cta">
-          Alle producten
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
-      </div>
+      <a href="{{ routes.collections_url }}" class="btn-view-all">
+        Alle {{ section.settings.total_count | default: '156' }} producten
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
     </div>
 
     {%- if section.blocks.size > 0 -%}
-      <div class="product-grid-3" role="list">
+      <div class="pb-prod-grid" role="list">
         {%- for block in section.blocks -%}
           {%- if block.settings.product != blank -%}
             {%- assign product = all_products[block.settings.product] -%}
-            <div role="listitem" data-anim="fade-up" data-anim-delay="{{ forloop.index0 | times: 120 }}" {{ block.shopify_attributes }}>
+            <div role="listitem" data-anim="fade-up" data-anim-delay="{{ forloop.index0 | times: 80 }}" {{ block.shopify_attributes }}>
               {% render 'product-card', product: product %}
             </div>
           {%- endif -%}
@@ -31,6 +31,13 @@
         Voeg producten toe via de thema-editor.
       </p>
     {%- endif -%}
+
+    <div class="bs-view-all">
+      <a href="{{ routes.collections_url }}" class="btn-view-all" style="padding:14px 26px;font-size:14px">
+        Bekijk alle producten
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
   </div>
 </section>
 
@@ -55,6 +62,12 @@
       "id": "heading_accent",
       "label": "Koptekst accent",
       "default": "sellers"
+    },
+    {
+      "type": "text",
+      "id": "total_count",
+      "label": "Totaal aantal producten (voor knoptekst)",
+      "default": "156"
     }
   ],
   "blocks": [
@@ -70,7 +83,7 @@
       ]
     }
   ],
-  "max_blocks": 6,
+  "max_blocks": 8,
   "presets": [{ "name": "Bestsellers" }]
 }
 {% endschema %}

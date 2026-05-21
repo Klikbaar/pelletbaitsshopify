@@ -1,5 +1,5 @@
 {%- comment -%}
-  Renders a product card.
+  Renders a product card for the light theme.
   Usage: {% render 'product-card', product: product %}
 {%- endcomment -%}
 
@@ -13,74 +13,88 @@
   if product.available
     assign sold_out = false
   endif
-  assign badge_type = ''
+  assign badge = ''
   if product.tags contains 'bestseller'
-    assign badge_type = 'bestseller'
+    assign badge = 'Bestseller'
   elsif product.tags contains 'nieuw'
-    assign badge_type = 'new'
+    assign badge = 'Nieuw'
   elsif on_sale
-    assign badge_type = 'sale'
+    assign badge = 'Sale'
   endif
 -%}
 
 <article class="product-card" data-product-id="{{ product.id }}">
-  <a href="{{ product.url }}" class="product-card-image" tabindex="-1">
+  <a href="{{ product.url }}" class="product-card-image" tabindex="-1" aria-label="{{ product.title }}">
     {%- if product.featured_image != blank -%}
       {%- assign card_img_alt = product.featured_image.alt | default: product.title | escape -%}
-      {%- assign card_img_src = product.featured_image | image_url: width: 600 -%}
-      <img src="{{ card_img_src }}" class="product-card-img" alt="{{ card_img_alt }}" loading="lazy" width="600" height="600">
+      <img src="{{ product.featured_image | image_url: width: 600 }}"
+           class="product-card-img"
+           alt="{{ card_img_alt }}"
+           loading="lazy"
+           width="600">
     {%- else -%}
       <div class="product-card-img-placeholder">
-        <svg viewBox="0 0 240 280" style="width:100%;height:100%;padding:30px 40px;">
+        <svg viewBox="0 0 240 240" style="width:100%;height:100%;padding:30px 40px;" aria-hidden="true">
           <defs>
-            <linearGradient id="pb-card-bg-{{ product.id }}" x1="0" x2="0" y1="0" y2="1">
-              <stop offset="0" stop-color="#1a1f1d"/><stop offset="1" stop-color="#0e1311"/>
+            <linearGradient id="pb-card-grad-{{ product.id }}" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0" stop-color="#e8ede6"/><stop offset="1" stop-color="#d4dbd0"/>
             </linearGradient>
           </defs>
-          <ellipse cx="120" cy="265" rx="80" ry="6" fill="rgba(0,0,0,.35)"/>
-          <path d="M40 30 Q40 24 46 24 L194 24 Q200 24 200 30 L200 254 Q200 260 194 260 L46 260 Q40 260 40 254 Z" fill="url(#pb-card-bg-{{ product.id }})"/>
-          <rect x="50" y="50" width="140" height="22" fill="#63cf05"/>
-          <text x="120" y="65" text-anchor="middle" font-family="Barlow Condensed" font-weight="800" font-size="11" fill="#0a0f0e" letter-spacing="3">PELLETBAITS</text>
-          <text x="120" y="148" text-anchor="middle" font-family="Barlow Condensed" font-weight="800" font-size="18" fill="#fff" letter-spacing="0.5">{{ product.title | upcase | truncate: 16, '' }}</text>
+          <rect width="240" height="240" fill="url(#pb-card-grad-{{ product.id }})"/>
+          <rect x="40" y="24" width="160" height="16" rx="3" fill="#63cf05" opacity=".6"/>
+          <text x="120" y="36" text-anchor="middle" font-family="Barlow Condensed" font-weight="800" font-size="9" fill="#0e1814" letter-spacing="3">PELLETBAITS</text>
+          <text x="120" y="130" text-anchor="middle" font-family="Barlow Condensed" font-weight="700" font-size="14" fill="#365733" letter-spacing="0.5">{{ product.title | upcase | truncate: 18, '' }}</text>
         </svg>
       </div>
     {%- endif -%}
 
-    {%- if badge_type == 'bestseller' -%}
-      <span class="product-card-badge tag-bestseller">{{ 'products.badge_bestseller' | t }}</span>
-    {%- elsif badge_type == 'new' -%}
-      <span class="product-card-badge tag-new">{{ 'products.badge_new' | t }}</span>
-    {%- elsif badge_type == 'sale' -%}
-      <span class="product-card-badge tag-sale">{{ 'products.badge_sale' | t }}</span>
-    {%- endif -%}
-
-    {%- if sold_out -%}
-      <span class="product-card-badge tag-soldout" style="top:auto;bottom:16px;">{{ 'products.badge_soldout' | t }}</span>
-    {%- else -%}
-      <span class="product-card-add">
-        {{ 'products.view' | t }}
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    {%- if badge != blank -%}
+      <span class="product-card-badge {% if badge == 'Bestseller' %}tag-bestseller{% elsif badge == 'Sale' %}tag-sale{% else %}tag-new{% endif %}" aria-label="{{ badge }}">
+        {{ badge }}
       </span>
     {%- endif -%}
+
+    {%- unless sold_out -%}
+      <span class="product-card-add" aria-hidden="true">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+        In winkelwagen
+      </span>
+    {%- endunless -%}
   </a>
 
   <div class="product-card-body">
-    <div>
+    {%- if product.vendor != blank -%}
+      <p class="product-card-brand">{{ product.vendor }}</p>
+    {%- elsif product.type != blank -%}
       <p class="product-card-type">{{ product.type }}</p>
-      <h3 class="product-card-title"><a href="{{ product.url }}">{{ product.title }}</a></h3>
-    </div>
-    <div>
-      <p class="product-card-price">
-        {%- if on_sale -%}
-          <span class="price-sale">{{ first_variant.price | money }}</span>
-          <span class="price-compare">{{ first_variant.compare_at_price | money }}</span>
-        {%- else -%}
-          {{ first_variant.price | money }}
-        {%- endif -%}
-      </p>
-      <p class="product-card-stock">
-        {%- if sold_out -%}{{ 'products.badge_soldout' | t }}{%- else -%}{{ 'products.in_stock' | t }}{%- endif -%}
-      </p>
+    {%- endif -%}
+
+    <h3 class="product-card-title">
+      <a href="{{ product.url }}">{{ product.title }}</a>
+    </h3>
+
+    {%- if product.type != blank and product.vendor != blank -%}
+      <p class="product-card-meta">{{ product.type }}</p>
+    {%- endif -%}
+
+    <div class="product-card-footer">
+      <div>
+        <div class="product-card-price">
+          {%- if on_sale -%}
+            <span class="price-sale" style="color:var(--ink)">{{ first_variant.price | money }}</span>
+            <span class="price-compare">{{ first_variant.compare_at_price | money }}</span>
+          {%- else -%}
+            {{ first_variant.price | money }}
+          {%- endif -%}
+        </div>
+        <div class="product-card-stock {% unless product.available %}out{% endunless %}">
+          <span class="product-card-stock-dot" aria-hidden="true"></span>
+          {%- if sold_out -%}Uitverkocht{%- else -%}Op voorraad{%- endif -%}
+        </div>
+      </div>
+      <a href="{{ product.url }}" class="product-card-cta" aria-label="Bekijk {{ product.title }}">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
     </div>
   </div>
 </article>

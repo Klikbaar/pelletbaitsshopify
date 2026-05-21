@@ -1,14 +1,48 @@
-/* Pelletbaits Shopify Theme JS */
+/* Pelletbaits Shopify Theme JS — Light Edition */
 
 (function () {
   'use strict';
 
-  /* --- Scroll header --- */
+  /* --- Scroll header shadow --- */
   var siteHeader = document.querySelector('.site-header');
   if (siteHeader) {
     window.addEventListener('scroll', function () {
-      siteHeader.classList.toggle('scrolled', window.scrollY > 60);
+      siteHeader.classList.toggle('scrolled', window.scrollY > 20);
     }, { passive: true });
+  }
+
+  /* --- Language dropdown --- */
+  function initLangDropdown() {
+    var wrap = document.getElementById('lang-wrap');
+    var btn  = document.getElementById('lang-btn');
+    var drop = document.getElementById('lang-dropdown');
+    if (!wrap || !btn || !drop) return;
+
+    btn.addEventListener('click', function () {
+      var isOpen = drop.classList.contains('is-open');
+      drop.classList.toggle('is-open', !isOpen);
+      btn.setAttribute('aria-expanded', String(!isOpen));
+    });
+    document.addEventListener('click', function (e) {
+      if (!wrap.contains(e.target)) {
+        drop.classList.remove('is-open');
+        btn.setAttribute('aria-expanded', 'false');
+      }
+    });
+    drop.querySelectorAll('.header-lang-option').forEach(function (opt) {
+      opt.addEventListener('click', function () {
+        drop.querySelectorAll('.header-lang-option').forEach(function (o) {
+          o.classList.remove('active');
+          o.setAttribute('aria-selected', 'false');
+        });
+        opt.classList.add('active');
+        opt.setAttribute('aria-selected', 'true');
+        var labelEl = btn.querySelector('span');
+        if (labelEl) labelEl.textContent = opt.textContent.trim();
+        drop.classList.remove('is-open');
+        btn.setAttribute('aria-expanded', 'false');
+      });
+    });
   }
 
   /* --- Mobile nav --- */
@@ -20,12 +54,14 @@
     if (!mobileNav) return;
     mobileNav.classList.add('is-open');
     mobileNav.setAttribute('aria-hidden', 'false');
+    if (mobileOpen) mobileOpen.setAttribute('aria-expanded', 'true');
     document.body.style.overflow = 'hidden';
   }
   function closeMobileNav() {
     if (!mobileNav) return;
     mobileNav.classList.remove('is-open');
     mobileNav.setAttribute('aria-hidden', 'true');
+    if (mobileOpen) mobileOpen.setAttribute('aria-expanded', 'false');
     document.body.style.overflow = '';
   }
 
@@ -37,7 +73,6 @@
   var cartOverlay = document.getElementById('cart-overlay');
   var cartClose   = document.getElementById('cart-drawer-close');
   var cartItemsEl = document.getElementById('cart-drawer-items');
-  var waBtn       = document.querySelector('.wa-btn');
 
   function openCartDrawer() {
     if (!cartDrawer) return;
@@ -45,7 +80,6 @@
     cartDrawer.setAttribute('aria-hidden', 'false');
     if (cartOverlay) cartOverlay.classList.add('open');
     document.body.style.overflow = 'hidden';
-    if (waBtn) waBtn.style.display = 'none';
     fetchCartItems();
   }
   function closeCartDrawer() {
@@ -54,7 +88,6 @@
     cartDrawer.setAttribute('aria-hidden', 'true');
     if (cartOverlay) cartOverlay.classList.remove('open');
     document.body.style.overflow = '';
-    if (waBtn) waBtn.style.display = '';
   }
 
   window.pbOpenCart  = openCartDrawer;
@@ -77,7 +110,7 @@
   function updateCartBadges(count) {
     document.querySelectorAll('.cart-count, #cart-count').forEach(function (el) {
       el.textContent = count;
-      el.style.display = count > 0 ? 'inline' : 'none';
+      el.setAttribute('data-count', count);
     });
   }
 
@@ -105,24 +138,28 @@
         updateCartBadges(cart.item_count);
         updateSubtotal(cart.total_price);
         if (cart.item_count === 0) {
-          var emptyMsg = (window.pbStrings && window.pbStrings.cartEmpty) || 'Je winkelwagen is leeg.';
-          cartItemsEl.innerHTML = '<p class="cart-empty">' + emptyMsg + '</p>';
+          cartItemsEl.innerHTML =
+            '<div class="cart-empty">' +
+            '<div style="font-size:42px;margin-bottom:14px;opacity:.3">🛒</div>' +
+            '<div style="font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--ink)">Je winkelwagen is leeg</div>' +
+            '<div style="font-size:13px;margin-top:6px">Voeg pellets toe en wij regelen de rest.</div>' +
+            '</div>';
           return;
         }
         cartItemsEl.innerHTML = cart.items.map(function (item) {
           var imgTag = item.image
-            ? '<img src="' + item.image + '" alt="' + item.product_title + '" loading="lazy">'
+            ? '<img src="' + item.image + '" alt="' + item.product_title.replace(/"/g, '&quot;') + '" loading="lazy">'
             : '';
           return '<div class="cart-item">' +
             '<div class="cart-item-thumb">' + imgTag + '</div>' +
             '<div>' +
               '<p class="cart-item-type">' + (item.product_type || '') + '</p>' +
               '<p class="cart-item-name">' + item.product_title + '</p>' +
-              '<p class="cart-item-qty">&times; ' + item.quantity + '</p>' +
+              '<p class="cart-item-qty">Aantal: ' + item.quantity + '</p>' +
             '</div>' +
             '<div style="text-align:right">' +
               '<p class="cart-item-price">' + formatMoney(item.final_line_price) + '</p>' +
-              '<button class="cart-item-remove" data-key="' + item.key + '">' + ((window.pbStrings && window.pbStrings.cartRemove) || 'Verwijder') + '</button>' +
+              '<button class="cart-item-remove" data-key="' + item.key + '">Verwijderen</button>' +
             '</div>' +
           '</div>';
         }).join('');
@@ -132,8 +169,7 @@
         });
       })
       .catch(function () {
-        var errMsg = (window.pbStrings && window.pbStrings.cartError) || 'Fout bij laden.';
-        if (cartItemsEl) cartItemsEl.innerHTML = '<p class="cart-empty">' + errMsg + '</p>';
+        if (cartItemsEl) cartItemsEl.innerHTML = '<p class="cart-empty">Fout bij laden van winkelwagen.</p>';
       });
   }
 
@@ -144,39 +180,20 @@
       .catch(function () {});
   };
 
-  /* --- Category interactive list --- */
-  function initCategoryList() {
-    var catItems = document.querySelectorAll('.cat-item');
-    if (!catItems.length) return;
-    catItems.forEach(function (item) {
-      item.addEventListener('mouseenter', function () {
-        catItems.forEach(function (i) { i.classList.remove('active'); });
-        item.classList.add('active');
-        var id = item.dataset.cat;
-        document.querySelectorAll('.cat-image-wrap img').forEach(function (img) {
-          img.classList.toggle('active', img.dataset.cat === id);
-        });
-        var labelEl = document.querySelector('.cat-image-label-name');
-        if (labelEl) {
-          var nameEl = item.querySelector('.cat-item-name');
-          if (nameEl) labelEl.textContent = nameEl.textContent.trim();
-        }
-      });
-    });
-  }
-
-  /* --- Quantity control --- */
+  /* --- Quantity controls (product page) --- */
   function initQtyControls() {
     document.querySelectorAll('.qty-control').forEach(function (ctrl) {
       var input = ctrl.querySelector('.qty-input');
+      if (!input) return;
       var minus = ctrl.querySelector('[data-qty="minus"]');
       var plus  = ctrl.querySelector('[data-qty="plus"]');
       if (minus) minus.addEventListener('click', function () {
         var val = parseInt(input.value, 10);
-        if (val > 1) input.value = val - 1;
+        if (val > 1) { input.value = val - 1; input.dispatchEvent(new Event('change')); }
       });
       if (plus) plus.addEventListener('click', function () {
         input.value = parseInt(input.value, 10) + 1;
+        input.dispatchEvent(new Event('change'));
       });
     });
   }
@@ -199,25 +216,6 @@
     });
   }
 
-  /* --- Theme toggle --- */
-  function initThemeToggle() {
-    var btn = document.getElementById('theme-toggle');
-    if (!btn) return;
-    btn.addEventListener('click', function () {
-      var html = document.documentElement;
-      var isLight = html.getAttribute('data-theme') === 'light';
-      html.classList.add('theme-transition');
-      setTimeout(function () { html.classList.remove('theme-transition'); }, 320);
-      if (isLight) {
-        html.removeAttribute('data-theme');
-        localStorage.removeItem('pb-theme');
-      } else {
-        html.setAttribute('data-theme', 'light');
-        localStorage.setItem('pb-theme', 'light');
-      }
-    });
-  }
-
   /* --- Scroll-in animations --- */
   function initAnimations() {
     var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -235,50 +233,21 @@
         el.classList.add('anim-visible');
         observer.unobserve(el);
       });
-    }, { threshold: 0.1, rootMargin: '0px 0px -48px 0px' });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
     els.forEach(function (el) { observer.observe(el); });
-  }
-
-  /* --- Language dropdown --- */
-  function initLangDropdown() {
-    var btn = document.getElementById('lang-btn');
-    var dropdown = document.getElementById('lang-dropdown');
-    if (!btn || !dropdown) return;
-
-    btn.addEventListener('click', function () {
-      var isOpen = btn.getAttribute('aria-expanded') === 'true';
-      btn.setAttribute('aria-expanded', String(!isOpen));
-      dropdown.hidden = isOpen;
-    });
-
-    document.addEventListener('click', function (e) {
-      if (!e.target.closest('#lang-select-wrap')) {
-        btn.setAttribute('aria-expanded', 'false');
-        dropdown.hidden = true;
-      }
-    });
   }
 
   /* --- Escape key --- */
   document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') {
-      closeMobileNav();
-      closeCartDrawer();
-      var langBtn = document.getElementById('lang-btn');
-      var langDrop = document.getElementById('lang-dropdown');
-      if (langBtn) langBtn.setAttribute('aria-expanded', 'false');
-      if (langDrop) langDrop.hidden = true;
-    }
+    if (e.key === 'Escape') { closeMobileNav(); closeCartDrawer(); }
   });
 
   /* --- Init --- */
   document.addEventListener('DOMContentLoaded', function () {
-    initCategoryList();
+    initLangDropdown();
     initQtyControls();
     initTabs();
-    initThemeToggle();
     initAnimations();
-    initLangDropdown();
     window.pbUpdateCart();
   });
 })();

@@ -1,122 +1,140 @@
-<script>
-window.pbStrings = {
-  cartEmpty: {{ 'cart.empty' | t | json }},
-  cartRemove: {{ 'cart.remove' | t | json }},
-  cartError: {{ 'cart.error' | t | json }}
-};
-</script>
+{%- if section.settings.show_promobar -%}
+<div class="pb-promobar" role="complementary" aria-label="Aankondigingen">
+  <div class="pb-container pb-promobar-inner">
+    <div class="pb-promo-row">
+      <div class="pb-promo-item">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 7h11v10H3zM14 10h4l3 3v4h-7z"/><circle cx="7" cy="18" r="1.7"/><circle cx="17" cy="18" r="1.7"/></svg>
+        <span>Gratis verzending vanaf €60</span>
+      </div>
+      <div class="pb-promo-item">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+        <span>Voor 16:00 besteld, morgen in huis</span>
+      </div>
+      <div class="pb-promo-item">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="9" r="6"/><path d="M9 13.5L7 21l5-3 5 3-2-7.5"/></svg>
+        <span>Officieel Alltech Coppens distributeur</span>
+      </div>
+      <div class="pb-promo-item">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M22 17v3a2 2 0 0 1-2.2 2A19 19 0 0 1 2 4.2 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L7.9 9.7a16 16 0 0 0 6.4 6.4l1.3-1.2a2 2 0 0 1 2.1-.5c.8.3 1.7.5 2.6.6A2 2 0 0 1 22 17z"/></svg>
+        <span>Advies? Bel op werkdagen 9–17u</span>
+      </div>
+    </div>
+    <div class="pb-promo-links">
+      {%- if pages['klantenservice'] -%}
+        <a href="{{ pages['klantenservice'].url }}">Klantenservice</a>
+      {%- else -%}
+        <a href="/pages/klantenservice">Klantenservice</a>
+      {%- endif -%}
+      <span style="opacity:.35">|</span>
+      <a href="#">Volg je bestelling</a>
+    </div>
+  </div>
+</div>
+{%- endif -%}
 
 <header class="site-header" role="banner">
-  <div class="container">
-    <div class="header-inner">
-      <a href="{{ routes.root_url }}" class="header-logo-wrap" aria-label="{{ shop.name }}">
+  <div class="header-main-row">
+    <div class="pb-container header-inner">
+
+      <a href="{{ routes.root_url }}" class="header-logo-wrap" aria-label="{{ shop.name }} — home">
         {%- if section.settings.logo != blank -%}
           {{ section.settings.logo | image_url: width: 200 | image_tag: class: 'header-logo-img', alt: shop.name }}
         {%- else -%}
-          <span class="header-logo-text" style="color:var(--accent)">{{ shop.name | upcase }}</span>
+          <span class="header-logo-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 48 48" aria-hidden="true">
+              <circle cx="24" cy="24" r="23" fill="#fff"/>
+              <path d="M9 24c4-5 9-7 14-7 4 0 8 2 12 5l3-2-1 5 1 5-3-2c-4 3-8 5-12 5-5 0-10-2-14-7z" fill="#63cf05"/>
+              <circle cx="34" cy="22" r="1.3" fill="#0e1814"/>
+            </svg>
+          </span>
+          <span class="header-logo-wordmark">
+            <span class="header-logo-name">{{ shop.name }}</span>
+            <span class="header-logo-sub">Vispellets · NL</span>
+          </span>
         {%- endif -%}
       </a>
 
-      <nav class="header-nav" role="navigation" aria-label="Hoofdmenu">
-        <a href="{{ routes.root_url }}"{% if request.page_type == 'index' %} aria-current="page"{% endif %}>{{ 'nav.home' | t }}</a>
-        <a href="/collections"{% if request.page_type == 'list-collections' or request.page_type == 'collection' %} aria-current="page"{% endif %}>{{ 'nav.shop' | t }}</a>
-        {%- if pages['over-ons'] -%}
-          <a href="{{ pages['over-ons'].url }}"{% if request.page_type == 'page' and page.handle == 'over-ons' %} aria-current="page"{% endif %}>{{ 'nav.about' | t }}</a>
-        {%- else -%}
-          <a href="/pages/over-ons">{{ 'nav.about' | t }}</a>
-        {%- endif -%}
-        {%- if pages['klantenservice'] -%}
-          <a href="{{ pages['klantenservice'].url }}"{% if request.page_type == 'page' and page.handle == 'klantenservice' %} aria-current="page"{% endif %}>{{ 'nav.customer_service' | t }}</a>
-        {%- else -%}
-          <a href="/pages/klantenservice">{{ 'nav.customer_service' | t }}</a>
-        {%- endif -%}
-        {%- if pages['contact'] -%}
-          <a href="{{ pages['contact'].url }}"{% if request.page_type == 'page' and page.handle == 'contact' %} aria-current="page"{% endif %}>{{ 'nav.contact' | t }}</a>
-        {%- else -%}
-          <a href="/pages/contact">{{ 'nav.contact' | t }}</a>
-        {%- endif -%}
-      </nav>
+      <form action="{{ routes.search_url }}" method="get" role="search" class="pb-search">
+        <span class="pb-search-icon" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+        </span>
+        <input type="search" name="q" placeholder="Zoek pellets, boilies, vissoort…" aria-label="Zoeken" autocomplete="off">
+        <button type="submit" class="pb-search-btn">Zoek</button>
+      </form>
 
       <div class="header-actions">
-        <div class="header-lang-select" id="lang-select-wrap">
-          {%- form 'localization', id: 'header-locale-form' -%}
-            {%- assign cur = request.locale.iso_code | downcase -%}
-            {%- if cur == 'nl' -%}{%- assign cur_flag = '🇳🇱' -%}
-            {%- elsif cur == 'en' -%}{%- assign cur_flag = '🇬🇧' -%}
-            {%- elsif cur == 'de' -%}{%- assign cur_flag = '🇩🇪' -%}
-            {%- else -%}{%- assign cur_flag = '🌐' -%}
-            {%- endif -%}
-            <button type="button" class="header-lang-btn" aria-expanded="false" aria-controls="lang-dropdown" id="lang-btn">
-              <span class="lang-flag" aria-hidden="true">{{ cur_flag }}</span>
-              <span class="lang-code">{{ request.locale.iso_code | upcase }}</span>
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" class="lang-chevron" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        <div class="header-lang-wrap" id="lang-wrap">
+          <button class="header-lang-btn" id="lang-btn" aria-haspopup="listbox" aria-expanded="false" aria-label="Taal kiezen">
+            <svg width="20" height="14" viewBox="0 0 60 40" aria-hidden="true"><rect width="60" height="40" fill="#fff"/><rect width="60" height="13.3" fill="#ae1c28"/><rect y="26.7" width="60" height="13.3" fill="#21468b"/></svg>
+            <span>NL</span>
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="header-lang-dropdown" id="lang-dropdown" role="listbox" aria-label="Taal kiezen">
+            <button class="header-lang-option active" role="option" aria-selected="true">
+              <svg width="20" height="14" viewBox="0 0 60 40" aria-hidden="true"><rect width="60" height="40" fill="#fff"/><rect width="60" height="13.3" fill="#ae1c28"/><rect y="26.7" width="60" height="13.3" fill="#21468b"/></svg>
+              NL
             </button>
-            <ul id="lang-dropdown" class="lang-dropdown" hidden>
-              <li>
-                <button type="submit" name="locale_code" value="nl"{% if cur == 'nl' %} aria-current="true"{% endif %} class="lang-option">
-                  <span aria-hidden="true">🇳🇱</span> NL — Nederlands
-                </button>
-              </li>
-              <li>
-                <button type="submit" name="locale_code" value="en"{% if cur == 'en' %} aria-current="true"{% endif %} class="lang-option">
-                  <span aria-hidden="true">🇬🇧</span> EN — English
-                </button>
-              </li>
-              <li>
-                <button type="submit" name="locale_code" value="de"{% if cur == 'de' %} aria-current="true"{% endif %} class="lang-option">
-                  <span aria-hidden="true">🇩🇪</span> DE — Deutsch
-                </button>
-              </li>
-            </ul>
-          {%- endform -%}
+            <button class="header-lang-option" role="option" aria-selected="false">
+              <svg width="20" height="14" viewBox="0 0 60 40" aria-hidden="true"><rect width="60" height="40" fill="#012169"/><path d="M0 0l60 40M60 0L0 40" stroke="#fff" stroke-width="6"/><path d="M0 0l60 40M60 0L0 40" stroke="#c8102e" stroke-width="3"/><path d="M30 0v40M0 20h60" stroke="#fff" stroke-width="10"/><path d="M30 0v40M0 20h60" stroke="#c8102e" stroke-width="6"/></svg>
+              EN
+            </button>
+            <button class="header-lang-option" role="option" aria-selected="false">
+              <svg width="20" height="14" viewBox="0 0 60 40" aria-hidden="true"><rect width="60" height="13.3" fill="#000"/><rect y="13.3" width="60" height="13.3" fill="#dd0000"/><rect y="26.7" width="60" height="13.3" fill="#ffce00"/></svg>
+              DE
+            </button>
+          </div>
         </div>
 
-        <button class="theme-toggle-btn" id="theme-toggle" aria-label="{{ 'header.toggle_theme' | t }}">
-          <span class="theme-icon theme-icon--moon" aria-hidden="true">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-          </span>
-          <span class="theme-icon theme-icon--sun" aria-hidden="true">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
-          </span>
+        {%- if section.settings.show_account -%}
+          <a href="{{ routes.account_url }}" class="pb-icon-btn pb-only-md" aria-label="Account">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/></svg>
+          </a>
+        {%- endif -%}
+
+        <button class="header-cart-btn" data-cart-open aria-label="Winkelwagen openen ({{ cart.item_count }} items)">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M6 8h12l-1 12H7L6 8z"/><path d="M9 8a3 3 0 0 1 6 0"/></svg>
+          <span class="header-cart-label">Winkelwagen</span>
+          <span class="cart-count" id="cart-count" aria-live="polite" data-count="{{ cart.item_count }}">{{ cart.item_count }}</span>
         </button>
 
-        <button class="header-cart-btn" data-cart-open aria-label="{{ 'header.open_cart' | t }}">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
-            <path d="M1 1h4l2.68 13.39a2 2 0 001.98 1.61h9.72a2 2 0 001.98-1.61L23 6H6"/>
-          </svg>
-          {{ 'header.cart_label' | t }}
-          <span class="cart-count" id="cart-count" style="display:none">0</span>
-        </button>
-
-        <button class="mobile-menu-btn" id="mobile-nav-open" aria-label="{{ 'header.open_menu' | t }}" aria-expanded="false" aria-controls="mobile-nav">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
-            <line x1="3" y1="6" x2="21" y2="6"/>
-            <line x1="3" y1="12" x2="21" y2="12"/>
-            <line x1="3" y1="18" x2="21" y2="18"/>
+        <button class="mobile-menu-btn" id="mobile-nav-open" aria-label="Menu openen" aria-expanded="false" aria-controls="mobile-nav">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+            <path d="M4 7h16M4 12h16M4 17h16"/>
           </svg>
         </button>
       </div>
-    </div>
 
-    <nav class="header-cats" aria-label="{{ 'nav.categories' | t | default: 'Categorieën' }}">
-      {%- if section.settings.categories_menu != blank and linklists[section.settings.categories_menu].links.size > 0 -%}
-        {%- for link in linklists[section.settings.categories_menu].links -%}
-          <a href="{{ link.url }}" class="header-cat-link"{% if link.active %} aria-current="page"{% endif %}>{{ link.title }}</a>
+    </div>
+  </div>
+
+  <nav class="pb-catnav" aria-label="Productcategorieën">
+    <div class="pb-container pb-catnav-inner">
+      {%- assign catnav_links = linklists[section.settings.category_menu].links -%}
+      {%- if catnav_links.size > 0 -%}
+        {%- for link in catnav_links -%}
+          <a href="{{ link.url }}"
+             class="pb-cat-link{% if link.active %} active{% endif %}"
+             {% if link.active %}aria-current="page"{% endif %}>
+            {{ link.title }}
+          </a>
         {%- endfor -%}
       {%- else -%}
-        <a href="/collections/karpervissen" class="header-cat-link">{{ 'categories.carp' | t }}</a>
-        <a href="/collections/meervalvissen" class="header-cat-link">{{ 'categories.catfish' | t }}</a>
-        <a href="/collections/steurvissen" class="header-cat-link">{{ 'categories.sturgeon' | t }}</a>
-        <a href="/collections/methodfeeder" class="header-cat-link">{{ 'categories.methodfeeder' | t }}</a>
-        <a href="/collections/waggler" class="header-cat-link">{{ 'categories.waggler' | t }}</a>
-        <a href="/collections/koi-vijver" class="header-cat-link">{{ 'categories.koi' | t }}</a>
-        <a href="/collections/tools-merchandise" class="header-cat-link">{{ 'categories.tools' | t }}</a>
-        <a href="/pages/clinics" class="header-cat-link">{{ 'categories.clinics' | t }}</a>
-        <a href="/pages/zakelijk" class="header-cat-link">{{ 'categories.business' | t }}</a>
+        <a href="/collections/karpervissen"  class="pb-cat-link">Karpervissen</a>
+        <a href="/collections/meervalvissen" class="pb-cat-link">Meervalvissen</a>
+        <a href="/collections/steurvissen"   class="pb-cat-link">Steurvissen</a>
+        <a href="/collections/methodfeeder"  class="pb-cat-link">Method Feeder</a>
+        <a href="/collections/waggler"       class="pb-cat-link">Waggler</a>
+        <a href="/collections/koi-vijver"    class="pb-cat-link">Koi · Vijver</a>
+        <a href="/collections/tools-merchandise" class="pb-cat-link">Tools &amp; Merch</a>
+        <a href="/pages/clinics"   class="pb-cat-link accent"><span class="pb-cat-link-dot" aria-hidden="true"></span>Clinics</a>
+        <a href="/pages/zakelijk"  class="pb-cat-link accent"><span class="pb-cat-link-dot" aria-hidden="true"></span>Zakelijk</a>
       {%- endif -%}
-    </nav>
-  </div>
+      <a href="{{ routes.collections_url }}" class="pb-catnav-all">
+        Alle categorieën
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </nav>
 </header>
 
 {% schema %}
@@ -129,15 +147,28 @@ window.pbStrings = {
       "label": "Logo"
     },
     {
+      "type": "checkbox",
+      "id": "show_promobar",
+      "label": "Promobalk tonen",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_account",
+      "label": "Account-knop tonen",
+      "default": true
+    },
+    {
       "type": "link_list",
       "id": "menu",
-      "label": "Menu",
+      "label": "Hoofdmenu",
       "default": "main-menu"
     },
     {
       "type": "link_list",
-      "id": "categories_menu",
-      "label": "Categorieënbalk (onder header)"
+      "id": "category_menu",
+      "label": "Categorie-navigatie (onder header)",
+      "info": "Laat leeg voor standaard categorieën"
     }
   ]
 }

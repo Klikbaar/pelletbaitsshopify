@@ -1,39 +1,43 @@
 {%- if section.settings.enabled -%}
 <section class="beurs-section" aria-labelledby="beurs-heading">
-  <div class="container">
-    <div data-anim="fade-up">
-      <div class="beurs-label">
-        <span class="beurs-live-dot" aria-hidden="true"></span>
-        <p class="eyebrow">Wij zijn aanwezig</p>
-      </div>
-      <h2 class="beurs-headline display" id="beurs-heading">
-        Bezoek ons op de <span style="color:var(--accent)">Beurs</span>
-      </h2>
-    </div>
-    <div class="beurs-card" data-anim="fade-up" data-anim-delay="120">
-      <div class="beurs-card-main">
-        <p class="beurs-event-name">{{ section.settings.event_name }}</p>
-        <div class="beurs-meta">
-          <div class="beurs-meta-item">
-            <span class="beurs-meta-label">Datum</span>
-            <span class="beurs-meta-value">{{ section.settings.event_date }}</span>
+  <div class="pb-container">
+    <div class="beurs-card" data-anim="fade-up">
+      {%- if section.settings.background_image != blank -%}
+        <div class="beurs-card-bg" aria-hidden="true" style="background-image:url('{{ section.settings.background_image | image_url: width: 1600 }}')"></div>
+      {%- endif -%}
+      <div class="beurs-card-inner">
+        <div class="beurs-date-block" aria-hidden="true">
+          <div class="beurs-date-month">{{ section.settings.event_month | default: 'FEB' }}</div>
+          <div class="beurs-date-day">{{ section.settings.event_day | default: '14' }}</div>
+          <div class="beurs-date-year">{{ section.settings.event_year | default: '2026' }}</div>
+        </div>
+
+        <div>
+          <div class="beurs-event-tag">
+            <span class="beurs-live-dot" aria-hidden="true"></span>
+            Aankomende beurs
           </div>
-          <div class="beurs-meta-divider" aria-hidden="true"></div>
-          <div class="beurs-meta-item">
-            <span class="beurs-meta-label">Locatie</span>
-            <span class="beurs-meta-value">{{ section.settings.event_location }}</span>
-          </div>
-          <div class="beurs-meta-divider" aria-hidden="true"></div>
-          <div class="beurs-meta-item">
-            <span class="beurs-meta-label">Stand</span>
-            <span class="beurs-meta-value">{{ section.settings.event_stand }}</span>
+          <h2 class="beurs-event-name" id="beurs-heading">{{ section.settings.event_name }}</h2>
+          <div class="beurs-meta">
+            <span class="beurs-meta-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 22s-7-7.5-7-13a7 7 0 0 1 14 0c0 5.5-7 13-7 13z"/><circle cx="12" cy="9" r="2.5"/></svg>
+              {{ section.settings.event_location }}
+            </span>
+            <span class="beurs-meta-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+              {{ section.settings.event_date }}
+            </span>
+            {%- if section.settings.event_stand != blank -%}
+              <span class="beurs-meta-item">Stand: {{ section.settings.event_stand }}</span>
+            {%- endif -%}
           </div>
         </div>
+
+        <a href="{{ section.settings.cta_url | default: routes.root_url }}" class="beurs-cta">
+          {{ section.settings.cta_label | default: 'Plan je bezoek' }}
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
       </div>
-      <a href="{{ section.settings.cta_url | default: routes.root_url }}" class="beurs-cta">
-        {{ section.settings.cta_label | default: 'Neem contact op' }}
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </a>
     </div>
   </div>
 </section>
@@ -50,11 +54,15 @@
       "default": false,
       "info": "Schakel in wanneer je op een beurs staat"
     },
-    { "type": "text", "id": "event_name", "label": "Evenementnaam", "default": "Hengelsport Vakbeurs" },
-    { "type": "text", "id": "event_date", "label": "Datum", "default": "14 – 16 feb 2026" },
-    { "type": "text", "id": "event_location", "label": "Locatie", "default": "Evenementenhal Gorinchem" },
-    { "type": "text", "id": "event_stand", "label": "Standnummer", "default": "Hal 3 · B14" },
-    { "type": "text", "id": "cta_label", "label": "Knoptekst", "default": "Neem contact op" },
+    { "type": "image_picker", "id": "background_image", "label": "Achtergrondafbeelding (optioneel)" },
+    { "type": "text", "id": "event_name", "label": "Evenementnaam", "default": "Vis & Hengelsport Heiloo" },
+    { "type": "text", "id": "event_month", "label": "Maand (afkorting)", "default": "FEB" },
+    { "type": "text", "id": "event_day", "label": "Dag(en)", "default": "14—16" },
+    { "type": "text", "id": "event_year", "label": "Jaar", "default": "2026" },
+    { "type": "text", "id": "event_date", "label": "Tijdstip / datum tekst", "default": "10:00 – 18:00" },
+    { "type": "text", "id": "event_location", "label": "Locatie", "default": "Heiloo, Hal 3 — Stand B14" },
+    { "type": "text", "id": "event_stand", "label": "Standnummer", "default": "" },
+    { "type": "text", "id": "cta_label", "label": "Knoptekst", "default": "Plan je bezoek" },
     { "type": "url", "id": "cta_url", "label": "Knop URL" }
   ],
   "presets": [{ "name": "Beurs / Evenement" }]

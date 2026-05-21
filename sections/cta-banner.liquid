@@ -1,26 +1,36 @@
-<section class="cta-banner" aria-labelledby="cta-heading">
-  {%- if section.settings.image != blank -%}
-    {%- assign cta_bg = section.settings.image | image_url: width: 1920 -%}
-  {%- else -%}
-    {%- assign cta_bg = 'https://images.unsplash.com/photo-1607378515197-062e5aadb8cf?w=1920&q=80' -%}
-  {%- endif -%}
-  <div class="cta-banner-bg" aria-hidden="true" style="background-image:url('{{ cta_bg }}')"></div>
-  <div class="cta-banner-gradient" aria-hidden="true"></div>
-  <div class="container cta-banner-inner">
-    <h2 class="cta-banner-headline display" id="cta-heading" data-anim="fade-up">
-      {{ section.settings.heading }}
-    </h2>
-    <p class="cta-banner-body" data-anim="fade-up" data-anim-delay="120">
-      {{ section.settings.body }}
-    </p>
-    <div class="cta-banner-actions" data-anim="fade-up" data-anim-delay="240">
-      <a href="{{ section.settings.primary_url | default: '/collections' }}" class="btn-cta-primary">
-        {{ section.settings.primary_label }}
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </a>
-      <a href="{{ section.settings.secondary_url }}" class="btn-cta-secondary">
-        {{ section.settings.secondary_label }}
-      </a>
+<section class="cta-section" aria-labelledby="cta-heading">
+  <div class="pb-container">
+    <div class="cta-banner" data-anim="fade-in">
+      {%- if section.settings.image != blank -%}
+        <div class="cta-banner-bg" aria-hidden="true" style="background-image:url('{{ section.settings.image | image_url: width: 1920 }}')"></div>
+      {%- else -%}
+        <div class="cta-banner-bg" aria-hidden="true" style="background-image:url('https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&w=2400&q=80')"></div>
+      {%- endif -%}
+      <div class="cta-banner-gradient" aria-hidden="true"></div>
+      <div class="cta-banner-inner">
+        <div class="cta-content">
+          {%- if section.settings.eyebrow != blank -%}
+            <p class="pb-eyebrow" style="color:var(--action)">{{ section.settings.eyebrow }}</p>
+          {%- endif -%}
+          <h2 class="pb-display cta-banner-headline" id="cta-heading" data-anim="fade-up">
+            {{ section.settings.heading }}
+          </h2>
+          {%- if section.settings.body != blank -%}
+            <p class="cta-banner-body" data-anim="fade-up" data-anim-delay="80">{{ section.settings.body }}</p>
+          {%- endif -%}
+          <div class="cta-banner-actions" data-anim="fade-up" data-anim-delay="160">
+            <a href="{{ section.settings.primary_url | default: routes.collections_url }}" class="btn-cta-primary">
+              {{ section.settings.primary_label | default: 'Shop nu' }}
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            {%- if section.settings.secondary_label != blank -%}
+              <a href="{{ section.settings.secondary_url | default: routes.root_url }}" class="btn-cta-secondary">
+                {{ section.settings.secondary_label }}
+              </a>
+            {%- endif -%}
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -30,11 +40,12 @@
   "name": "CTA Banner",
   "settings": [
     { "type": "image_picker", "id": "image", "label": "Achtergrondafbeelding" },
-    { "type": "text", "id": "heading", "label": "Koptekst", "default": "Vang Die Mega Karper!" },
-    { "type": "textarea", "id": "body", "label": "Bodytekst", "default": "Vang dié mega karper of meerval met de pellets van Pellet Baits. Heb je vragen? Wij geven je graag advies." },
-    { "type": "text", "id": "primary_label", "label": "Primaire knoptekst", "default": "Shop Nu" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Klaar voor je volgende sessie?" },
+    { "type": "textarea", "id": "heading", "label": "Koptekst", "default": "Vang dié\nmega karper." },
+    { "type": "textarea", "id": "body", "label": "Bodytekst", "default": "Twijfel je over de juiste pellet voor jouw vistechniek of vissoort? Onze anglers geven je graag persoonlijk advies." },
+    { "type": "text", "id": "primary_label", "label": "Primaire knoptekst", "default": "Shop nu" },
     { "type": "url", "id": "primary_url", "label": "Primaire knop URL" },
-    { "type": "text", "id": "secondary_label", "label": "Secundaire knoptekst", "default": "Neem Contact Op" },
+    { "type": "text", "id": "secondary_label", "label": "Secundaire knoptekst", "default": "Neem contact op" },
     { "type": "url", "id": "secondary_url", "label": "Secundaire knop URL" }
   ],
   "presets": [{ "name": "CTA Banner" }]

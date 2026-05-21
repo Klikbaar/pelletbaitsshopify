@@ -1,73 +1,89 @@
-<section class="hero" aria-label="Hero">
-  {%- if section.settings.image != blank -%}
-    {%- assign hero_bg = section.settings.image | image_url: width: 1920 -%}
-  {%- else -%}
-    {%- assign hero_bg = 'https://images.unsplash.com/photo-1712251791130-a1918694810a?w=1920&q=90' -%}
-  {%- endif -%}
-  <div class="hero-bg" style="background-image:url('{{ hero_bg }}')"></div>
-  <div class="hero-gradient" aria-hidden="true"></div>
-  <div class="container">
-    <div class="hero-inner">
-      <div class="hero-grid">
-        <div>
-          <div class="hero-eyebrow-row" data-anim="fade-up">
-            <span class="hero-eyebrow-line" aria-hidden="true"></span>
-            <p class="eyebrow" style="color:#fff">{{ section.settings.eyebrow }}</p>
-          </div>
-          <h1 class="hero-headline display" data-anim="fade-up" data-anim-delay="120">
-            {{ section.settings.heading }}
-          </h1>
-          <p class="hero-subhead" data-anim="fade-up" data-anim-delay="240">
-            {{ section.settings.subheading }}
-          </p>
-          <div class="hero-actions" data-anim="fade-up" data-anim-delay="360">
-            <a href="{{ section.settings.cta_url | default: '/collections' }}" class="btn-hero-primary">
-              {{ section.settings.cta_label }}
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </a>
-            <a href="{{ section.settings.secondary_url | default: '/collections' }}" class="btn-hero-secondary">
-              {{ section.settings.secondary_label }}
-            </a>
-          </div>
-        </div>
+<section class="hero-section" aria-label="Hero">
+  <div class="pb-container">
+    <div class="hero-card-wrap" data-anim="fade-in">
+      {%- if section.settings.image != blank -%}
+        <div class="hero-bg" style="background-image:url('{{ section.settings.image | image_url: width: 1920 }}')"></div>
+      {%- else -%}
+        <div class="hero-bg" style="background-image:url('https://images.unsplash.com/photo-1559827260-dc66d52bef19?auto=format&fit=crop&w=2200&q=80')"></div>
+      {%- endif -%}
+      <div class="hero-gradient" aria-hidden="true"></div>
 
-        {%- if section.settings.featured_product != blank -%}
-          {%- assign hero_product = all_products[section.settings.featured_product] -%}
-          <div data-anim="fade-in" data-anim-delay="480" aria-hidden="true">
-            <div class="hero-card hero-card--float">
-              <div class="hero-card-image">
-                {%- if hero_product.featured_image != blank -%}
-                  {%- assign hero_card_alt = hero_product.title | escape -%}
-                  <img src="{{ hero_product.featured_image | image_url: width: 400 }}" alt="{{ hero_card_alt }}" loading="lazy" width="400">
-                {%- endif -%}
-                <span class="hero-card-badge-new">Bestseller</span>
-                <span class="hero-card-price">{{ hero_product.price | money }}</span>
-              </div>
-              <div class="hero-card-body">
-                <div>
-                  <p class="hero-card-type">{{ hero_product.type }}</p>
-                  <p class="hero-card-name">{{ hero_product.title }}</p>
-                  <p class="hero-card-desc">{{ hero_product.variants.first.title }}</p>
-                </div>
-                <a href="{{ hero_product.url }}" class="hero-card-add" aria-label="Bekijk product">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                </a>
-              </div>
-            </div>
-          </div>
-        {%- endif -%}
+      <div class="hero-badge" aria-label="Officieel distributeur">
+        <span class="hero-badge-dot" aria-hidden="true"></span>
+        {{ section.settings.badge_text | default: 'Officieel Alltech Coppens distributeur' }}
       </div>
 
-      <div class="hero-footer" data-anim="fade-in" data-anim-delay="600">
-        <div class="hero-tags" aria-hidden="true">
-          {%- if section.settings.tag_1 != blank -%}<span>{{ section.settings.tag_1 }}</span>{%- endif -%}
-          {%- if section.settings.tag_2 != blank -%}<span>{{ section.settings.tag_2 }}</span>{%- endif -%}
-          {%- if section.settings.tag_3 != blank -%}<span>{{ section.settings.tag_3 }}</span>{%- endif -%}
+      {%- if section.settings.show_rating -%}
+        <div class="hero-rating" aria-label="Klantbeoordeling">
+          <span class="hero-stars" aria-hidden="true">
+            {%- for i in (1..5) -%}
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.9 7.5.6-5.7 4.9 1.8 7.3L12 17.8 5.5 21.7l1.8-7.3-5.7-4.9 7.5-.6z"/></svg>
+            {%- endfor -%}
+          </span>
+          {{ section.settings.rating_text | default: '4.9 · 1.2k reviews' }}
         </div>
-        <a href="#bestsellers" class="hero-scroll" aria-label="Scroll naar producten">
-          <span class="hero-scroll-line" aria-hidden="true"></span>
-          <span>Scroll</span>
-        </a>
+      {%- endif -%}
+
+      <div class="hero-content">
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="pb-eyebrow" style="color:var(--action);margin-bottom:10px">{{ section.settings.eyebrow }}</p>
+        {%- endif -%}
+        <h1 class="hero-headline" data-anim="fade-up">
+          {{ section.settings.heading | replace: '[accent]', '<span class="accent">' | replace: '[/accent]', '</span>' }}
+        </h1>
+        {%- if section.settings.subheading != blank -%}
+          <p class="hero-subhead" data-anim="fade-up" data-anim-delay="100">{{ section.settings.subheading }}</p>
+        {%- endif -%}
+        <div class="hero-actions" data-anim="fade-up" data-anim-delay="200">
+          <a href="{{ section.settings.cta_url | default: routes.collections_url }}" class="btn-hero-primary">
+            {{ section.settings.cta_label | default: 'Shop alle pellets' }}
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          {%- if section.settings.secondary_label != blank -%}
+            <a href="{{ section.settings.secondary_url | default: '#categorieen' }}" class="btn-hero-secondary">
+              {{ section.settings.secondary_label }}
+            </a>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+
+    <div class="pb-trust" role="list">
+      <div class="pb-trust-item" role="listitem" data-anim="fade-up" data-anim-delay="80">
+        <span class="pb-trust-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 7h11v10H3zM14 10h4l3 3v4h-7z"/><circle cx="7" cy="18" r="1.7"/><circle cx="17" cy="18" r="1.7"/></svg>
+        </span>
+        <div>
+          <div class="pb-trust-title">Gratis verzending</div>
+          <div class="pb-trust-sub">vanaf €60 in NL &amp; BE</div>
+        </div>
+      </div>
+      <div class="pb-trust-item" role="listitem" data-anim="fade-up" data-anim-delay="160">
+        <span class="pb-trust-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><polyline points="20 6 9 17 4 12"/></svg>
+        </span>
+        <div>
+          <div class="pb-trust-title">Voor 16:00 besteld</div>
+          <div class="pb-trust-sub">morgen in huis</div>
+        </div>
+      </div>
+      <div class="pb-trust-item" role="listitem" data-anim="fade-up" data-anim-delay="240">
+        <span class="pb-trust-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="9" r="6"/><path d="M9 13.5L7 21l5-3 5 3-2-7.5"/></svg>
+        </span>
+        <div>
+          <div class="pb-trust-title">Officieel distributeur</div>
+          <div class="pb-trust-sub">Alltech Coppens</div>
+        </div>
+      </div>
+      <div class="pb-trust-item" role="listitem" data-anim="fade-up" data-anim-delay="320">
+        <span class="pb-trust-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 17v3a2 2 0 0 1-2.2 2A19 19 0 0 1 2 4.2 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L7.9 9.7a16 16 0 0 0 6.4 6.4l1.3-1.2a2 2 0 0 1 2.1-.5c.8.3 1.7.5 2.6.6A2 2 0 0 1 22 17z"/></svg>
+        </span>
+        <div>
+          <div class="pb-trust-title">Advies van anglers</div>
+          <div class="pb-trust-sub">werkdagen 9–17u</div>
+        </div>
       </div>
     </div>
   </div>
@@ -84,27 +100,44 @@
     },
     {
       "type": "text",
-      "id": "eyebrow",
-      "label": "Eyebrow tekst",
-      "default": "Officieel Alltech Coppens Distributeur"
+      "id": "badge_text",
+      "label": "Badge tekst",
+      "default": "Officieel Alltech Coppens distributeur"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_rating",
+      "label": "Beoordeling tonen",
+      "default": true
     },
     {
       "type": "text",
+      "id": "rating_text",
+      "label": "Beoordelingstekst",
+      "default": "4.9 · 1.2k reviews"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow tekst"
+    },
+    {
+      "type": "textarea",
       "id": "heading",
-      "label": "Koptekst",
-      "default": "Dé Specialist In Vispellets."
+      "label": "Koptekst (gebruik [accent] en [/accent] voor groen)",
+      "default": "Dé specialist in [accent]vispellets[/accent]."
     },
     {
       "type": "textarea",
       "id": "subheading",
       "label": "Subtekst",
-      "default": "Officieel Alltech Coppens distributeur — pellets voor iedere vis en vistechniek."
+      "default": "Premium pellets voor karper, meerval, steur en method feeder — geselecteerd, getest en geleverd door anglers, voor anglers."
     },
     {
       "type": "text",
       "id": "cta_label",
       "label": "Primaire knoptekst",
-      "default": "Shop Baits"
+      "default": "Shop alle pellets"
     },
     {
       "type": "url",
@@ -115,35 +148,12 @@
       "type": "text",
       "id": "secondary_label",
       "label": "Secundaire knoptekst",
-      "default": "Bekijk Categorieën"
+      "default": "Bekijk vismethodes"
     },
     {
       "type": "url",
       "id": "secondary_url",
       "label": "Secundaire knop URL"
-    },
-    {
-      "type": "product",
-      "id": "featured_product",
-      "label": "Uitgelicht product (floating kaartje)"
-    },
-    {
-      "type": "text",
-      "id": "tag_1",
-      "label": "Tag 1",
-      "default": "Pellet Baits"
-    },
-    {
-      "type": "text",
-      "id": "tag_2",
-      "label": "Tag 2",
-      "default": "Hook Baits"
-    },
-    {
-      "type": "text",
-      "id": "tag_3",
-      "label": "Tag 3",
-      "default": "Liquid Attractants"
     }
   ],
   "presets": [{ "name": "Hero" }]
