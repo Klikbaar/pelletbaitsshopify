@@ -33,16 +33,8 @@
           {%- if section.settings.logo != blank -%}
             {{ section.settings.logo | image_url: width: 200 | image_tag: class: 'footer-logo-img', alt: shop.name }}
           {%- else -%}
-            <a href="{{ routes.root_url }}" class="footer-logo-mark" aria-label="{{ shop.name }}">
-              <svg width="40" height="40" viewBox="0 0 44 44" fill="none" aria-hidden="true">
-                <rect width="44" height="44" rx="10" fill="#63cf05"/>
-                <path d="M9 22c3.5-4.5 8-7 13-7 4 0 7.5 1.8 10.8 4.5l2.2-1.5-.9 4 .9 4-2.2-1.5C29.5 27.2 26 29 22 29c-5 0-9.5-2.5-13-7z" fill="#0e1814"/>
-                <circle cx="32" cy="20.5" r="1.4" fill="#fff"/>
-              </svg>
-              <span class="footer-logo-wordmark">
-                <span class="footer-logo-name">Pellet Baits</span>
-                <span class="footer-logo-tagline">Officieel Coppens distributeur</span>
-              </span>
+            <a href="{{ routes.root_url }}" aria-label="{{ shop.name }}">
+              <img src="{{ 'logo-pelletbaits-white.png' | asset_url }}" class="footer-logo-img" alt="{{ shop.name }}" width="180" loading="lazy">
             </a>
           {%- endif -%}
         </div>

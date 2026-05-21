@@ -43,14 +43,7 @@
         {%- if settings.logo != blank -%}
           {{ settings.logo | image_url: width: 200 | image_tag: class: 'header-logo-img', alt: shop.name }}
         {%- else -%}
-          <svg class="header-logo-svg" width="36" height="36" viewBox="0 0 44 44" fill="none" aria-hidden="true">
-            <rect width="44" height="44" rx="10" fill="#365733"/>
-            <path d="M9 22c3.5-4.5 8-7 13-7 4 0 7.5 1.8 10.8 4.5l2.2-1.5-.9 4 .9 4-2.2-1.5C29.5 27.2 26 29 22 29c-5 0-9.5-2.5-13-7z" fill="#63cf05"/>
-            <circle cx="32" cy="20.5" r="1.4" fill="#fff"/>
-          </svg>
-          <span class="header-logo-wordmark">
-            <span class="header-logo-name">Pellet Baits</span>
-          </span>
+          <img src="{{ 'logo-pelletbaits-dark.png' | asset_url }}" class="header-logo-img" alt="{{ shop.name }}" width="160" loading="eager">
         {%- endif -%}
       </a>
       <button class="cart-close-btn" id="mobile-nav-close" aria-label="Menu sluiten">&#x2715;</button>
