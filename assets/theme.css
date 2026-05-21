@@ -37,6 +37,8 @@
   --dur-fast:     140ms;
   --dur-base:     280ms;
 
+  --gold:         #e8c96e;
+
   --container-max: 1320px;
   --container-pad: 28px;
 }
@@ -90,6 +92,13 @@ input, select, textarea { font: inherit; }
   text-transform: uppercase;
   color: var(--mid-green);
   font-weight: 700;
+}
+.num {
+  font-family: var(--font-display);
+  font-size: 12px;
+  letter-spacing: .18em;
+  color: var(--ink-3);
+  text-transform: uppercase;
 }
 
 /* =====================================================
@@ -174,13 +183,11 @@ input, select, textarea { font: inherit; }
   width: auto;
   display: block;
 }
-.header-logo-icon {
+.header-logo-icon,
+.header-logo-svg {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 38px; height: 38px;
-  border-radius: 50%;
-  background: var(--ink);
   flex-shrink: 0;
 }
 .header-logo-wordmark {
@@ -1415,6 +1422,44 @@ input, select, textarea { font: inherit; }
   width: auto;
   display: block;
 }
+.footer-logo-mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+.footer-logo-wordmark {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+.footer-logo-name {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 20px;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: #fff;
+}
+.footer-logo-tagline {
+  font-size: 10px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: #7aab6d;
+  margin-top: 4px;
+}
+.footer-company-info {
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255,255,255,.1);
+}
+.footer-company-item {
+  font-size: 12px;
+  color: #7aab6d;
+  line-height: 1.8;
+  letter-spacing: .04em;
+}
+.footer-contact-hours { opacity: .75; }
 .footer-logo-text {
   font-family: var(--font-display);
   font-weight: 800;

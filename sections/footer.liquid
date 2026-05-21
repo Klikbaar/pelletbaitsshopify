@@ -26,74 +26,70 @@
 
     <!-- Footer grid -->
     <div class="pb-footer-grid">
+
+      <!-- Column 1: Logo + desc + social -->
       <div>
         <div class="footer-logo-wrap">
           {%- if section.settings.logo != blank -%}
             {{ section.settings.logo | image_url: width: 200 | image_tag: class: 'footer-logo-img', alt: shop.name }}
           {%- else -%}
-            <span class="footer-logo-text">{{ shop.name | upcase }}</span>
+            <a href="{{ routes.root_url }}" class="footer-logo-mark" aria-label="{{ shop.name }}">
+              <svg width="40" height="40" viewBox="0 0 44 44" fill="none" aria-hidden="true">
+                <rect width="44" height="44" rx="10" fill="#63cf05"/>
+                <path d="M9 22c3.5-4.5 8-7 13-7 4 0 7.5 1.8 10.8 4.5l2.2-1.5-.9 4 .9 4-2.2-1.5C29.5 27.2 26 29 22 29c-5 0-9.5-2.5-13-7z" fill="#0e1814"/>
+                <circle cx="32" cy="20.5" r="1.4" fill="#fff"/>
+              </svg>
+              <span class="footer-logo-wordmark">
+                <span class="footer-logo-name">Pellet Baits</span>
+                <span class="footer-logo-tagline">Officieel Coppens distributeur</span>
+              </span>
+            </a>
           {%- endif -%}
         </div>
         <p class="footer-desc">{{ section.settings.description | default: 'Dé specialist in vispellets. Officieel Alltech Coppens distributeur — pellets voor iedere vis en vistechniek.' }}</p>
         <div class="footer-social" aria-label="Social media">
-          {%- if section.settings.social_instagram != blank -%}
-            <a href="{{ section.settings.social_instagram }}" class="footer-social-btn" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
-          {%- else -%}
-            <a href="#" class="footer-social-btn" aria-label="Instagram">IG</a>
-          {%- endif -%}
-          {%- if section.settings.social_facebook != blank -%}
-            <a href="{{ section.settings.social_facebook }}" class="footer-social-btn" target="_blank" rel="noopener" aria-label="Facebook">FB</a>
-          {%- else -%}
-            <a href="#" class="footer-social-btn" aria-label="Facebook">FB</a>
-          {%- endif -%}
-          <a href="#" class="footer-social-btn" aria-label="YouTube">YT</a>
-          <a href="#" class="footer-social-btn" aria-label="TikTok">TT</a>
+          {%- assign insta_url = section.settings.social_instagram | default: 'https://www.instagram.com/pelletbaits/' -%}
+          <a href="{{ insta_url }}" class="footer-social-btn" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg>
+          </a>
+          {%- assign fb_url = section.settings.social_facebook | default: 'https://www.facebook.com/pelletbaits' -%}
+          <a href="{{ fb_url }}" class="footer-social-btn" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          {%- assign yt_url = section.settings.social_youtube | default: 'https://www.youtube.com/@pelletbaits' -%}
+          <a href="{{ yt_url }}" class="footer-social-btn" target="_blank" rel="noopener" aria-label="YouTube">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="#365733"/></svg>
+          </a>
         </div>
       </div>
 
+      <!-- Column 2: Shop links -->
       <div>
-        <p class="footer-col-title">{{ section.settings.cat_title | default: 'Shop' }}</p>
+        <p class="footer-col-title">Shop</p>
         <ul class="footer-links">
-          {%- if linklists[section.settings.cat_menu].links.size > 0 -%}
-            {%- for link in linklists[section.settings.cat_menu].links -%}
-              <li><a href="{{ link.url }}">{{ link.title }}</a></li>
-            {%- endfor -%}
-          {%- else -%}
-            <li><a href="/collections/karpervissen">Karpervissen</a></li>
-            <li><a href="/collections/meervalvissen">Meervalvissen</a></li>
-            <li><a href="/collections/steurvissen">Steurvissen</a></li>
-            <li><a href="/collections/methodfeeder">Method Feeder</a></li>
-            <li><a href="/collections/waggler">Waggler</a></li>
-            <li><a href="/collections/koi-vijver">Koi &amp; Vijver</a></li>
-            <li><a href="/collections/tools-merchandise">Tools &amp; Merch</a></li>
-            <li><a href="{{ routes.collections_url }}">Alle producten</a></li>
-          {%- endif -%}
+          <li><a href="/collections/karpervissen">Karpervissen</a></li>
+          <li><a href="/collections/meervalvissen">Meervalvissen</a></li>
+          <li><a href="/collections/steurvissen">Steurvissen</a></li>
+          <li><a href="/collections/methodfeeder">Method Feeder</a></li>
+          <li><a href="/collections/waggler">Waggler</a></li>
+          <li><a href="/collections/koi-vijver">Koi &amp; Vijver</a></li>
+          <li><a href="/collections/tools-merchandise">Tools &amp; Merch</a></li>
+          <li><a href="{{ routes.collections_url }}">Alle producten</a></li>
         </ul>
       </div>
 
+      <!-- Column 3: Pellet Baits info -->
       <div>
         <p class="footer-col-title">Pellet Baits</p>
         <ul class="footer-links">
-          {%- for link in linklists[section.settings.info_menu].links -%}
-            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
-          {%- endfor -%}
-          {%- assign info_has_over = false -%}
-          {%- assign info_has_contact = false -%}
-          {%- for link in linklists[section.settings.info_menu].links -%}
-            {%- if link.title contains 'Over' -%}{%- assign info_has_over = true -%}{%- endif -%}
-            {%- if link.title contains 'Contact' or link.title contains 'contact' -%}{%- assign info_has_contact = true -%}{%- endif -%}
-          {%- endfor -%}
-          {%- unless info_has_over -%}
-            <li><a href="{{ pages['over-ons'].url | default: '/pages/over-ons' }}">Over ons</a></li>
-          {%- endunless -%}
-          {%- unless info_has_contact -%}
-            <li><a href="{{ pages['contact'].url | default: '/pages/contact' }}">Contact</a></li>
-          {%- endunless -%}
+          <li><a href="{{ pages['over-ons'].url | default: '/pages/over-ons' }}">Over ons</a></li>
+          <li><a href="{{ pages['contact'].url | default: '/pages/contact' }}">Contact</a></li>
           <li><a href="/pages/clinics">Clinics</a></li>
           <li><a href="/pages/zakelijk">Zakelijk / B2B</a></li>
         </ul>
       </div>
 
+      <!-- Column 4: Klantenservice -->
       <div>
         <p class="footer-col-title">Klantenservice</p>
         <ul class="footer-links">
@@ -101,18 +97,18 @@
           <li><a href="/pages/verzending">Verzending &amp; levering</a></li>
           <li><a href="/pages/retourneren">Retourneren</a></li>
           <li><a href="/pages/faq">Veelgestelde vragen</a></li>
-          <li><a href="/pages/klantenservice#track">Track &amp; trace</a></li>
           <li><a href="/pages/algemene-voorwaarden">Algemene voorwaarden</a></li>
           <li><a href="/pages/privacybeleid">Privacybeleid</a></li>
         </ul>
       </div>
 
+      <!-- Column 5: Contact + bedrijfsgegevens -->
       <div>
         <p class="footer-col-title">Contact</p>
         <ul class="footer-contact-list">
           <li class="footer-contact-item">
             <span class="footer-contact-icon" aria-hidden="true">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 22s-7-7.5-7-13a7 7 0 0 1 14 0c0 5.5-7 13-7 13z"/><circle cx="12" cy="9" r="2.5"/></svg>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 22s-7-7.5-7-13a7 7 0 0 1 14 0c0 5.5-7 13-7 13z"/><circle cx="12" cy="9" r="2.5"/></svg>
             </span>
             <span>
               {%- if settings.address != blank -%}
@@ -125,24 +121,41 @@
           {%- if settings.phone != blank -%}
             <li class="footer-contact-item">
               <span class="footer-contact-icon" aria-hidden="true">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M22 17v3a2 2 0 0 1-2.2 2A19 19 0 0 1 2 4.2 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L7.9 9.7a16 16 0 0 0 6.4 6.4l1.3-1.2a2 2 0 0 1 2.1-.5c.8.3 1.7.5 2.6.6A2 2 0 0 1 22 17z"/></svg>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M22 17v3a2 2 0 0 1-2.2 2A19 19 0 0 1 2 4.2 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L7.9 9.7a16 16 0 0 0 6.4 6.4l1.3-1.2a2 2 0 0 1 2.1-.5c.8.3 1.7.5 2.6.6A2 2 0 0 1 22 17z"/></svg>
               </span>
               <a href="tel:{{ settings.phone | remove: ' ' | remove: '-' }}">{{ settings.phone }}</a>
             </li>
           {%- endif -%}
-          {%- if settings.email != blank -%}
-            <li class="footer-contact-item">
-              <span class="footer-contact-icon" aria-hidden="true">@</span>
+          <li class="footer-contact-item">
+            <span class="footer-contact-icon" aria-hidden="true">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+            </span>
+            {%- if settings.email != blank -%}
               <a href="mailto:{{ settings.email }}">{{ settings.email }}</a>
-            </li>
-          {%- else -%}
-            <li class="footer-contact-item">
-              <span class="footer-contact-icon" aria-hidden="true">@</span>
+            {%- else -%}
               <a href="mailto:info@pelletbaits.nl">info@pelletbaits.nl</a>
-            </li>
-          {%- endif -%}
+            {%- endif -%}
+          </li>
+          <li class="footer-contact-item">
+            <span class="footer-contact-icon" aria-hidden="true">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+            </span>
+            <span>Ma–vr: 09:00 – 17:00</span>
+          </li>
         </ul>
+
+        {%- if section.settings.kvk_number != blank or section.settings.btw_number != blank -%}
+          <div class="footer-company-info">
+            {%- if section.settings.kvk_number != blank -%}
+              <p class="footer-company-item">KVK: {{ section.settings.kvk_number }}</p>
+            {%- endif -%}
+            {%- if section.settings.btw_number != blank -%}
+              <p class="footer-company-item">BTW: {{ section.settings.btw_number }}</p>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
       </div>
+
     </div>
 
     <!-- Footer bottom -->
@@ -173,16 +186,16 @@
 {
   "name": "Footer",
   "settings": [
-    { "type": "image_picker", "id": "logo", "label": "Logo" },
+    { "type": "image_picker", "id": "logo", "label": "Logo (upload officieel logo)" },
     { "type": "textarea", "id": "description", "label": "Omschrijving", "default": "Dé specialist in vispellets. Officieel Alltech Coppens distributeur — pellets voor iedere vis en vistechniek." },
     { "type": "text", "id": "newsletter_title", "label": "Nieuwsbrief titel", "default": "Tips, drops & wedstrijden — in je inbox." },
     { "type": "textarea", "id": "newsletter_text", "label": "Nieuwsbrief subtekst", "default": "Schrijf je in voor onze nieuwsbrief en ontvang tips, exclusieve aanbiedingen en nieuws over Pellet Baits." },
-    { "type": "text", "id": "cat_title", "label": "Kolomtitel shop", "default": "Shop" },
-    { "type": "link_list", "id": "cat_menu", "label": "Shop menu" },
-    { "type": "link_list", "id": "info_menu", "label": "Informatie menu" },
+    { "type": "text", "id": "kvk_number", "label": "KVK-nummer", "info": "Bijv. 12345678" },
+    { "type": "text", "id": "btw_number", "label": "BTW-nummer", "info": "Bijv. NL123456789B01" },
     { "type": "link_list", "id": "legal_menu", "label": "Juridisch menu" },
     { "type": "url", "id": "social_instagram", "label": "Instagram URL" },
-    { "type": "url", "id": "social_facebook", "label": "Facebook URL" }
+    { "type": "url", "id": "social_facebook", "label": "Facebook URL" },
+    { "type": "url", "id": "social_youtube", "label": "YouTube URL" }
   ]
 }
 {% endschema %}

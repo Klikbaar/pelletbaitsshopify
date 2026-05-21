@@ -126,21 +126,6 @@
         "heading_accent": "vismethodes"
       }
     },
-    "feature": {
-      "type": "feature",
-      "settings": {
-        "image_alt": "",
-        "image_chip": "Field Tested",
-        "stat_value": "+47%",
-        "stat_desc": "meer beten dankzij onze unieke formule",
-        "eyebrow": "Kwaliteit & Resultaat",
-        "heading": "Ontworpen voor",
-        "heading_accent": "Maximale Aantrekkingskracht",
-        "body": "Pellet Baits biedt jou het meest uitgebreide assortiment vispellets van Alltech Coppens aan. Of je nu vist op karper, meerval of de kleinere witvissoorten als zeelt of brasem — voor iedere vis of vistechniek hebben wij dé geschikte pellets.",
-        "cta_label": "Lees de wetenschap",
-        "cta_url": ""
-      }
-    },
     "beurs": {
       "type": "beurs",
       "settings": {
@@ -169,7 +154,6 @@
     "hero",
     "bestsellers",
     "categories",
-    "feature",
     "beurs",
     "cta-banner"
   ]
