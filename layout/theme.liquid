@@ -60,8 +60,8 @@
       <a href="/collections/tools-merchandise">Tools &amp; Merch</a>
       <a href="/pages/clinics" style="color:var(--mid-green)">Clinics</a>
       <a href="/pages/zakelijk" style="color:var(--mid-green)">Zakelijk</a>
-      {%- if pages['over-ons'] -%}<a href="{{ pages['over-ons'].url }}">Over ons</a>{%- endif -%}
-      {%- if pages['contact'] -%}<a href="{{ pages['contact'].url }}">Contact</a>{%- endif -%}
+      <a href="{{ pages['over-ons'].url | default: '/pages/over-ons' }}">Over ons</a>
+      <a href="{{ pages['contact'].url | default: '/pages/contact' }}">Contact</a>
     </nav>
   </div>
 

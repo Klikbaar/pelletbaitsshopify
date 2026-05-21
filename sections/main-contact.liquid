@@ -1,110 +1,130 @@
 <style>
-  .contact-hero {
-    padding: 160px 0 80px;
+  /* ---- Contact pagina ---- */
+  .ct-hero {
+    padding: 140px 0 72px;
     background: var(--bg);
     border-bottom: 1px solid var(--line);
   }
-  .contact-hero-inner { max-width: 720px; }
-  .contact-hero-headline {
-    font-size: clamp(64px, 10vw, 140px);
-    margin: 0;
-    color: var(--ink);
-    line-height: .9;
+  .ct-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin-bottom: 22px;
   }
-  .contact-hero-sub {
-    margin-top: 28px;
+  .ct-breadcrumb a { color: inherit; transition: color .15s; }
+  .ct-breadcrumb a:hover { color: var(--ink); }
+  .ct-hero-headline {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(60px, 10vw, 140px);
+    line-height: .9;
+    text-transform: uppercase;
+    letter-spacing: -.01em;
+    color: var(--ink);
+    margin: 0;
+  }
+  .ct-hero-sub {
+    margin-top: 26px;
     font-size: 17px;
     line-height: 1.6;
     color: var(--ink-2);
     font-weight: 300;
     max-width: 540px;
   }
-  .contact-body {
-    padding: 100px 0 120px;
-    background: var(--bg);
-  }
-  .contact-grid {
+
+  /* Body */
+  .ct-body { padding: 80px 0 100px; }
+  .ct-grid {
     display: grid;
-    grid-template-columns: 1fr 1.4fr;
+    grid-template-columns: 1fr 1.5fr;
     gap: 80px;
     align-items: start;
   }
-  .contact-info-block {
-    padding: 32px 0;
+
+  /* Contact info blocks */
+  .ct-info-block {
+    padding: 26px 0;
     border-bottom: 1px solid var(--line);
   }
-  .contact-info-block:first-child { border-top: 1px solid var(--line); }
-  .contact-info-label {
+  .ct-info-block:first-child { border-top: 1px solid var(--line); }
+  .ct-info-label {
     font-size: 10px;
     letter-spacing: .22em;
     text-transform: uppercase;
     color: var(--ink-3);
     font-weight: 600;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
   }
-  .contact-info-value {
+  .ct-info-value {
     font-family: var(--font-display);
-    font-size: 22px;
     font-weight: 700;
+    font-size: 20px;
     text-transform: uppercase;
     color: var(--ink);
     line-height: 1.2;
+    letter-spacing: .02em;
   }
-  .contact-info-value a { color: var(--ink); transition: color var(--dur-fast) ease; }
-  .contact-info-value a:hover { color: var(--accent); }
-  .contact-info-note { margin-top: 6px; font-size: 13px; color: var(--ink-3); line-height: 1.5; }
-  .contact-form-wrap {
-    background: var(--bg-2);
+  .ct-info-value a { color: var(--ink); transition: color .15s; }
+  .ct-info-value a:hover { color: var(--action); }
+  .ct-info-note { margin-top: 5px; font-size: 13px; color: var(--ink-3); line-height: 1.5; }
+
+  /* Form card */
+  .ct-form-card {
+    background: var(--bg-soft);
     border: 1px solid var(--line);
     border-radius: var(--radius-lg);
-    padding: 48px;
+    padding: 44px;
   }
-  .contact-form-title {
+  .ct-form-title {
     font-family: var(--font-display);
-    font-size: 32px;
     font-weight: 800;
+    font-size: 30px;
     text-transform: uppercase;
+    letter-spacing: .02em;
     color: var(--ink);
-    margin-bottom: 8px;
+    margin-bottom: 6px;
   }
-  .contact-form-intro {
+  .ct-form-intro {
     font-size: 14px;
     color: var(--ink-2);
     line-height: 1.6;
-    margin-bottom: 36px;
+    margin-bottom: 32px;
   }
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  .cf-group { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
-  .cf-label {
+  .ct-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .ct-group { display: flex; flex-direction: column; gap: 7px; margin-bottom: 18px; }
+  .ct-label {
     font-size: 10px;
     font-weight: 600;
     letter-spacing: .18em;
     text-transform: uppercase;
     color: var(--ink-3);
   }
-  .cf-input, .cf-select, .cf-textarea {
-    background: var(--bg-3);
-    border: 1px solid var(--line-2);
+  .ct-input, .ct-select, .ct-textarea {
+    background: #fff;
+    border: 1px solid var(--line);
     border-radius: var(--radius-sm);
-    padding: 14px 16px;
+    padding: 13px 15px;
     color: var(--ink);
     font-size: 14px;
     font-family: var(--font-body);
     outline: none;
-    transition: border-color var(--dur-fast) ease;
+    transition: border-color .15s;
     width: 100%;
   }
-  .cf-input::placeholder, .cf-textarea::placeholder { color: var(--ink-3); }
-  .cf-input:focus, .cf-select:focus, .cf-textarea:focus { border-color: var(--accent); }
-  .cf-select { cursor: pointer; appearance: none; -webkit-appearance: none; }
-  .cf-select option { background: var(--bg-2); }
-  .cf-textarea { resize: vertical; min-height: 140px; line-height: 1.6; }
-  .cf-submit {
+  .ct-input::placeholder, .ct-textarea::placeholder { color: var(--ink-3); }
+  .ct-input:focus, .ct-select:focus, .ct-textarea:focus { border-color: var(--action); }
+  .ct-select { cursor: pointer; appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%238a948f' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; padding-right: 34px; }
+  .ct-textarea { resize: vertical; min-height: 130px; line-height: 1.6; }
+  .ct-submit {
     width: 100%;
-    padding: 16px 24px;
+    padding: 15px 24px;
     border-radius: 999px;
-    background: var(--accent);
-    color: #0a0f0e;
+    background: var(--action);
+    color: var(--ink);
     font-weight: 700;
     font-size: 13px;
     letter-spacing: .16em;
@@ -116,115 +136,155 @@
     align-items: center;
     justify-content: center;
     gap: 10px;
-    transition: background var(--dur-fast) ease, transform var(--dur-fast) ease;
-    margin-top: 8px;
+    transition: background .2s, transform .2s;
+    margin-top: 6px;
   }
-  .cf-submit:hover { background: var(--accent-2); color: #fff; transform: translateY(-2px); }
-  .contact-usp-row {
+  .ct-submit:hover { background: var(--action-2); color: #fff; transform: translateY(-2px); }
+  .ct-success {
+    background: rgba(99,207,5,.1);
+    border: 1px solid rgba(99,207,5,.3);
+    border-radius: var(--radius-sm);
+    color: var(--mid-green);
+    padding: 13px 16px;
+    margin-bottom: 22px;
+    font-size: 14px;
+  }
+  .ct-error {
+    background: rgba(196,90,28,.1);
+    border: 1px solid rgba(196,90,28,.25);
+    border-radius: var(--radius-sm);
+    color: #c45a1c;
+    padding: 13px 16px;
+    margin-bottom: 22px;
+    font-size: 14px;
+  }
+
+  /* USP strip */
+  .ct-usp-row {
     display: flex;
-    gap: 48px;
-    margin-top: 48px;
-    padding-top: 48px;
+    gap: 36px;
+    margin-top: 36px;
+    padding-top: 36px;
     border-top: 1px solid var(--line);
     flex-wrap: wrap;
   }
-  .contact-usp { display: flex; align-items: center; gap: 14px; font-size: 13px; color: var(--ink-2); }
-  .contact-usp svg { color: var(--accent); flex-shrink: 0; }
-  .cf-success { background: rgba(99,207,5,.12); border: 1px solid rgba(99,207,5,.3); border-radius: var(--radius-sm); color: var(--accent); padding: 14px 16px; margin-bottom: 24px; font-size: 14px; }
-  .cf-error   { background: rgba(196,90,28,.12); border: 1px solid rgba(196,90,28,.3); border-radius: var(--radius-sm); color: #e07048; padding: 14px 16px; margin-bottom: 24px; font-size: 14px; }
-
-  @media (max-width: 900px) {
-    .contact-grid { grid-template-columns: 1fr; gap: 60px; }
-    .contact-form-wrap { padding: 32px 24px; }
-    .form-row { grid-template-columns: 1fr; }
-    .contact-usp-row { gap: 28px; }
+  .ct-usp {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 13px;
+    color: var(--ink-2);
   }
-  @media (max-width: 620px) {
-    .contact-hero { padding: 120px 0 60px; }
+  .ct-usp svg { color: var(--action); flex-shrink: 0; }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .ct-grid { grid-template-columns: 1fr; gap: 56px; }
+    .ct-form-card { padding: 28px 22px; }
+    .ct-form-row { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 600px) {
+    .ct-hero { padding: 100px 0 52px; }
+    .ct-usp-row { gap: 20px; }
   }
 </style>
 
 <!-- HERO -->
-<section class="contact-hero">
-  <div class="container">
-    <div class="contact-hero-inner" data-anim="fade-up">
-      <p class="eyebrow" style="margin-bottom:20px">Neem contact op</p>
-      <h1 class="contact-hero-headline display">Heb je<br><span style="color:var(--accent)">een vraag?</span></h1>
-      <p class="contact-hero-sub">Of je nu vragen hebt over ons assortiment, advies wil over de juiste pellets voor jouw vistechniek of een offerte wil aanvragen — wij staan voor je klaar.</p>
+<section class="ct-hero">
+  <div class="pb-container">
+    <div data-anim="fade-up">
+      <nav class="ct-breadcrumb" aria-label="Broodkruimel">
+        <a href="{{ routes.root_url }}">Home</a>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        <span style="color:var(--ink)">Contact</span>
+      </nav>
+      <p class="eyebrow" style="margin-bottom:18px">Neem contact op</p>
+      <h1 class="ct-hero-headline">Heb je<br><span style="color:var(--action)">een vraag?</span></h1>
+      <p class="ct-hero-sub">Of je nu vragen hebt over ons assortiment, advies wil over de juiste pellets voor jouw vistechniek of een offerte wil aanvragen — wij staan voor je klaar.</p>
     </div>
   </div>
 </section>
 
 <!-- CONTACT BODY -->
-<section class="contact-body">
-  <div class="container">
-    <div class="contact-grid">
+<section class="ct-body">
+  <div class="pb-container">
+    <div class="ct-grid">
 
-      <!-- Contactinfo -->
+      <!-- Contactgegevens -->
       <div data-anim="slide-left">
         {%- if settings.email != blank -%}
-          <div class="contact-info-block">
-            <p class="contact-info-label">E-mail</p>
-            <p class="contact-info-value"><a href="mailto:{{ settings.email }}">{{ settings.email }}</a></p>
-            <p class="contact-info-note">Reactie binnen 1 werkdag</p>
+          <div class="ct-info-block">
+            <p class="ct-info-label">E-mail</p>
+            <p class="ct-info-value"><a href="mailto:{{ settings.email }}">{{ settings.email }}</a></p>
+            <p class="ct-info-note">Reactie binnen 1 werkdag</p>
+          </div>
+        {%- else -%}
+          <div class="ct-info-block">
+            <p class="ct-info-label">E-mail</p>
+            <p class="ct-info-value"><a href="mailto:info@pelletbaits.nl">info@pelletbaits.nl</a></p>
+            <p class="ct-info-note">Reactie binnen 1 werkdag</p>
           </div>
         {%- endif -%}
         {%- if settings.phone != blank -%}
-          <div class="contact-info-block">
-            <p class="contact-info-label">Telefoon</p>
-            <p class="contact-info-value"><a href="tel:{{ settings.phone | remove: ' ' | remove: '-' }}">{{ settings.phone }}</a></p>
-            <p class="contact-info-note">Ma t/m vr · 09:00 – 17:00</p>
+          <div class="ct-info-block">
+            <p class="ct-info-label">Telefoon</p>
+            <p class="ct-info-value"><a href="tel:{{ settings.phone | remove: ' ' | remove: '-' }}">{{ settings.phone }}</a></p>
+            <p class="ct-info-note">Ma t/m vr · 09:00 – 17:00</p>
           </div>
         {%- endif -%}
-        {%- if settings.address != blank -%}
-          <div class="contact-info-block">
-            <p class="contact-info-label">Adres</p>
-            <p class="contact-info-value">{{ settings.address }}</p>
-            <p class="contact-info-note">Bezoek alleen op afspraak</p>
-          </div>
-        {%- endif -%}
-        <div class="contact-info-block">
-          <p class="contact-info-label">KVK-nummer</p>
-          <p class="contact-info-value">Pelletbaits B.V.</p>
-          <p class="contact-info-note">Officieel Alltech Coppens distributeur</p>
+        <div class="ct-info-block">
+          <p class="ct-info-label">Adres</p>
+          <p class="ct-info-value">
+            {%- if settings.address != blank -%}
+              {{ settings.address }}
+            {%- else -%}
+              De Droogmakerij 22 D<br>1851 LX Heiloo
+            {%- endif -%}
+          </p>
+          <p class="ct-info-note">Bezoek alleen op afspraak</p>
+        </div>
+        <div class="ct-info-block">
+          <p class="ct-info-label">Bedrijf</p>
+          <p class="ct-info-value">Pellet Baits</p>
+          <p class="ct-info-note">Officieel Alltech Coppens distributeur</p>
         </div>
       </div>
 
-      <!-- Formulier -->
+      <!-- Contactformulier -->
       <div data-anim="slide-right">
-        <div class="contact-form-wrap">
-          <p class="contact-form-title">Stuur een bericht</p>
-          <p class="contact-form-intro">Vul het formulier in en wij nemen zo snel mogelijk contact met je op. Heb je een specifieke vraag over een product of wil je een mix op maat? Vermeld dit dan in je bericht.</p>
+        <div class="ct-form-card">
+          <p class="ct-form-title">Stuur een bericht</p>
+          <p class="ct-form-intro">Vul het formulier in en wij nemen zo snel mogelijk contact met je op. Heb je een specifieke vraag over een product of wil je een mix op maat? Vermeld dit dan in je bericht.</p>
 
           {%- form 'contact' -%}
             {%- if form.posted_successfully? -%}
-              <p class="cf-success">Bedankt voor je bericht! We nemen zo snel mogelijk contact met je op.</p>
+              <p class="ct-success">Bedankt voor je bericht! We nemen zo snel mogelijk contact met je op.</p>
             {%- endif -%}
             {%- if form.errors -%}
-              <p class="cf-error">Er is iets misgegaan. Controleer je gegevens en probeer het opnieuw.</p>
+              <p class="ct-error">Er is iets misgegaan. Controleer je gegevens en probeer het opnieuw.</p>
             {%- endif -%}
 
-            <div class="form-row">
-              <div class="cf-group">
-                <label class="cf-label" for="cf-voornaam">Voornaam</label>
-                <input class="cf-input" id="cf-voornaam" type="text" name="contact[first_name]" placeholder="Jouw voornaam" autocomplete="given-name" required>
+            <div class="ct-form-row">
+              <div class="ct-group">
+                <label class="ct-label" for="ct-voornaam">Voornaam</label>
+                <input class="ct-input" id="ct-voornaam" type="text" name="contact[first_name]" placeholder="Jouw voornaam" autocomplete="given-name" required>
               </div>
-              <div class="cf-group">
-                <label class="cf-label" for="cf-achternaam">Achternaam</label>
-                <input class="cf-input" id="cf-achternaam" type="text" name="contact[last_name]" placeholder="Jouw achternaam" autocomplete="family-name" required>
+              <div class="ct-group">
+                <label class="ct-label" for="ct-achternaam">Achternaam</label>
+                <input class="ct-input" id="ct-achternaam" type="text" name="contact[last_name]" placeholder="Jouw achternaam" autocomplete="family-name" required>
               </div>
             </div>
-            <div class="cf-group">
-              <label class="cf-label" for="cf-email">E-mailadres</label>
-              <input class="cf-input" id="cf-email" type="email" name="contact[email]" placeholder="jouw@email.nl" autocomplete="email" value="{{ form.email }}" required>
+            <div class="ct-group">
+              <label class="ct-label" for="ct-email">E-mailadres</label>
+              <input class="ct-input" id="ct-email" type="email" name="contact[email]" placeholder="jouw@email.nl" autocomplete="email" value="{{ form.email }}" required>
             </div>
-            <div class="cf-group">
-              <label class="cf-label" for="cf-telefoon">Telefoonnummer (optioneel)</label>
-              <input class="cf-input" id="cf-telefoon" type="tel" name="contact[phone]" placeholder="06-12345678" autocomplete="tel">
+            <div class="ct-group">
+              <label class="ct-label" for="ct-telefoon">Telefoonnummer (optioneel)</label>
+              <input class="ct-input" id="ct-telefoon" type="tel" name="contact[phone]" placeholder="06-12345678" autocomplete="tel">
             </div>
-            <div class="cf-group">
-              <label class="cf-label" for="cf-onderwerp">Onderwerp</label>
-              <select class="cf-input cf-select" id="cf-onderwerp" name="contact[subject]" required>
+            <div class="ct-group">
+              <label class="ct-label" for="ct-onderwerp">Onderwerp</label>
+              <select class="ct-input ct-select" id="ct-onderwerp" name="contact[subject]" required>
                 <option value="" disabled selected>Kies een onderwerp</option>
                 <option>Productadvies</option>
                 <option>Bestelling &amp; Bezorging</option>
@@ -234,28 +294,28 @@
                 <option>Overig</option>
               </select>
             </div>
-            <div class="cf-group">
-              <label class="cf-label" for="cf-bericht">Bericht</label>
-              <textarea class="cf-textarea" id="cf-bericht" name="contact[body]" placeholder="Schrijf hier je vraag of bericht..." required>{{ form.body }}</textarea>
+            <div class="ct-group">
+              <label class="ct-label" for="ct-bericht">Bericht</label>
+              <textarea class="ct-textarea" id="ct-bericht" name="contact[body]" placeholder="Schrijf hier je vraag of bericht..." required>{{ form.body }}</textarea>
             </div>
-            <button type="submit" class="cf-submit">
+            <button type="submit" class="ct-submit">
               Verstuur bericht
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </button>
           {%- endform -%}
         </div>
 
-        <div class="contact-usp-row">
-          <div class="contact-usp">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+        <div class="ct-usp-row">
+          <div class="ct-usp">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
             Reactie binnen 1 werkdag
           </div>
-          <div class="contact-usp">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+          <div class="ct-usp">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
             Persoonlijk advies
           </div>
-          <div class="contact-usp">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+          <div class="ct-usp">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
             Mix op maat mogelijk
           </div>
         </div>
