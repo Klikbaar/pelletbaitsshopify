@@ -1,0 +1,282 @@
+{
+  "meta": {
+    "source_language": "nl",
+    "brand": "Pellet Baits",
+    "industry": "Vispellets / Fishing bait pellets",
+    "brand_tone": "Expert, trustworthy, angler-to-angler, persuasive",
+    "note": "Import via Shopify Admin → Markets → Translations, or use Shopify Translation API"
+  },
+  "language_switcher": {
+    "enabled": true,
+    "location": "header",
+    "style": "flag_dropdown",
+    "supported_languages": ["nl", "en", "de"],
+    "shopify_markets_required": true,
+    "setup_note": "Enable EN and DE in Shopify Admin → Settings → Markets before these translations activate"
+  },
+  "hreflang": {
+    "nl": "https://pelletbaits.nl/",
+    "en": "https://pelletbaits.nl/en/",
+    "de": "https://pelletbaits.nl/de/",
+    "x-default": "https://pelletbaits.nl/"
+  },
+  "shop": {
+    "nl": {
+      "meta_title": "Pellet Baits | Dé Specialist in Vispellets",
+      "meta_description": "Officieel Alltech Coppens distributeur. Premium pellets voor karper, meerval, steur & method feeder. Gratis verzending vanaf €60.",
+      "seo_keywords": ["vispellets kopen", "karperpellets", "Alltech Coppens pellets", "meervalpellets", "method feeder pellets", "pellets hengelsport"]
+    },
+    "en": {
+      "meta_title": "Pellet Baits | Premium Fishing Pellets NL & EU",
+      "meta_description": "Official Alltech Coppens distributor. Premium pellets for carp, catfish, sturgeon & method feeder fishing. Free shipping from €60.",
+      "seo_keywords": ["fishing pellets buy", "carp pellets", "Alltech Coppens pellets", "catfish pellets", "method feeder pellets", "halibut pellets fishing"]
+    },
+    "de": {
+      "meta_title": "Pellet Baits | Premium Angelpellets NL & EU",
+      "meta_description": "Offizieller Alltech Coppens Händler. Premium Pellets für Karpfen, Wels, Stör & Method Feeder. Kostenloser Versand ab €60.",
+      "seo_keywords": ["Angelpellets kaufen", "Karpfenpellets", "Alltech Coppens Pellets", "Welspellets", "Method Feeder Pellets", "Halibut Pellets Angeln"]
+    }
+  },
+  "collections": {
+    "karpervissen": {
+      "nl": {
+        "title": "Karpervissen",
+        "description": "Het meest complete assortiment karperpellets van Nederland. Officieel Alltech Coppens distributeur — alle maten, alle varianten.",
+        "meta_title": "Karperpellets Kopen | Alle Maten | Pellet Baits",
+        "meta_description": "Koop karperpellets direct bij de officiële Coppens distributeur. Van 2mm tot 20mm, fishmeals tot fruitsmaken. Gratis verzending vanaf €60.",
+        "slug": "karpervissen",
+        "seo_keywords": ["karperpellets kopen", "halibut pellets karper", "coppens karperpellets", "karpervissen pellets maten"]
+      },
+      "en": {
+        "title": "Carp Fishing",
+        "description": "The most complete range of carp fishing pellets in the Netherlands. Official Alltech Coppens distributor — all sizes, all variants.",
+        "meta_title": "Carp Fishing Pellets | All Sizes | Pellet Baits",
+        "meta_description": "Buy carp pellets from the official Coppens distributor. 2mm to 20mm, fishmeal to fruit flavours. Free shipping from €60.",
+        "slug": "carp-fishing",
+        "seo_keywords": ["carp fishing pellets", "halibut pellets carp", "Coppens carp pellets", "carp bait pellets buy"]
+      },
+      "de": {
+        "title": "Karpfenangeln",
+        "description": "Das kompletteste Sortiment an Karpfenpellets in den Niederlanden. Offizieller Alltech Coppens Händler — alle Größen, alle Varianten.",
+        "meta_title": "Karpfenpellets Kaufen | Alle Größen | Pellet Baits",
+        "meta_description": "Karpfenpellets beim offiziellen Coppens Händler kaufen. 2mm bis 20mm, Fischmehle bis Fruchtgeschmack. Kostenloser Versand ab €60.",
+        "slug": "karpfenangeln",
+        "seo_keywords": ["Karpfenpellets kaufen", "Halibut Pellets Karpfen", "Coppens Karpfenpellets", "Karpfenköder Pellets"]
+      }
+    },
+    "meervalvissen": {
+      "nl": {
+        "title": "Meervalvissen",
+        "description": "Grootkorrel pellets en bloedmelen speciaal samengesteld voor de meervalsport. Direct leverbaar.",
+        "meta_title": "Meervalpellets | Grootkorrel & Bloed | Pellet Baits",
+        "meta_description": "Koop meervalpellets van Alltech Coppens. Grootkorrel, bloedmeel en levermeel voor maximaal resultaat bij meervalvissen.",
+        "slug": "meervalvissen",
+        "seo_keywords": ["meervalpellets kopen", "pellets meervalvissen", "coppens meervalpellets", "grootkorrel pellets meerval"]
+      },
+      "en": {
+        "title": "Catfish Fishing",
+        "description": "Large-particle pellets and bloodmeal specially formulated for catfish angling. Available for immediate delivery.",
+        "meta_title": "Catfish Pellets | Large Particle & Bloodmeal | Pellet Baits",
+        "meta_description": "Buy catfish pellets from Alltech Coppens. Large particle, bloodmeal and liver for maximum catfish results.",
+        "slug": "catfish-fishing",
+        "seo_keywords": ["catfish pellets buy", "wels catfish pellets", "large particle pellets catfish", "bloodmeal catfish bait"]
+      },
+      "de": {
+        "title": "Welsangeln",
+        "description": "Großkorn-Pellets und Blutmehl speziell für die Welsfischerei zusammengestellt. Sofort lieferbar.",
+        "meta_title": "Welspellets | Großkorn & Blutmehl | Pellet Baits",
+        "meta_description": "Welspellets von Alltech Coppens kaufen. Großkorn, Blutmehl und Lebermehl für maximalen Erfolg beim Welsangeln.",
+        "slug": "welsangeln",
+        "seo_keywords": ["Welspellets kaufen", "Welsangeln Pellets", "Großkorn Pellets Wels", "Blutmehl Welsköder"]
+      }
+    },
+    "methodfeeder": {
+      "nl": {
+        "title": "Method Feeder",
+        "description": "Fijne method feeder mixen in 2–4mm voor maximale aantrekkingskracht in het voergebied.",
+        "meta_title": "Method Feeder Pellets | 2–4mm Mixen | Pellet Baits",
+        "meta_description": "Premium method feeder pellets in 2 en 4mm. Snel zinkend, hoge voedingswaarde. Officieel Coppens assortiment bij Pellet Baits.",
+        "slug": "methodfeeder",
+        "seo_keywords": ["method feeder pellets", "feeder pellets kopen", "2mm pellets feeder", "coppens method feeder mix"]
+      },
+      "en": {
+        "title": "Method Feeder",
+        "description": "Fine method feeder mixes in 2–4mm for maximum attraction in the feed zone.",
+        "meta_title": "Method Feeder Pellets | 2–4mm Mixes | Pellet Baits",
+        "meta_description": "Premium method feeder pellets in 2mm and 4mm. Fast-sinking, high nutritional value. Official Coppens range at Pellet Baits.",
+        "slug": "method-feeder",
+        "seo_keywords": ["method feeder pellets", "feeder pellets buy", "2mm pellets feeder mix", "coppens method feeder"]
+      },
+      "de": {
+        "title": "Method Feeder",
+        "description": "Feine Method-Feeder-Mischungen in 2–4mm für maximale Anziehungskraft im Futterbereich.",
+        "meta_title": "Method Feeder Pellets | 2–4mm Mischungen | Pellet Baits",
+        "meta_description": "Premium Method-Feeder-Pellets in 2mm und 4mm. Schnell sinkend, hoher Nährwert. Offizielles Coppens Sortiment bei Pellet Baits.",
+        "slug": "method-feeder",
+        "seo_keywords": ["Method Feeder Pellets kaufen", "Feeder Pellets 2mm", "Coppens Method Feeder Mix", "Angelköder Feeder"]
+      }
+    }
+  },
+  "products": {
+    "black-halibut-premium-select-2mm": {
+      "nl": {
+        "product_title": "Black Halibut Premium Select 2mm",
+        "product_description": "De Black Halibut Premium Select pellets in 2mm zijn dé bewezen keuze voor karper- en meervalvissers die het maximale uit hun sessie willen halen. Samengesteld op basis van de authentieke Alltech Coppens formulering, zijn deze donkere halibut pellets rijk aan visolie, viseiwitten en essentiële aminozuren die vis onweerstaanbaar aantrekken.\n\nDankzij de compacte 2mm maat zijn ze ideaal voor method feeder vissen, pellet waggler of als lokaas rond je haak. Ze zinken snel, lossen gelijkmatig op en laten een sterke aantrekkende geur achter in het water.\n\n✓ Officieel Alltech Coppens — direct van de fabrikant\n✓ Rijk aan visolie en -eiwitten\n✓ Geschikt voor karper, meerval en method feeder\n✓ Snel zinkend, gelijkmatige afbraak\n✓ Bewezen effectief door honderden vissers",
+        "short_description": "Bewezen effectieve 2mm halibut pellets voor karper en method feeder. Officieel Alltech Coppens formule.",
+        "meta_title": "Black Halibut Pellets 2mm | Pellet Baits",
+        "meta_description": "Koop Black Halibut Premium Select 2mm. Bewezen voor karper & method feeder. Officieel Coppens. Gratis verzending v.a. €60. Bestel vandaag.",
+        "seo_keywords": [
+          "black halibut pellets 2mm",
+          "halibut pellets kopen",
+          "coppens halibut pellets",
+          "karperpellets 2mm",
+          "method feeder pellets 2mm",
+          "zwarte halibut pellets",
+          "pellets karper kopen",
+          "halibut pellets hengelsport"
+        ],
+        "slug": "black-halibut-premium-select-2mm",
+        "alt_texts": [
+          "Black Halibut Premium Select pellets 2mm van Alltech Coppens",
+          "Zwarte halibut pellets 2mm voor karpervissen",
+          "Pellet Baits Black Halibut 2mm verpakking"
+        ],
+        "faq": [
+          {
+            "question": "Waarvoor zijn Black Halibut pellets het meest geschikt?",
+            "answer": "Black Halibut pellets zijn uitermate geschikt voor karpervissen, meervalvissen en method feeder vissen. De sterke geur van visolie en viseiwitten trekt grote vis aan."
+          },
+          {
+            "question": "Hoe snel lossen 2mm pellets op in het water?",
+            "answer": "De 2mm Black Halibut pellets lossen binnen 10-20 minuten gelijkmatig op, afhankelijk van de watertemperatuur. Perfect voor method feeder en pellet waggler."
+          },
+          {
+            "question": "Zijn dit officiële Alltech Coppens pellets?",
+            "answer": "Ja. Pellet Baits is officieel distributeur van Alltech Coppens. Alle pellets komen rechtstreeks van de fabrikant en zijn altijd vers en van de hoogste kwaliteit."
+          }
+        ]
+      },
+      "en": {
+        "product_title": "Black Halibut Premium Select 2mm",
+        "product_description": "Black Halibut Premium Select pellets in 2mm are the proven choice for carp and catfish anglers who want to maximise every session. Formulated on the authentic Alltech Coppens recipe, these dark halibut pellets are rich in fish oil, fish protein and essential amino acids that fish simply cannot resist.\n\nThanks to the compact 2mm size, they are ideal for method feeder fishing, pellet waggler or as bait around your hook. They sink quickly, break down evenly and release a powerful attractive scent trail in the water.\n\n✓ Official Alltech Coppens — direct from the manufacturer\n✓ Rich in fish oil and protein\n✓ Suitable for carp, catfish and method feeder\n✓ Fast-sinking, consistent breakdown\n✓ Proven effective by hundreds of anglers",
+        "short_description": "Proven 2mm halibut pellets for carp and method feeder fishing. Official Alltech Coppens formula.",
+        "meta_title": "Black Halibut Pellets 2mm | Pellet Baits",
+        "meta_description": "Buy Black Halibut Premium Select 2mm. Proven for carp & method feeder. Official Coppens dealer. Free shipping from €60. Order today.",
+        "seo_keywords": [
+          "black halibut pellets 2mm",
+          "halibut pellets buy",
+          "Coppens halibut pellets",
+          "carp pellets 2mm",
+          "method feeder pellets 2mm",
+          "dark halibut pellets fishing",
+          "carp bait pellets buy",
+          "halibut pellets angling"
+        ],
+        "slug": "black-halibut-premium-select-2mm",
+        "alt_texts": [
+          "Black Halibut Premium Select pellets 2mm by Alltech Coppens",
+          "Dark halibut pellets 2mm for carp fishing",
+          "Pellet Baits Black Halibut 2mm packaging"
+        ],
+        "faq": [
+          {
+            "question": "What is Black Halibut best suited for?",
+            "answer": "Black Halibut pellets are excellent for carp fishing, catfish fishing and method feeder angling. The powerful fish oil and protein scent attracts large fish effectively."
+          },
+          {
+            "question": "How quickly do 2mm pellets break down in water?",
+            "answer": "The 2mm Black Halibut pellets break down evenly within 10-20 minutes depending on water temperature — perfect for method feeder and pellet waggler rigs."
+          },
+          {
+            "question": "Are these official Alltech Coppens pellets?",
+            "answer": "Yes. Pellet Baits is an official Alltech Coppens distributor. All pellets come directly from the manufacturer and are always fresh and of the highest quality."
+          }
+        ]
+      },
+      "de": {
+        "product_title": "Black Halibut Premium Select 2mm",
+        "product_description": "Die Black Halibut Premium Select Pellets in 2mm sind die bewährte Wahl für Karpfen- und Welsangler, die das Maximum aus jeder Session herausholen wollen. Basierend auf der authentischen Alltech Coppens Rezeptur sind diese dunklen Halibut-Pellets reich an Fischöl, Fischprotein und essentiellen Aminosäuren, die Fische unwiderstehlich anlocken.\n\nDank der kompakten 2mm Größe sind sie ideal für Method-Feeder-Angeln, Pellet-Waggler oder als Köder am Haken. Sie sinken schnell, lösen sich gleichmäßig auf und hinterlassen eine starke Lockspur im Wasser.\n\n✓ Offizieller Alltech Coppens Händler — direkt vom Hersteller\n✓ Reich an Fischöl und -proteinen\n✓ Geeignet für Karpfen, Wels und Method Feeder\n✓ Schnell sinkend, gleichmäßige Auflösung\n✓ Von hunderten Anglern bewährt",
+        "short_description": "Bewährte 2mm Halibut-Pellets für Karpfen und Method Feeder. Offizielle Alltech Coppens Formel.",
+        "meta_title": "Black Halibut Pellets 2mm | Pellet Baits",
+        "meta_description": "Black Halibut Premium Select 2mm kaufen. Für Karpfen & Method Feeder bewährt. Offizieller Coppens Händler. Kostenloser Versand ab €60.",
+        "seo_keywords": [
+          "Black Halibut Pellets 2mm",
+          "Halibut Pellets kaufen",
+          "Coppens Halibut Pellets",
+          "Karpfenpellets 2mm",
+          "Method Feeder Pellets 2mm",
+          "dunkle Halibut Pellets Angeln",
+          "Karpfenköder Pellets kaufen",
+          "Halibut Pellets Angelsport"
+        ],
+        "slug": "black-halibut-premium-select-2mm",
+        "alt_texts": [
+          "Black Halibut Premium Select Pellets 2mm von Alltech Coppens",
+          "Dunkle Halibut Pellets 2mm für Karpfenangeln",
+          "Pellet Baits Black Halibut 2mm Verpackung"
+        ],
+        "faq": [
+          {
+            "question": "Wofür sind Black Halibut Pellets am besten geeignet?",
+            "answer": "Black Halibut Pellets eignen sich hervorragend für Karpfenangeln, Welsangeln und Method-Feeder-Angeln. Der intensive Fischöl- und Proteingeruch zieht Großfische effektiv an."
+          },
+          {
+            "question": "Wie schnell lösen sich 2mm Pellets im Wasser auf?",
+            "answer": "Die 2mm Black Halibut Pellets lösen sich je nach Wassertemperatur gleichmäßig innerhalb von 10-20 Minuten auf — perfekt für Method Feeder und Pellet Waggler."
+          },
+          {
+            "question": "Sind das offizielle Alltech Coppens Pellets?",
+            "answer": "Ja. Pellet Baits ist offizieller Alltech Coppens Händler. Alle Pellets kommen direkt vom Hersteller und sind stets frisch und von höchster Qualität."
+          }
+        ]
+      }
+    }
+  },
+  "ui_strings": {
+    "nl": {
+      "add_to_cart": "In winkelwagen",
+      "sold_out": "Uitverkocht",
+      "in_stock": "Op voorraad",
+      "free_shipping": "Gratis verzending vanaf €60",
+      "order_today": "Voor 16:00 besteld, morgen in huis",
+      "view_product": "Bekijk product",
+      "all_products": "Alle producten",
+      "newsletter_placeholder": "jouw@email.nl",
+      "newsletter_submit": "Inschrijven",
+      "cart_empty": "Je winkelwagen is leeg",
+      "bestseller": "Bestseller",
+      "new": "Nieuw",
+      "sale": "Aanbieding"
+    },
+    "en": {
+      "add_to_cart": "Add to cart",
+      "sold_out": "Sold out",
+      "in_stock": "In stock",
+      "free_shipping": "Free shipping from €60",
+      "order_today": "Order before 16:00, delivered tomorrow",
+      "view_product": "View product",
+      "all_products": "All products",
+      "newsletter_placeholder": "your@email.com",
+      "newsletter_submit": "Subscribe",
+      "cart_empty": "Your cart is empty",
+      "bestseller": "Bestseller",
+      "new": "New",
+      "sale": "Sale"
+    },
+    "de": {
+      "add_to_cart": "In den Warenkorb",
+      "sold_out": "Ausverkauft",
+      "in_stock": "Auf Lager",
+      "free_shipping": "Kostenloser Versand ab €60",
+      "order_today": "Vor 16:00 bestellt, morgen geliefert",
+      "view_product": "Produkt ansehen",
+      "all_products": "Alle Produkte",
+      "newsletter_placeholder": "deine@email.de",
+      "newsletter_submit": "Anmelden",
+      "cart_empty": "Dein Warenkorb ist leer",
+      "bestseller": "Bestseller",
+      "new": "Neu",
+      "sale": "Angebot"
+    }
+  }
+}

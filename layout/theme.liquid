@@ -18,6 +18,28 @@
 
   {{ content_for_header }}
 
+  <!-- Canonical URL -->
+  <link rel="canonical" href="{{ request.origin }}{{ request.path }}">
+
+  <!-- hreflang alternates (Shopify Markets) -->
+  {%- if localization.available_languages.size > 1 -%}
+    {%- for lang in localization.available_languages -%}
+      {%- if lang.iso_code == localization.language.iso_code -%}
+        <link rel="alternate" hreflang="{{ lang.iso_code }}" href="{{ request.origin }}{{ request.path }}">
+      {%- else -%}
+        <link rel="alternate" hreflang="{{ lang.iso_code }}" href="{{ request.origin }}/{{ lang.iso_code }}{{ request.path }}">
+      {%- endif -%}
+    {%- endfor -%}
+    <link rel="alternate" hreflang="x-default" href="{{ request.origin }}{{ request.path }}">
+  {%- endif -%}
+
+  <!-- Open Graph -->
+  <meta property="og:site_name" content="{{ shop.name }}">
+  <meta property="og:locale" content="{{ request.locale.iso_code | replace: '-', '_' }}">
+  {%- if page_image -%}
+    <meta property="og:image" content="{{ page_image | image_url: width: 1200 }}">
+  {%- endif -%}
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">

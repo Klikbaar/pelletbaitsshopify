@@ -18,29 +18,32 @@
     var drop = document.getElementById('lang-dropdown');
     if (!wrap || !btn || !drop) return;
 
-    btn.addEventListener('click', function () {
-      var isOpen = drop.classList.contains('is-open');
-      drop.classList.toggle('is-open', !isOpen);
-      btn.setAttribute('aria-expanded', String(!isOpen));
+    function openDrop()  { drop.classList.add('is-open');    btn.setAttribute('aria-expanded', 'true');  }
+    function closeDrop() { drop.classList.remove('is-open'); btn.setAttribute('aria-expanded', 'false'); }
+
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      drop.classList.contains('is-open') ? closeDrop() : openDrop();
     });
+
     document.addEventListener('click', function (e) {
-      if (!wrap.contains(e.target)) {
-        drop.classList.remove('is-open');
-        btn.setAttribute('aria-expanded', 'false');
-      }
+      if (!wrap.contains(e.target)) closeDrop();
     });
-    drop.querySelectorAll('.header-lang-option').forEach(function (opt) {
-      opt.addEventListener('click', function () {
-        drop.querySelectorAll('.header-lang-option').forEach(function (o) {
-          o.classList.remove('active');
-          o.setAttribute('aria-selected', 'false');
-        });
-        opt.classList.add('active');
-        opt.setAttribute('aria-selected', 'true');
-        var labelEl = btn.querySelector('span');
-        if (labelEl) labelEl.textContent = opt.textContent.trim();
-        drop.classList.remove('is-open');
-        btn.setAttribute('aria-expanded', 'false');
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeDrop();
+    });
+
+    /* Static fallback (no Shopify Markets): navigate to locale subdirectory */
+    drop.querySelectorAll('.header-lang-option[data-locale]').forEach(function (opt) {
+      opt.addEventListener('click', function (e) {
+        e.preventDefault();
+        var locale = opt.getAttribute('data-locale');
+        if (locale) {
+          var path = window.location.pathname.replace(/^\/(en|de|nl)(\/|$)/, '/');
+          window.location.href = '/' + locale + path + window.location.search;
+        }
+        closeDrop();
       });
     });
   }
