@@ -66,6 +66,7 @@
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
             </button>
             <div class="header-lang-dropdown" id="lang-dropdown" role="listbox" aria-label="Taal kiezen">
+              <!-- DEBUG-TALEN: {{ localization.available_languages | map: 'iso_code' | join: ', ' }} (totaal: {{ localization.available_languages.size }}) -->
               {%- if localization.available_languages.size > 1 -%}
                 {%- for language in localization.available_languages -%}
                   <button type="submit" name="locale_code" value="{{ language.iso_code }}"
