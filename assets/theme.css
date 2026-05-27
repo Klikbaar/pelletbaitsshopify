@@ -1387,7 +1387,7 @@ input, select, textarea { font: inherit; }
 
 .pb-footer-grid {
   display: grid;
-  grid-template-columns: 1.4fr 1fr 1fr 1.1fr 1.1fr;
+  grid-template-columns: 1.4fr 1fr 1.1fr 1.1fr;
   gap: 36px;
   margin-bottom: 0;
 }
@@ -1418,7 +1418,7 @@ input, select, textarea { font: inherit; }
 }
 .footer-logo-wrap { margin-bottom: 4px; }
 .footer-logo-img {
-  height: 48px;
+  height: 68px;
   width: auto;
   display: block;
 }
