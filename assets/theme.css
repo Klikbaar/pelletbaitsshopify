@@ -381,10 +381,10 @@ input, select, textarea { font: inherit; }
 }
 .pb-mainnav-link {
   position: relative;
-  padding: 12px 20px;
-  font-size: 13.5px;
+  padding: 10px 12px;
+  font-size: 11.5px;
   font-weight: 700;
-  letter-spacing: .05em;
+  letter-spacing: .03em;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.72);
   text-decoration: none;
@@ -394,7 +394,7 @@ input, select, textarea { font: inherit; }
 .pb-mainnav-link::after {
   content: '';
   position: absolute;
-  left: 20px; right: 20px; bottom: 7px;
+  left: 12px; right: 12px; bottom: 6px;
   height: 2px;
   background: var(--action);
   transform: scaleX(0);
