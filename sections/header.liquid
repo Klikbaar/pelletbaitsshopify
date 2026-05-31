@@ -116,6 +116,31 @@
     </div>
   </div>
 
+  <nav class="pb-mainnav" aria-label="Hoofdnavigatie">
+    <div class="pb-container pb-mainnav-inner">
+      {%- assign main_links = linklists[section.settings.menu].links -%}
+      {%- if main_links.size > 0 -%}
+        {%- for link in main_links -%}
+          <a href="{{ link.url }}"
+             class="pb-mainnav-link{% if link.active %} active{% endif %}"
+             {% if link.active %}aria-current="page"{% endif %}>
+            {{ link.title }}
+          </a>
+        {%- endfor -%}
+      {%- else -%}
+        <a href="{{ routes.root_url }}"
+           class="pb-mainnav-link{% if request.path == '/' %} active{% endif %}"
+           {% if request.path == '/' %}aria-current="page"{% endif %}>Home</a>
+        <a href="{{ pages['over-ons'].url | default: '/pages/over-ons' }}"
+           class="pb-mainnav-link{% if request.path contains 'over-ons' %} active{% endif %}"
+           {% if request.path contains 'over-ons' %}aria-current="page"{% endif %}>Over ons</a>
+        <a href="{{ pages['contact'].url | default: '/pages/contact' }}"
+           class="pb-mainnav-link{% if request.path contains 'contact' %} active{% endif %}"
+           {% if request.path contains 'contact' %}aria-current="page"{% endif %}>Contact</a>
+      {%- endif -%}
+    </div>
+  </nav>
+
   <nav class="pb-catnav" aria-label="Productcategorieën">
     <div class="pb-container pb-catnav-inner">
       {%- assign catnav_links = linklists[section.settings.category_menu].links -%}
