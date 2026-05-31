@@ -127,6 +127,28 @@
       <a href="{{ pages['contact'].url | default: '/pages/contact' }}"
          class="pb-mainnav-link{% if request.path contains 'contact' %} active{% endif %}"
          {% if request.path contains 'contact' %}aria-current="page"{% endif %}>Contact</a>
+      <span class="pb-mainnav-divider" aria-hidden="true"></span>
+      <a href="/collections/karpervissen"
+         class="pb-mainnav-link{% if request.path contains 'karpervissen' %} active{% endif %}"
+         {% if request.path contains 'karpervissen' %}aria-current="page"{% endif %}>Karpervissen</a>
+      <a href="/collections/meervalvissen"
+         class="pb-mainnav-link{% if request.path contains 'meervalvissen' %} active{% endif %}"
+         {% if request.path contains 'meervalvissen' %}aria-current="page"{% endif %}>Meervalvissen</a>
+      <a href="/collections/steurvissen"
+         class="pb-mainnav-link{% if request.path contains 'steurvissen' %} active{% endif %}"
+         {% if request.path contains 'steurvissen' %}aria-current="page"{% endif %}>Steurvissen</a>
+      <a href="/collections/methodfeeder"
+         class="pb-mainnav-link{% if request.path contains 'methodfeeder' %} active{% endif %}"
+         {% if request.path contains 'methodfeeder' %}aria-current="page"{% endif %}>Method Feeder</a>
+      <a href="/collections/waggler"
+         class="pb-mainnav-link{% if request.path contains 'waggler' %} active{% endif %}"
+         {% if request.path contains 'waggler' %}aria-current="page"{% endif %}>Waggler</a>
+      <a href="/collections/koi-vijver"
+         class="pb-mainnav-link{% if request.path contains 'koi' %} active{% endif %}"
+         {% if request.path contains 'koi' %}aria-current="page"{% endif %}>Koi · Vijver</a>
+      <a href="/collections/tools-merchandise"
+         class="pb-mainnav-link{% if request.path contains 'tools' %} active{% endif %}"
+         {% if request.path contains 'tools' %}aria-current="page"{% endif %}>Tools &amp; Merch</a>
     </div>
   </nav>
 </header>

@@ -367,6 +367,17 @@ input, select, textarea { font: inherit; }
   align-items: center;
   height: 46px;
   gap: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.pb-mainnav-inner::-webkit-scrollbar { display: none; }
+.pb-mainnav-divider {
+  display: inline-block;
+  width: 1px;
+  height: 18px;
+  background: rgba(255,255,255,0.2);
+  margin: 0 8px;
+  flex-shrink: 0;
 }
 .pb-mainnav-link {
   position: relative;
