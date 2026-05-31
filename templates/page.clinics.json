@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-clinics",
+      "settings": {}
+    }
+  },
+  "order": ["main"]
+}
