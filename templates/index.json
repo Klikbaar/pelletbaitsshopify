@@ -18,11 +18,7 @@
         "cta_label": "Shop Baits",
         "cta_url": "/collections",
         "secondary_label": "Bekijk Categorieën",
-        "secondary_url": "/collections",
-        "featured_product": "",
-        "tag_1": "Pellet Baits",
-        "tag_2": "Hook Baits",
-        "tag_3": "Liquid Attractants"
+        "secondary_url": "/collections"
       }
     },
     "bestsellers": {
