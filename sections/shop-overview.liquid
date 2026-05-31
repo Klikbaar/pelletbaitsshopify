@@ -403,7 +403,11 @@
 
       <!-- METHOD FEEDER -->
       <a href="{{ methodfeeder_url }}" class="so-cat-card" style="aspect-ratio:1/1">
-        <img class="so-cat-bg" src="https://images.unsplash.com/photo-1485727749690-d091e8284ef3?auto=format&fit=crop&w=1000&q=80" alt="Method Feeder" loading="lazy">
+        {%- if section.settings.methodfeeder_image -%}
+          <img class="so-cat-bg" src="{{ section.settings.methodfeeder_image | image_url: width: 1000 }}" alt="Method Feeder" loading="lazy">
+        {%- else -%}
+          <img class="so-cat-bg" src="https://images.unsplash.com/photo-1485727749690-d091e8284ef3?auto=format&fit=crop&w=1000&q=80" alt="Method Feeder" loading="lazy">
+        {%- endif -%}
         <div class="so-cat-overlay so-cat-overlay--deep"></div>
         <span class="so-cat-tag so-cat-tag--gold">Populair</span>
         <div class="so-cat-info">
@@ -420,7 +424,11 @@
 
       <!-- WAGGLER -->
       <a href="{{ waggler_url }}" class="so-cat-card" style="aspect-ratio:1/1">
-        <img class="so-cat-bg" src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?auto=format&fit=crop&w=1000&q=80" alt="Waggler vissen" loading="lazy">
+        {%- if section.settings.waggler_image -%}
+          <img class="so-cat-bg" src="{{ section.settings.waggler_image | image_url: width: 1000 }}" alt="Waggler vissen" loading="lazy">
+        {%- else -%}
+          <img class="so-cat-bg" src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?auto=format&fit=crop&w=1000&q=80" alt="Waggler vissen" loading="lazy">
+        {%- endif -%}
         <div class="so-cat-overlay so-cat-overlay--deep"></div>
         <div class="so-cat-info">
           <div>
@@ -436,7 +444,11 @@
 
       <!-- KOI / VIJVER -->
       <a href="{{ koivijver_url }}" class="so-cat-card" style="aspect-ratio:1/1">
-        <img class="so-cat-bg" src="https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&w=1000&q=80" alt="Koi en vijver" loading="lazy">
+        {%- if section.settings.koivijver_image -%}
+          <img class="so-cat-bg" src="{{ section.settings.koivijver_image | image_url: width: 1000 }}" alt="Koi en vijver" loading="lazy">
+        {%- else -%}
+          <img class="so-cat-bg" src="https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&w=1000&q=80" alt="Koi en vijver" loading="lazy">
+        {%- endif -%}
         <div class="so-cat-overlay so-cat-overlay--deep"></div>
         <div class="so-cat-info">
           <div>
@@ -451,18 +463,21 @@
       </a>
 
       <!-- TOOLS & MERCHANDISE -->
-      <a href="{{ tools_url }}" class="so-cat-card" style="aspect-ratio:1/1;background:var(--bg-3)">
-        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:.05">
-          <svg width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width=".6"><path d="M14 2l4 4-12 12-4-4 12-12z"/><path d="M3 21l2-6"/></svg>
-        </div>
+      <a href="{{ tools_url }}" class="so-cat-card" style="aspect-ratio:1/1">
+        {%- if section.settings.tools_image -%}
+          <img class="so-cat-bg" src="{{ section.settings.tools_image | image_url: width: 1000 }}" alt="Tools en Merchandise" loading="lazy">
+        {%- else -%}
+          <img class="so-cat-bg" src="https://images.unsplash.com/photo-1563459802257-2a97df940f11?auto=format&fit=crop&w=1000&q=80" alt="Tools en Merchandise" loading="lazy">
+        {%- endif -%}
+        <div class="so-cat-overlay so-cat-overlay--deep"></div>
         <span class="so-cat-tag">Nieuw</span>
         <div class="so-cat-info">
           <div>
             <div class="so-cat-count so-cat-count--sm">18 producten</div>
-            <div class="display" style="font-size:clamp(28px,3vw,38px);color:var(--ink)">Tools &amp;<br>Merchandise</div>
+            <div class="display" style="font-size:clamp(28px,3vw,38px);color:#fff">Tools &amp;<br>Merchandise</div>
             <div class="so-cat-sub so-cat-sub--sm">PVA &bull; Naalden &bull; Merch</div>
           </div>
-          <div class="so-arrow-btn so-arrow-btn--sm so-arrow-btn--accent">
+          <div class="so-arrow-btn so-arrow-btn--sm">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </div>
         </div>
@@ -531,6 +546,26 @@
       "type": "image_picker",
       "id": "steurvissen_image",
       "label": "Afbeelding: Steurvissen"
+    },
+    {
+      "type": "image_picker",
+      "id": "methodfeeder_image",
+      "label": "Afbeelding: Method Feeder"
+    },
+    {
+      "type": "image_picker",
+      "id": "waggler_image",
+      "label": "Afbeelding: Waggler"
+    },
+    {
+      "type": "image_picker",
+      "id": "koivijver_image",
+      "label": "Afbeelding: Koi & Vijver"
+    },
+    {
+      "type": "image_picker",
+      "id": "tools_image",
+      "label": "Afbeelding: Tools & Merchandise"
     }
   ],
   "presets": [
