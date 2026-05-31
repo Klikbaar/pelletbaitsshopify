@@ -75,21 +75,6 @@
   .cl-step-t { font-family: var(--font-display); font-size: 22px; font-weight: 700; text-transform: uppercase; color: var(--ink); margin-top: 16px; }
   .cl-step-d { font-size: 13.5px; line-height: 1.55; color: var(--ink-2); margin-top: 10px; }
 
-  /* Coaches */
-  .cl-coaches { padding: 30px 0 80px; background: #fff; }
-  .cl-coaches-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 32px; }
-  .cl-coach { border: 1px solid var(--line); border-radius: 16px; overflow: hidden; background: #fff; }
-  .cl-coach-img {
-    aspect-ratio: 4/3;
-    background: repeating-linear-gradient(135deg, #eef0ea 0 14px, #f6f7f4 14px 28px);
-    border-bottom: 1px solid var(--line);
-    position: relative;
-  }
-  .cl-coach-body { padding: 20px 22px; }
-  .cl-coach-name { font-family: var(--font-display); font-size: 24px; font-weight: 800; text-transform: uppercase; color: var(--ink); }
-  .cl-coach-role { font-size: 12px; letter-spacing: .06em; color: var(--mid-green); font-weight: 600; margin-top: 4px; }
-  .cl-coach-desc { font-size: 13.5px; line-height: 1.55; color: var(--ink-2); margin-top: 12px; }
-
   /* Contact CTA */
   .cl-contact { padding: 70px 0; background: var(--bg-soft); }
   .cl-contact-inner {
@@ -113,7 +98,6 @@
   }
   @media (max-width: 980px) {
     .cl-stats { grid-template-columns: repeat(2, 1fr); }
-    .cl-coaches-grid { grid-template-columns: 1fr 1fr; }
     .cl-intro-pts { grid-template-columns: 1fr; }
     .cl-stat-card { right: 12px; bottom: -20px; width: 200px; }
     .cl-contact-grid { grid-template-columns: 1fr; }
@@ -123,7 +107,6 @@
   @media (max-width: 720px) {
     .cl-stats { grid-template-columns: repeat(2, 1fr); }
     .cl-steps-grid { grid-template-columns: 1fr; }
-    .cl-coaches-grid { grid-template-columns: 1fr; }
     .cl-hero-img { min-height: 340px; }
     .cl-hero-content { padding: 28px 20px 28px; }
     .cl-hero-title { font-size: clamp(38px, 10vw, 64px); }
@@ -311,40 +294,6 @@
   </div>
 </section>
 
-<!-- COACHES -->
-<section class="cl-coaches">
-  <div class="pb-container">
-    <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap">
-      <div>
-        <p class="pb-eyebrow">Het team</p>
-        <h2 class="pb-display" style="font-size:clamp(36px,4.5vw,56px);margin:8px 0 0;color:var(--ink)">
-          Je <span style="color:var(--mid-green)">coaches</span>
-        </h2>
-      </div>
-    </div>
-    <div class="cl-coaches-grid">
-      {%- for block in section.blocks -%}
-        {%- if block.type == 'coach' -%}
-          <div class="cl-coach" {{ block.shopify_attributes }}>
-            <div class="cl-coach-img">
-              {%- if block.settings.photo != blank -%}
-                <img src="{{ block.settings.photo | image_url: width: 600 }}" alt="{{ block.settings.name }}" style="width:100%;height:100%;object-fit:cover;">
-              {%- else -%}
-                <div class="cl-placeholder-label"><span>coach portret</span></div>
-              {%- endif -%}
-            </div>
-            <div class="cl-coach-body">
-              <div class="cl-coach-name">{{ block.settings.name }}</div>
-              <div class="cl-coach-role">{{ block.settings.role }}</div>
-              <p class="cl-coach-desc">{{ block.settings.bio }}</p>
-            </div>
-          </div>
-        {%- endif -%}
-      {%- endfor -%}
-    </div>
-  </div>
-</section>
-
 <!-- CONTACT CTA -->
 <section id="contact" class="cl-contact">
   <div class="pb-container">
@@ -501,16 +450,6 @@
         { "type": "checkbox", "id": "featured", "label": "Uitgelicht (donkere overlay)", "default": false }
       ]
     },
-    {
-      "type": "coach",
-      "name": "Coach",
-      "settings": [
-        { "type": "text", "id": "name", "label": "Naam", "default": "Thimo de Visser" },
-        { "type": "text", "id": "role", "label": "Rol", "default": "Hoofdcoach · Karpervissen" },
-        { "type": "image_picker", "id": "photo", "label": "Portretfoto" },
-        { "type": "textarea", "id": "bio", "label": "Bio", "default": "Met meer dan 10 jaar ervaring aan de waterkant begeleidt Thimo vissers van alle niveaus naar betere resultaten." }
-      ]
-    }
   ],
   "presets": [
     {
@@ -524,10 +463,7 @@
         { "type": "clinic_type", "settings": { "title": "Method Feeder", "level": "Alle niveaus", "duration": "Halve dag", "price": "59" } },
         { "type": "clinic_type", "settings": { "title": "Meerval Specialist", "level": "Gevorderd", "duration": "1 dag", "price": "109" } },
         { "type": "clinic_type", "settings": { "title": "Pellet Waggler", "level": "Beginner", "duration": "Halve dag", "price": "59" } },
-        { "type": "clinic_type", "settings": { "title": "Jeugd Clinic", "level": "8 — 14 jaar", "duration": "2 uur", "price": "29" } },
-        { "type": "coach", "settings": { "name": "Thimo de Visser", "role": "Hoofdcoach · Karpervissen", "bio": "Met meer dan 10 jaar ervaring aan de waterkant begeleidt Thimo vissers van alle niveaus naar betere resultaten." } },
-        { "type": "coach", "settings": { "name": "Naam Coach", "role": "Coach · Method Feeder", "bio": "Specialist in method feeder technieken met een passie voor het doorgeven van kennis aan andere vissers." } },
-        { "type": "coach", "settings": { "name": "Naam Coach", "role": "Coach · Meervalvissen", "bio": "Al jaren de grootste meervallen in Nederland. Deelt zijn kennis graag tijdens onze meerval clinics." } }
+        { "type": "clinic_type", "settings": { "title": "Jeugd Clinic", "level": "8 — 14 jaar", "duration": "2 uur", "price": "29" } }
       ]
     }
   ]
