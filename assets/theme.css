@@ -113,14 +113,13 @@ input, select, textarea { font: inherit; }
 .pb-promobar-inner {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   height: 38px;
-  gap: 24px;
 }
 .pb-promo-row {
   display: flex;
   align-items: center;
-  gap: 32px;
+  justify-content: space-evenly;
+  width: 100%;
   overflow: hidden;
 }
 .pb-promo-item {

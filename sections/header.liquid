@@ -19,13 +19,6 @@
         <span>Advies? Bel op werkdagen 9–17u</span>
       </div>
     </div>
-    <div class="pb-promo-links">
-      {%- if pages['klantenservice'] -%}
-        <a href="{{ pages['klantenservice'].url }}">Klantenservice</a>
-      {%- else -%}
-        <a href="/pages/klantenservice">Klantenservice</a>
-      {%- endif -%}
-    </div>
   </div>
 </div>
 {%- endif -%}
@@ -127,6 +120,9 @@
       <a href="{{ pages['contact'].url | default: '/pages/contact' }}"
          class="pb-mainnav-link{% if request.path contains 'contact' %} active{% endif %}"
          {% if request.path contains 'contact' %}aria-current="page"{% endif %}>Contact</a>
+      <a href="{{ pages['klantenservice'].url | default: '/pages/klantenservice' }}"
+         class="pb-mainnav-link{% if request.path contains 'klantenservice' %} active{% endif %}"
+         {% if request.path contains 'klantenservice' %}aria-current="page"{% endif %}>Klantenservice</a>
       <span class="pb-mainnav-divider" aria-hidden="true"></span>
       <a href="{{ collections['karper'].url | default: '/collections/karper' }}"
          class="pb-mainnav-link{% if request.path contains 'karper' %} active{% endif %}"
