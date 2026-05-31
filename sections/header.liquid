@@ -71,7 +71,7 @@
                 {%- for language in localization.available_languages -%}
                   <button type="submit" name="locale_code" value="{{ language.iso_code }}"
                           class="header-lang-option{% if language.iso_code == cur_iso %} active{% endif %}"
-                          role="option" aria-selected="{{ language.iso_code == cur_iso }}">
+                          role="option" aria-selected="{% if language.iso_code == cur_iso %}true{% else %}false{% endif %}">
                     {%- if language.iso_code == 'en' -%}
                       <svg width="20" height="14" viewBox="0 0 60 40" aria-hidden="true"><rect width="60" height="40" fill="#012169"/><path d="M0 0l60 40M60 0L0 40" stroke="#fff" stroke-width="6"/><path d="M0 0l60 40M60 0L0 40" stroke="#c8102e" stroke-width="3"/><path d="M30 0v40M0 20h60" stroke="#fff" stroke-width="10"/><path d="M30 0v40M0 20h60" stroke="#c8102e" stroke-width="6"/></svg>
                     {%- elsif language.iso_code == 'de' -%}
