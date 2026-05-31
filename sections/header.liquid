@@ -123,6 +123,9 @@
       <a href="{{ pages['klantenservice'].url | default: '/pages/klantenservice' }}"
          class="pb-mainnav-link{% if request.path contains 'klantenservice' %} active{% endif %}"
          {% if request.path contains 'klantenservice' %}aria-current="page"{% endif %}>Klantenservice</a>
+      <a href="{{ pages['clinics'].url | default: '/pages/clinics' }}"
+         class="pb-mainnav-link{% if request.path contains 'clinics' %} active{% endif %}"
+         {% if request.path contains 'clinics' %}aria-current="page"{% endif %}>Clinics</a>
       <span class="pb-mainnav-divider" aria-hidden="true"></span>
       <a href="{{ collections['karper'].url | default: '/collections/karper' }}"
          class="pb-mainnav-link{% if request.path contains 'karper' %} active{% endif %}"
@@ -145,6 +148,9 @@
       <a href="{{ collections['tools-merchandise'].url | default: '/collections/tools-merchandise' }}"
          class="pb-mainnav-link{% if request.path contains 'tools' %} active{% endif %}"
          {% if request.path contains 'tools' %}aria-current="page"{% endif %}>Tools &amp; Merch</a>
+      <a href="{{ pages['zakelijk'].url | default: '/pages/zakelijk' }}"
+         class="pb-mainnav-link{% if request.path contains 'zakelijk' %} active{% endif %}"
+         {% if request.path contains 'zakelijk' %}aria-current="page"{% endif %}>Zakelijk</a>
     </div>
   </nav>
 </header>
